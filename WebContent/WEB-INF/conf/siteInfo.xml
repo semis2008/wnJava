@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sites>
+	<site>
+		<!-- id标识 -->
+		<id>1</id>
+		<!-- 网站名称 -->
+		<name>糗事百科-热门</name>
+		<!-- 网站首页url -->
+		<url>http://www.qiushibaike.com/8hr/page/1</url>
+		<!-- 网站编码 -->
+		<unicode>UTF-8</unicode>
+		<!-- 网站类型 1:单页；2：多页-->
+		<type>2</type>
+		<!-- 总页数 -->
+		<total-page>10</total-page>
+		<!-- 截取内容开始字符 -->
+		<sub-content-start>&lt;div class="content"</sub-content-start>
+		<!-- 截取内容结束字符 -->
+		<sub-content-end>&lt;/div&gt;</sub-content-end>
+		<!-- 页码匹配url -->
+		<page-url>http://www.qiushibaike.com/8hr/page/@</page-url>
+	</site>
+	<site>
+		<!-- id标识 -->
+		<id>2</id>
+		<!-- 网站名称 -->
+		<name>新浪新闻-环球视野</name>
+		<!-- 网站url -->
+		<url>http://roll.news.sina.com.cn/news/gjxw/gjmtjj/index_1.shtml</url>
+		<!-- 网站编码 -->
+		<unicode>GB2312</unicode>
+		<!-- 网站类型 1:单页；2：多页-->
+		<type>2</type>
+		<!-- 总页数 -->
+		<total-page>5</total-page>
+		<!-- 截取内容开始字符 -->
+		<sub-content-start>&lt;li&gt;</sub-content-start>
+		<!-- 截取内容结束字符 -->
+		<sub-content-end>&lt;/li&gt;</sub-content-end>
+		<!-- 页码匹配url -->
+		<page-url>http://roll.news.sina.com.cn/news/gjxw/gjmtjj/index_@.shtml</page-url>
+	</site>
+</sites>

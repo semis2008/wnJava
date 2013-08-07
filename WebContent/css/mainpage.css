@@ -1,0 +1,257 @@
+#content-gallery, #content-single {
+    min-height: 100%;
+    position: relative;
+    margin-top:10px;
+    min-width:850px;
+    width: 90%;
+    z-index: 1;
+    float: left;
+    margin-bottom: 180px;
+}
+.gallery-item {
+    float: left;
+    height: 220px;
+    position: relative;
+    width: 220px;
+}
+
+.gallery-item h2, .gallery-item h2 a {
+    background: none repeat scroll 0 0 #333333;
+    color: #a3a3a3;
+    font-size: 28px;
+    font-weight: normal;
+    font-family:"Microsoft yahei";
+    height: 187px;
+    left: 0;
+    line-height: 32px;
+    padding: 12px 20px 20px 19px;
+    position: absolute;
+    text-transform: uppercase;
+    top: 0;
+    width: 180px;
+    z-index: 5;
+}
+.gallery-item h2 a p{
+	font-family: "宋体";
+	font-size: 13px;
+	line-height: 15px;
+	padding-top: 40px;
+}
+.gallery-item img {
+    height: 219px;
+    position: absolute;
+    transition-duration: 0.3s;
+    width: 219px;
+    z-index: 10;
+}
+
+.gallery-item h2 a:hover {
+    background: url("../img/bg_html.jpg") repeat scroll center top #F1F1F1;
+    box-shadow: 0 0 2px #999999 inset;
+    color: #222222;
+}
+
+.topbar_left {
+    height: 100%;
+    float:left;
+    width: 250px;
+    z-index: 4;
+}
+.topbar_left h1, .topbar_left h2 {
+    display: block;
+    margin: 0 auto;
+    text-align: left;
+    width: 80%;
+}
+
+.topbar_left #picture-profile {
+    text-align: center;
+    position: relative;
+}
+
+.topbar_left #picture-profile img {
+    margin: 10px 0;
+}
+.topbar_right{
+    height: 100%;
+    width: 600px;
+    float:left;
+    z-index: 4;
+    border-left:  1px solid #f3f3f3;
+}
+.topbar_right .topbar_info{
+	display: block;
+    text-align: left;
+    width: 100%;
+    height: 54px;
+}
+.topbar_info ul li{
+	padding:5px;
+	width: 22%;
+	float: left;
+}
+.topbar_info ul li a{
+	color: white;
+}
+.topbar_msg{
+	height: 227px;
+}
+
+.overTitle{
+  	background: none repeat scroll 0 0 rgba(0, 0, 0, 0.5);
+    bottom: 0;
+    color: #FFFFFF;
+    left: 0;
+    padding: 10px;
+    visibility:visible;
+    position: absolute;
+    z-index: 10;
+}
+.topbar_navi{
+	width: 90px;
+	height: 25px;
+	padding-left: 500px;
+	padding-right: 10px;
+	border-bottom:  1px solid #fafafa;
+}
+.topbar_content {
+	width: 600px;
+	height: 202px;
+}
+.topbar_navi a{
+	background: none repeat scroll 0 0 #f3f3f3;
+    cursor: pointer;
+    float: right;
+    height: 9px;
+    margin: 8px;
+    overflow: hidden;
+    width: 9px;
+}
+.navi_news.on,.navi_reply.on{
+	background-color: #25a8e0;
+} 
+.topbar_reply{
+	margin-top:6px;
+	padding-left:6px;
+	display: none;
+	font-size: 11px;
+	color: #fafafa;
+}
+
+.topbar_reply img{
+	width: 30px;
+	height: 30px;
+	float:left;
+	display: none;
+}
+.topbar_reply .reply_r{
+	height: 30px;
+	display: none;
+	border-bottom:  1px solid #fafafa;
+	float: left;
+}
+.topbar_reply .name{
+	color:#f3f3f3;
+	font-size:14px;
+	padding:12px 5px 0 5px;
+	border-right:  1px solid #fafafa;
+	display: none;
+	float: left;
+}
+.topbar_reply .time{
+	color:#25a8e0;
+	font-size:11px;
+	padding-top:10px;
+	display: none;
+	float: left;
+}
+.topbar_reply .cont{
+	color:#000;
+	padding:8px 0 0 10px;
+	font-style:oblique;
+	display: none;
+	float: left;
+}
+.topbar_reply .time em{
+	font-size: 18px;
+	display: none;
+}
+.topbar_reply .reply_r p{
+	margin:0;
+	display: none;
+	float: left;
+}
+.topbar_reply li{
+	margin-bottom:5px;
+	width: 600px;
+	float:left;
+	display: block;
+}
+.topbar_news{
+	margin-top:6px;
+	padding-left:6px;
+	display:inline-block;
+	color: #fafafa;
+}
+.topbar_news li{
+	margin-bottom:5px;
+	height: 30px;
+	display:inline-block;
+}
+.topbar_news .news_cont{
+	font-size: 13px;
+	margin:12px 0 0 0;
+	border-bottom:  1px solid #fafafa;
+	width: auto;
+}
+.news_cont b{
+	border-right: 1px solid #fafafa;
+	margin-right: 5px;
+	color: white;
+	padding-right: 5px;
+}
+.news_cont em{
+	margin:0 5px 0 5px;
+	border-bottom:  1px solid #25a8e0;
+}
+.news_cont span{
+	font-size: 9px;
+}
+.news_cont a{
+	color: white;
+	font-weight: normal;
+	border-bottom:  1px solid #25a8e0;
+}
+.topbar_info img{
+	position: absolute;
+	top:15px;
+	float:left;
+	left: 900px;
+	display: none;
+}
+.topbar_info:HOVER .set_info_btn{
+	display: block;
+}
+.reply_r a ,.reply_r a.link{
+	color: white;
+}
+.setHead{
+	position: absolute;
+	top: 190px;
+	right: 36px;
+	padding: 3px;
+	font-size: 14px;
+	text-align: center;
+	width: 60px;
+	display:none;
+	background: #000;
+	filter: alpha(Opacity =     80);
+	-moz-opacity: 0.8;
+	opacity: 0.5;
+	z-index: 100;
+	cursor: pointer;
+	background-color: black;
+}
+#picture-profile:HOVER .setHead{
+	display: block;	
+}

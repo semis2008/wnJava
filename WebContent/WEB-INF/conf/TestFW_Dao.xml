@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<bean id="UserDao" class="com.wnJava.dao.impl.UserDaoImpl">
+		<property name="dbUtilsTemplate" ref="dbUtilsTemplate"></property>
+	</bean>
+	<bean id="DiaryDao" class="com.wnJava.dao.impl.DiaryDaoImpl">
+		<property name="dbUtilsTemplate" ref="dbUtilsTemplate"></property>
+	</bean>
+	<!-- 声明式事务管理 配置DAO -->
+	<bean id="nameproxy"
+		class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
+		<property name="beanNames">
+			<list>
+				<value>UserDao</value>
+				<value>DiaryDao</value>
+			</list>
+		</property>
+		<property name="interceptorNames">
+			<list>
+				<value>proxyTemplate</value>
+			</list>
+		</property>
+	</bean>
+
+</beans>

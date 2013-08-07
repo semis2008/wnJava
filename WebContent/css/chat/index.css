@@ -1,0 +1,121 @@
+html, body {
+    height: 100%;
+}
+
+body {
+    color: #333333;
+    font-family: "Microsoft YAHEI","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 13px;
+    line-height: 18px;
+    margin: 0;
+} 
+
+
+.navbar-wrapper {
+    left: 0;
+    margin-bottom: -90px;
+    margin-top: 20px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 10;
+}
+
+#topCarousel {
+    margin-bottom: 60px;
+}
+#topCarousel .container {
+    position: relative;
+    z-index: 9;
+}
+#topCarousel .carousel-control {
+    background-color: transparent;
+    border: 0 none;
+    font-size: 120px;
+    height: 80px;
+    margin-top: 0;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
+    z-index: 10;
+}
+#topCarousel .item {
+    height: 500px;
+}
+#topCarousel img {
+    height: 500px;
+    left: 0;
+    min-width: 100%;
+    position: absolute;
+    top: 0;
+}
+#topCarousel .carousel-caption {
+    background-color: transparent;
+    margin-top: 160px;
+    max-width: 550px;
+    padding: 0 20px;
+    position: static;
+}
+#topCarousel .carousel-caption h1, #topCarousel .carousel-caption .lead {
+    color: #FFFFFF;
+    line-height: 1.25;
+    margin: 0;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
+}
+#topCarousel .carousel-caption .btn {
+    margin-top: 10px;
+}
+
+#intro .span4 {
+    text-align: center;
+    font-size: 14px;
+}
+
+.marketing{
+	margin-bottom: 350px;
+}
+
+h2.icon-line {
+    background: url("../../img/chat/line-gray.gif") no-repeat scroll center center transparent;
+    margin-bottom: 40px;
+    text-align: center;
+    width: 100%;
+}
+
+h2.icon-line span{
+    background-color:white;
+    color:#ffad34;
+    padding: 20px;
+}
+#about,#intro,#contact,#progress,#example{
+	margin-bottom: 60px;
+}
+#about .span3{
+	text-align: center;
+}
+
+#about .span3 img{
+	margin-bottom: 20px;
+}
+
+#about .span3 p{
+	font-size: 16px;
+}
+
+.contact_textarea{
+	width: 75.3%;
+}
+#contact_form .row-fluid{
+	margin-bottom: 10px;
+}
+
+
+
+
+
+
+ 
+.footer {
+	background-color: #252525;
+    min-width: 1100px;
+    color:white;
+    padding: 45px 0;
+}

@@ -1,0 +1,50 @@
+div.art-cats {
+	float: left;
+	font-size: 9px;
+	margin-bottom: 14px;
+	margin-right: 12px;
+	margin-top: 2px;
+	text-align: center;
+	text-transform: uppercase;
+	width: 78px;
+}
+
+div.art-cats li {
+	list-style-type: none;
+	margin-bottom: 1px;
+}
+
+div.art-cats li.blogTime a {
+	font-size: 11px;
+	padding: 10px 4px 10px 4px;
+}
+
+div.art-cats li a {
+	background-color: #262626;
+	color: #FFFFFF;
+	display: block;
+	padding-top: 40px;
+	text-decoration: none;
+}
+
+div.art-cats em {
+	font-size: 18px;
+	display: inline-block;
+}
+
+div.art-cats li.tag a {
+	line-height: 14px;
+	padding-top: 0;
+}
+
+div.art-cats li.tag a {
+	background: none repeat scroll 0 0 #25A8E0;
+}
+.art-head small:before {
+    content: "— ";
+}
+.art-head small {
+    color: #999999;
+    display: block;
+    line-height: 20px;
+}

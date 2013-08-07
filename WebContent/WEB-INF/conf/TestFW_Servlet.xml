@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<bean id="User" class="com.wnJava.servlet.UserServlet">
+		<property name="userService" ref="UserService" />
+	</bean>
+	<bean id="System" class="com.wnJava.servlet.SystemServlet">
+		<property name="userService" ref="UserService" />
+		<property name="diaryService" ref="DiaryService" />
+	</bean>
+	<bean id="Diary" class="com.wnJava.servlet.DiaryServlet">
+		<property name="diaryService" ref="DiaryService" />
+	</bean>
+	<bean id="Chat" class="com.wnJava.servlet.ChatServlet">
+	</bean>
+</beans>

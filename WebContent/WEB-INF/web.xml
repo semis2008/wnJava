@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	version="2.5">
+	<session-config>
+		<session-timeout>40</session-timeout>
+	</session-config>
+	<!-- Character Encoding filter -->
+	<filter>
+		<filter-name>encodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>*.jsp</url-pattern>
+	</filter-mapping>
+	<!-- 过滤不合法的访问请求 -->
+	<filter>
+		<filter-name>UrlFilter</filter-name>
+		<filter-class>com.wnJava.filter.UrlFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>UrlFilter</filter-name>
+		<url-pattern>/private/*</url-pattern>
+	</filter-mapping>
+	<!-- XSS过滤 -->
+	<filter>
+     <filter-name>XssSqlFilter</filter-name>
+     <filter-class>com.wnJava.filter.XssFilter</filter-class>
+	 <init-param>
+	 	<!-- 忽略Xss攻击的url -->
+	 	<param-name>ignoreUrl</param-name>
+	 	<param-value>/action/diary/newdiary,/action/diary/editdiary</param-value>
+	 </init-param>
+  </filter>
+  <filter-mapping>
+     <filter-name>XssSqlFilter</filter-name>
+     <url-pattern>/*</url-pattern>
+     <dispatcher>REQUEST</dispatcher>
+  </filter-mapping>
+
+	<!-- listener -->
+	<!-- log4j监听 -->
+	<listener>
+		<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
+	</listener>
+	<!-- Spring监听 -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	 
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>
+			/WEB-INF/conf/application*.xml,
+			/WEB-INF/conf/TestFW_*.xml
+		</param-value>
+	</context-param>
+	<mime-mapping>
+		<extension>doc</extension>
+		<mime-type>application/vnd.ms-word</mime-type>
+	</mime-mapping>
+	<mime-mapping>
+		<extension>xls</extension>
+		<mime-type>application/vnd.ms-excel</mime-type>
+	</mime-mapping>
+	<mime-mapping>
+		<extension>ppt</extension>
+		<mime-type>application/vnd.ms-powerpoint</mime-type>
+	</mime-mapping>
+
+<!-- Servlet类配置，除测试类外，其他Servlet均采用代理的方式利用Spring的IOC注入-->
+	<servlet>
+		<servlet-name>User</servlet-name>
+		<servlet-class>com.wnJava.servlet.DelegatingServletProxy</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>Diary</servlet-name>
+		<servlet-class>com.wnJava.servlet.DelegatingServletProxy</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>System</servlet-name>
+		<servlet-class>com.wnJava.servlet.DelegatingServletProxy</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>Chat</servlet-name>
+		<servlet-class>com.wnJava.servlet.DelegatingServletProxy</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>Album</servlet-name>
+		<servlet-class>com.wnJava.servlet.DelegatingServletProxy</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>URLMapping</servlet-name>
+		<servlet-class>com.wnJava.servlet.URLMappingServlet</servlet-class>
+	</servlet>
+ 	<!-- 自动爬取servlet -->
+ 	<servlet>
+		<servlet-name>autoCrawl</servlet-name>
+		<servlet-class>com.chatBear.spider.AutoCrawl</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+ 	<!-- 获取推送信息 -->
+	<servlet>
+		<servlet-name>getMsg</servlet-name>
+		<servlet-class>com.chatBear.comet.GetMsgAjax</servlet-class>
+		<load-on-startup>2</load-on-startup>
+	</servlet> 
+	<!-- 获取验证码 -->
+	<servlet>
+		<servlet-name>RandImg</servlet-name>
+		<servlet-class>com.wnJava.servlet.RandImage</servlet-class>
+		<load-on-startup>3</load-on-startup>
+	</servlet> 
+ 	
+ 	
+	<!-- Servlet路径配置 --> 
+	<servlet-mapping>
+		<servlet-name>getMsg</servlet-name>
+		<url-pattern>/getmsgajax.do</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>RandImg</servlet-name>
+		<url-pattern>/RandImg</url-pattern>
+	</servlet-mapping>	
+	
+	<servlet-mapping>
+		<servlet-name>User</servlet-name>
+		<url-pattern>/user.do</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Diary</servlet-name>
+		<url-pattern>/diary.do</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Album</servlet-name>
+		<url-pattern>/album.do</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>System</servlet-name>
+		<url-pattern>/system.do</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Chat</servlet-name>
+		<url-pattern>/chat.do</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>URLMapping</servlet-name>
+		<url-pattern>/action/*</url-pattern>
+	</servlet-mapping>
+	<icon>
+		<small-icon>/img/small.gif</small-icon>
+		<large-icon>/img/large.gif</large-icon>
+	</icon>
+	<welcome-file-list>
+		<welcome-file>/jsp/index.jsp</welcome-file>
+		<welcome-file>/jsp/welcome.jsp</welcome-file>
+	</welcome-file-list>
+	<error-page>
+		<error-code>404</error-code>
+		<location>/jsp/error404.jsp</location>
+	</error-page>
+	<error-page>
+		<exception-type>java.lang.Exception</exception-type>
+		<location>/jsp/exception.jsp</location>
+	</error-page>  
+</web-app>

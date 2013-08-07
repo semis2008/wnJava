@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<bean id="UserService" class="com.wnJava.service.impl.UserServiceImpl">
+		<property name="userDao" ref="UserDao" />
+	</bean>
+	<bean id="DiaryService" class="com.wnJava.service.impl.DiaryServiceImpl">
+		<property name="diaryDao" ref="DiaryDao" />
+	</bean>
+</beans>

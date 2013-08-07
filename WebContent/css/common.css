@@ -1,0 +1,135 @@
+html,body {
+	height: 100%;
+}
+
+body {
+	padding-left: 0;
+	padding-right: 0;
+	color: #333333;
+	font-family: "Microsoft YAHEI", "Helvetica Neue", Helvetica, Arial,
+		sans-serif;
+	font-size: 13px;
+	line-height: 18px;
+	margin: 0;
+	padding-top: 40px;
+}
+
+.footer {
+	background-color: #252525;
+	color: white;
+	padding: 45px 0;
+}
+
+.padding-large {
+	padding: 35px;
+}
+
+.padding-middle {
+	padding: 25px;
+}
+
+.padding-small {
+	padding: 15px;
+}
+
+.padding-mini {
+	padding: 5px;
+}
+
+.text-center {
+	text-align: center;
+}
+
+.container {
+	min-height: 70%;
+}
+
+article.container {
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.article {
+	margin-top: 40px;
+}
+
+.margin-large {
+	margin: 45px;
+}
+
+.margin-middle {
+	margin: 30px;
+}
+.margin-top-middle{
+	margin-top: 30px;
+}
+.margin-small {
+	margin: 15px;
+}
+.margin-right-middle{
+	margin-right: 15px;
+}
+.margin-right-small{
+	margin-right: 10px;
+}
+.pointer{
+cursor: pointer;
+}
+.fixed{
+	position: fixed;
+}
+
+.padding-top-bottom-middle {
+	padding-top: 50px;
+	padding-bottom: 50px;
+}
+
+.margin-bottom-middle {
+	margin-bottom: 25px;
+}
+
+.margin-top-bottom-mini {
+	margin-bottom: 5px;
+	margin-top: 5px;
+}
+
+.border-bottom-dash {
+	border-bottom-style: dashed;
+	border-bottom-width: thin;
+}
+
+.pos-relative {
+	position: relative;
+}
+
+.panel {
+	border-radius: 6px 6px 6px 6px;
+	box-shadow: 0 1px 8px 1.5px rgba(0, 0, 0, 0.35), 0 20px 70px 8px
+		rgba(0, 0, 0, 0.25);
+	color: #333333;
+	margin-bottom: 50px;
+	padding: 0px;
+}
+
+.scrollLoading {
+	
+}
+
+.musicbox{
+	top: 40px;
+	right: 0px;
+	background-color: #333;
+	opacity: 0.8;
+	color: white;
+	height: 110px;
+	z-index: 100;
+}
+.musicbox-mini{
+	top: 40px;
+	right: 0px;
+	background-color: #333;
+	opacity: 0.8;
+	color: white;
+	height: 25px;
+	z-index: 100;
+}

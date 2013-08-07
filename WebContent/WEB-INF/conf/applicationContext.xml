@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-2.5.xsd
+           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+
+	<bean id="propertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>/WEB-INF/conf/c3p0.properties</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="driverClass" value="${connection.driver_class}" />
+		<property name="jdbcUrl" value="${jdbc.connection.url}" />
+		<property name="idleConnectionTestPeriod"
+			value="${jdbc.pool.c3p0.idle_connection_test_period}" />
+		<property name="preferredTestQuery" value="${jdbc.pool.c3p0.preferred_test_query}" />
+		<property name="maxIdleTime" value="${jdbc.pool.c3p0.max_idle_time}" />
+		<property name="properties">
+			<props>
+				<prop key="user">${jdbc.connection.username}</prop>
+				<prop key="password">${jdbc.connection.password}</prop>
+				<prop key="c3p0.acquire_increment">${jdbc.pool.c3p0.acquire_increment}</prop>
+				<prop key="c3p0.max_size">${jdbc.pool.c3p0.max_size}</prop>
+				<prop key="c3p0.min_size">${jdbc.pool.c3p0.min_size}</prop>
+			</props>
+		</property>
+	</bean>
+	<!-- 下面定义了DbUtils的一个模板操作Bean -->
+	<bean id="dbUtilsTemplate" class="com.wnJava.dao.template.DbUtilsTemplate">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<!-- 声明式事务管理 -->
+	<bean id="proxyTemplate"
+		class="org.springframework.transaction.interceptor.TransactionInterceptor">
+		<property name="transactionManager">
+			<ref bean="transactionManager" />
+		</property>
+		<property name="transactionAttributes">
+			<props>
+				<prop key="save*">PROPAGATION_REQUIRED</prop>
+				<prop key="query*">PROPAGATION_REQUIRED</prop>
+				<prop key="update*">PROPAGATION_REQUIRED</prop>
+				<prop key="delete*">PROPAGATION_REQUIRED</prop>
+				<prop key="manage*">PROPAGATION_REQUIRED</prop>
+			</props>
+		</property>
+	</bean>
+	<!-- 声明式事务管理 结束 -->
+</beans>
+
