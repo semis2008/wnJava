@@ -77,124 +77,171 @@
 </head>
 <body>
 	<div id="content">
-		<header class="no-radius" id="banner-head">
+		<header class="no-radius image" id="banner-head">
 		<div class="container text-center">
 			<h1>
 				<img alt="WN Java" src="<%=ConstantsUtil.FW_DOMAIN%>/img/logo.png">
 			</h1>
 		</div>
 		<div class="text-center logo-info">
-			<h1>
-				<a href="#">Wn Java</a>
-			</h1>
-			<span> - - 或许可以做成一个最简捷的社区~</span>
+			<h2>
+				<a href="#">Wn Java</a> <small><em class="text-info">-
+						-或许可以做成一个最简捷的社区~</em> </small>
+			</h2>
 		</div>
 		</header>
-
-		<div id="main-wrapper" class="container"> <div>
-		<div class="span4">
-			<div class="sidebar">
-				<!-- Sidebar -->
-				<!-- Recent Posts -->
-				<section>
-				<h3 class="major">
-					<span>最新日志</span>
-				</h3>
-				<ul class="unstyled side-ul">
-					<li><article class="is-post-summary">
-						<h4>
-							<a href="#">撒打算打算打开国际..</a>
-						</h4>
-						<ul class="meta inline">
-							<li><i class="icon-edit"></i> 6 hours ago</li>
-							<li><i class="icon-comment"></i><a href="#"> 34</a></li>
-						</ul>
-						</article>
-					</li>
-					<li><article class="is-post-summary">
-						<h4>
-							<a href="#">撒打算打算打开国际..</a>
-						</h4>
-						<ul class="meta inline">
-							<li><i class="icon-edit"></i> 6 hours ago</li>
-							<li><i class="icon-comment"></i><a href="#"> 34</a></li>
-						</ul>
-						</article>
-					</li>
-					<li><article class="is-post-summary">
-						<h4>
-							<a href="#">撒打算打算打开国际..</a>
-						</h4>
-						<ul class="meta inline">
-							<li><i class="icon-edit"></i> 6 hours ago</li>
-							<li><i class="icon-comment"></i><a href="#"> 34</a></li>
-						</ul>
-						</article>
-					</li>
-					<li><article class="is-post-summary">
-						<h4>
-							<a href="#">撒打算打算打开国际..</a>
-						</h4>
-						<ul class="meta inline">
-							<li><i class="icon-edit"></i> 6 hours ago</li>
-							<li><i class="icon-comment"></i><a href="#"> 34</a></li>
-						</ul>
-						</article>
-					</li>
-				</ul>
-				<a class="button button-alt" href="#">Learn more</a> </section>
-				<!-- /Recent Posts -->
-
-				<!-- 活跃用户 -->
-				<section>
-				<h3 class="major">
-					<span>活跃用户</span>
-				</h3>
-				<p>Donec sagittis massa et leo semper scele risque metus
-					faucibus. Morbi congue mattis mi. Phasellus sed nisl vitae risus
-					tristique volutpat. Cras rutrum sed commodo luctus blandit.</p>
-				<a class="button button-alt" href="#">Learn more</a> </section>
-				<!-- /活跃用户 -->
-
-				<!-- 热门标签 -->
-				<section>
-				<h3 class="major">
-					<span>Hot Tags</span>
-				</h3>
-				<p>Rhoncus dui quis euismod. Maecenas lorem tellus, congue et
-					condimentum ac, ullamcorper non sapien. Donec sagittis massa et leo
-					semper scele risque metus faucibus. Morbi congue mattis mi.
-					Phasellus sed nisl vitae risus tristique volutpat. Cras rutrum sed
-					commodo luctus blandit.</p>
-				<a class="button button-alt" href="#">Learn more</a> </section>
-				<!-- /热门标签 -->
-				<!-- /Sidebar -->
-			</div>
+		<div class="bookmark">
+			<ul class="breadcrumb">
+				<li class="active">首页</li>
+			</ul>
 		</div>
-		<div class="span7">
-			<div class="9u skel-cell-mainContent">
-				<div class="content content-right">
+		<div id="main-wrapper" class="container">
+			<div>
+				<div class="span4">
+					<div class="sidebar">
+						<!-- Sidebar -->
+						<!-- Recent Posts -->
+						<section>
+						<h3 class="major">
+							<span><i class="icon-list-ul"></i> 最新日志</span>
+						</h3>
+						<ul class="unstyled side-ul">
+							<li><article class="is-post-summary">
+								<h4>
+									<a href="#">撒打asdas算打算打开国际..</a>
+								</h4>
+								<ul class="meta inline">
+									<li><i class="icon-edit"></i> 2014/07/12 11:33</li>
+									<li><i class="icon-comment"></i><a href="#"> 34</a></li>
+								</ul>
+								</article>
+							</li>
+							<li><article class="is-post-summary">
+								<h4>
+									<a href="#">撒打算打asdasdasd算打开国际..</a>
+								</h4>
+								<ul class="meta inline">
+									<li><i class="icon-edit"></i> 2014/07/12 11:33</li>
+									<li><i class="icon-comment"></i><a href="#"> 34</a></li>
+								</ul>
+								</article>
+							</li>
+							<li><article class="is-post-summary">
+								<h4>
+									<a href="#">撒打算打算打开国asdasdasdasdasd际..</a>
+								</h4>
+								<ul class="meta inline">
+									<li><i class="icon-edit"></i> 2014/07/12 11:33</li>
+									<li><i class="icon-comment"></i><a href="#"> 34</a></li>
+								</ul>
+								</article>
+							</li>
+							<li><article class="is-post-summary">
+								<h4>
+									<a href="#">撒打算asdsaq打算打开国际..</a>
+								</h4>
+								<ul class="meta inline">
+									<li><i class="icon-edit"></i> 2014/07/12 11:33</li>
+									<li><i class="icon-comment"></i><a href="#"> 34</a></li>
+								</ul>
+								</article>
+							</li>
+						</ul>
+						<a class="button button-alt" href="#">查看全部</a> </section>
+						<!-- /Recent Posts -->
 
+
+						<!-- 活跃用户 -->
+						<section>
+						<h3 class="major">
+							<span><i class="icon-user-md"></i> 活跃用户</span>
+						</h3>
+						<p>Donec sagittis massa et leo semper scele risque metus
+							faucibus. Morbi congue mattis mi. Phasellus sed nisl vitae risus
+							tristique volutpat. Cras rutrum sed commodo luctus blandit.</p>
+						<a class="button button-alt" href="#">查看全部</a> </section>
+						<!-- /活跃用户 -->
+
+
+						<!-- 留言 -->
+						<section>
+						<h3 class="major">
+							<span><i class="icon-envelope-alt"></i> 留言</span>
+						</h3>
+						<ul class="unstyled quote-list">
+							<li><img src="../../img/wn_head01.jpg" class="img-polaroid"
+								width="40px" height="40px" alt="">
+									<p>"阿打算打算打算打算啊实打实大撒阿斯达"</p> <span>--C.C, 2013/02/04
+										14:33</span>
+							</li>
+							<li><img src="../../img/wn_head01.jpg" class="img-polaroid"
+								width="40px" height="40px" alt="">
+							<p>"啊实打实大！！啊实打实大啊？"</p> <span>--C.C, 2013/02/04 14:33</span></li>
+							<li><img src="../../img/wn_head01.jpg" class="img-polaroid"
+								width="40px" height="40px" alt="">
+									<p>"Magna veroeros amet tempus"</p> <span>--C.C,
+										2013/02/04 14:33</span>
+							</li>
+							<li><img src="../../img/wn_head01.jpg" class="img-polaroid"
+								width="40px" height="40px" alt="">
+									<p>"Magna veroeros amet tempus"</p> <span>--C.C,
+										2013/02/04 14:33</span>
+							</li>
+						</ul>
+						<a class="button button-alt" href="#">查看全部</a> </section>
+						</section>
+						<!-- /活跃用户 -->
+
+						<!-- 热门标签 -->
+						<section>
+						<h3 class="major">
+							<span><i class="icon-tags"></i> Hot Tags</span>
+						</h3>
+						<p>Rhoncus dui quis euismod. Maecenas lorem tellus, congue et
+							condimentum ac, ullamcorper non sapien. Donec sagittis massa et
+							leo semper scele risque metus faucibus. Morbi congue mattis mi.
+							Phasellus sed nisl vitae risus tristique volutpat. Cras rutrum
+							sed commodo luctus blandit.</p>
+						<!-- /热门标签 --> <!-- /Sidebar -->
+					</div>
+				</div>
+				<div class="span7">
 					<!-- Content -->
-
-					<article class="is-page-content"> <header>
-					<h2>Left Sidebar</h2>
-					<span class="byline">Semper amet scelerisque metus faucibus
-						morbi congue mattis</span>
-					<ul class="meta">
-						<li class="timestamp">5 days ago</li>
-						<li class="comments"><a href="#">1,024</a>
-						</li>
-					</ul>
-					</header> <section> <span class="image image-full"><img
-						alt="" src="images/pic05.jpg">
-					</span>
-					<p>Phasellus quam turpis, feugiat sit amet ornare in, hendrerit
-						in lectus. Praesent semper mod quis eget mi. Etiam eu ante risus.
+					<article> <section class="topDiary">
+					<h3 class="major">
+							<span><i class="icon-star-empty"></i>推荐日志</span>
+						</h3>
+					<div>
+						<img width="60px" height="60px" alt="" class="img-polaroid"
+							src="../../img/wn_head01.jpg" />
+							<blockquote >
+								<h3 class="text-info">
+							啊擦拭打算打算发的 <em title="回复/阅读数">[12/111]</em>
+								</h3>
+								<small >
+								<label class="label">tag1</label>
+								<label class="label">tag2</label>
+								 <em><a class="text-info"
+								title="查看他发布的所有博文"
+								href="<%=ConstantsUtil.FW_DOMAIN%>/action/system/mainpage/1">kalor</a>
+								发布于 2013/04/08 14:22</em>
+							</small>
+							</blockquote>
+					</div>
+					<div>
+					<p>
+						Phasellus quam turpis, feugiat sit amet ornare in, hendrerit
+						in lectus. Praesent semper  mod quis eget mi. Etiam eu ante risus.
 						Aliquam erat volutpat. Aliquam luctus et mattis lectus sit amet
 						pulvinar. Nam turpis nisi consequat etiam lorem ipsum dolor sit
-						amet nullam.</p>
-					</section> <section>
+						amet nullam.
+					</p></div>
+					
+					<a class="button" href="#">Continue Reading</a> 
+					<a href="#"
+						title="换一篇" class="changeTopDiary"><i class="icon-refresh icon-spin icon-2x"></i></a> </section> 
+					 	
+						<section>
 					<h3>More intriguing information</h3>
 					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 						Maecenas ac quam risus, at tempus justo. Sed dictum rutrum massa
@@ -227,7 +274,7 @@
 						consectetur pellentesque dapibus eget, tincidunt vitae arcu.
 						Vestibulum purus augue, tincidunt sit amet iaculis id, porta eu
 						purus.</p>
-					</section> <section>
+					<a class="button" href="#">Continue Reading</a> </section> <section>
 					<h3>So in conclusion ...</h3>
 					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 						Maecenas ac quam risus, at tempus justo. Sed dictum rutrum massa
@@ -247,17 +294,13 @@
 						pretium pretium. Maecenas tortor mauris, consectetur pellentesque
 						dapibus eget, tincidunt vitae arcu. Vestibulum purus augue,
 						tincidunt sit amet iaculis id, porta eu purus.</p>
-					</section> </article>
-
+					<a class="button" href="#">Continue Reading</a> </section> </article>
 					<!-- /Content -->
-
 				</div>
 			</div>
-
 		</div>
-		</div> </div>
-		</div>
-		<!-- 底部 -->
-		<jsp:include page="/jsp/common/bottom.jsp" flush="true" />
+	</div>
+	<!-- 底部 -->
+	<jsp:include page="/jsp/common/bottom.jsp" flush="true" />
 </body>
 </html>
