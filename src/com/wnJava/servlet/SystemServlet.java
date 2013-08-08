@@ -130,27 +130,27 @@ public class SystemServlet extends HttpServlet {
 	 */
 	private String showIndexPage(HttpServletRequest req, HttpServletResponse resp) {
 		//TODO 主页显示需要继续开发，目前只设计样式
-		//获取系统用户最新状态
-		DynamicVO dynamicVO = new DynamicVO();
-		dynamicVO = userService.getDynamicVOPart2(dynamicVO);
-		dynamicVO = diaryService.getDynamicVOPart1(dynamicVO);
+//		//获取系统用户最新状态
+//		DynamicVO dynamicVO = new DynamicVO();
+//		dynamicVO = userService.getDynamicVOPart2(dynamicVO);
+//		dynamicVO = diaryService.getDynamicVOPart1(dynamicVO);
+//		
 		
-		
-		//获取系统最新发布的日志信息
-		List<DiaryBO> diaries = diaryService.getNewDiaryList();
-		//获取系统公告
-		List<DiaryBO> notices = diaryService.getNotices();
-		//获取系统日志总数
-		int diaryCount = diaryService.getTotalDiaryCount();
-		 	
-		//获取系统注册会员列表
-		List<UserBO> users = userService.getUsers();
-		
-		req.setAttribute("dynamics", dynamicVO);
-		req.setAttribute("notices", notices);
-		req.setAttribute("diaries", diaries);
-		req.setAttribute("diaryCount", diaryCount);
-		req.setAttribute("users", users);
+//		//获取系统最新发布的日志信息
+//		List<DiaryBO> diaries = diaryService.getNewDiaryList();
+//		//获取系统公告
+//		List<DiaryBO> notices = diaryService.getNotices();
+//		//获取系统日志总数
+//		int diaryCount = diaryService.getTotalDiaryCount();
+//		 	
+//		//获取系统注册会员列表
+//		List<UserBO> users = userService.getUsers();
+//		
+//		req.setAttribute("dynamics", dynamicVO);
+//		req.setAttribute("notices", notices);
+//		req.setAttribute("diaries", diaries);
+//		req.setAttribute("diaryCount", diaryCount);
+//		req.setAttribute("users", users);
 		return "/jsp/indexPage.jsp";
 	}
 	

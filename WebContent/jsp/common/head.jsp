@@ -44,21 +44,27 @@
 						%>
 						<li <%if (fun.equals("") || fun.equals("index")) {%>
 							class="active" <%}%>><a href="<%=ConstantsUtil.FW_DOMAIN%>"><i
-								class="icon-home icon-white"></i> 首页</a></li>
+								class="icon-home icon-white"></i> 首页</a>
+						</li>
 						<li <%if (fun.equals("diarydetail") || fun.equals("diary")) {%>
 							class="active" <%}%>><a
 							href="<%=ConstantsUtil.FW_DOMAIN%>/action/system/diary"><i
-								class="icon-edit icon-white"></i> 日志</a></li>
+								class="icon-edit icon-white"></i> 日志</a>
+						</li>
 						<li><a
 							href="<%=ConstantsUtil.FW_DOMAIN%>/action/system/index#about"><i
-								class="icon-home icon-white"></i> 关于</a></li>
+								class="icon-home icon-white"></i> 关于</a>
+						</li>
+						<li>
+							<form class="navbar-search pull-left">
+								<input type="text" class="search-query" placeholder="Search">
+							</form></li>
 					</ul>
 					<ul class="nav pull-right">
 						<li><a href="#" data-toggle="modal"
 							data-target="#registModal" data-keyboard="true"
 							data-backdrop="true"><i class="icon-plus-sign icon-white"></i>
-								注册</a>
-						</li>
+								注册</a></li>
 
 						<%
 							String hasLogin = request.getParameter("hasLogin");
@@ -69,8 +75,7 @@
 						%>
 						<li><a href="#" data-toggle="modal" data-target="#loginModal"
 							data-keyboard="true" data-backdrop="true"><i
-								class="icon-ok icon-white"></i> 登陆</a>
-						</li>
+								class="icon-ok icon-white"></i> 登陆</a></li>
 						<%
 							} else {
 								String userDiaryNum = request.getParameter("userDiaryNum");
@@ -80,23 +85,25 @@
 							<ul class="dropdown-menu">
 								<li><a
 									href="<%=ConstantsUtil.FW_DOMAIN%>/action/system/mainpage/<%=userId%>"><i
-										class="icon-home icon-black"></i> 个人主页</a>
-								</li>
+										class="icon-home icon-black"></i> 个人主页</a></li>
 								<li><a href="#"><i class="icon-edit icon-black"></i>
-										日志：<%=userDiaryNum%>篇</a>
-								</li>
+										日志：<%=userDiaryNum%>篇</a></li>
 								<li class="divider"></li>
-								<li><a
-									href="<%=ConstantsUtil.FW_DOMAIN%>/action/system/shownewdiary"><i
-										class="icon-pencil icon-black"></i> 写日志</a></li>
+								<li><a href="#"
+									onclick="pjaxShowPage('/action/system/shownewdiary','main-frame')"><i
+										class="icon-pencil icon-black"></i> 写日志</a>
+								</li>
 								<li><a href="#" data-toggle="modal"
 									data-target="#leaveMsgModal" data-keyboard="true"
 									data-backdrop="true"><i class="icon-comment icon-black"></i>
-										留言</a></li>
+										留言</a>
+								</li>
 								<li class="divider"></li>
 								<li><a href="#" onclick="userQuit();"><i
-										class="icon-off icon-black"></i> 注销</a></li>
-							</ul></li>
+										class="icon-off icon-black"></i> 注销</a>
+								</li>
+							</ul>
+						</li>
 						<%
 							}
 						%>
@@ -289,13 +296,15 @@
 				class="icon-resize-full"></icon> </em>
 	</div>
 
+	<div id="main-frame"></div>
+
 	<script type="text/javascript"
 		src="<%=ConstantsUtil.FW_DOMAIN%>/js/jquery-1.8.2.js"></script>
 	<script type="text/javascript"
 		src="<%=ConstantsUtil.FW_DOMAIN%>/js/jquery.scrollLoading.js"></script>
 
 	<script type="text/javascript"
-		src="<%=ConstantsUtil.FW_DOMAIN%>/plugin/bootstrap/js/bootstrap.min.js"></script>
+		src="<%=ConstantsUtil.FW_DOMAIN%>/plugin/bootstrap/js/bootstrap.js"></script>
 	<script type="text/javascript"
 		src="<%=ConstantsUtil.FW_DOMAIN%>/plugin/messenger/js/underscore-1.4.4.js"></script>
 	<script type="text/javascript"
@@ -314,22 +323,8 @@
 
 	<script type="text/javascript">
 		$(function() {
-			/* 随机背景 */
-			var bg_num = Math.ceil(Math.random() * 5 + 1);
-			$("#banner-head").addClass("hero-unit0" + bg_num);
 			$(".scrollLoading").scrollLoading();
 		});
-
-		function userQuit() {
-			$.ajax({
-				type : "POST",
-				url : "/action/user/userquit",
-				dataType : "text",
-				success : function(msg) {
-					location.reload();
-				}
-			});
-		}
 	</script>
 </body>
 </html>

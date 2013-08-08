@@ -191,4 +191,16 @@ function togglePlayList(){
 	$("#playlist").toggle(500);
 	
 }
+
+function pjaxShowPage(url,target_div) {
+	$.ajax({
+		type : "POST",
+		url : url,
+		dataType : "html",
+		success : function(msg) {
+		  $("#"+target_div).html(msg);
+		}
+	});
+	
+}
  

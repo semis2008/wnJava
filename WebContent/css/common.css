@@ -1,7 +1,7 @@
 html,body {
 	height: 100%;
 }
-
+ 
 body {
 	padding-left: 0;
 	padding-right: 0;
@@ -9,11 +9,13 @@ body {
 	font-family: "Microsoft YAHEI", "Helvetica Neue", Helvetica, Arial,
 		sans-serif;
 	font-size: 13px;
-	line-height: 18px;
+	line-height: 28px;
 	margin: 0;
 	padding-top: 40px;
 }
-
+#content{
+	min-height: 70%;
+}
 .footer {
 	background-color: #252525;
 	color: white;
@@ -40,14 +42,6 @@ body {
 	text-align: center;
 }
 
-.container {
-	min-height: 70%;
-}
-
-article.container {
-	padding-left: 10px;
-	padding-right: 10px;
-}
 
 .article {
 	margin-top: 40px;
@@ -62,6 +56,12 @@ article.container {
 }
 .margin-top-middle{
 	margin-top: 30px;
+}
+.margin-top-large{
+	margin-top: 60px;
+}
+.margin-bottom-middle{
+	margin-bottom: 30px;
 }
 .margin-small {
 	margin: 15px;
@@ -111,10 +111,6 @@ cursor: pointer;
 	padding: 0px;
 }
 
-.scrollLoading {
-	
-}
-
 .musicbox{
 	top: 40px;
 	right: 0px;
@@ -132,4 +128,9 @@ cursor: pointer;
 	color: white;
 	height: 25px;
 	z-index: 100;
+}
+h1, h2, h3, h4, h5, h6, h7 {
+    color: #6B7770;
+    font-weight: 700;
+    text-transform: uppercase;
 }
