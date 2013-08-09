@@ -185,6 +185,8 @@ function leaveMsg() {
 
 function togglePlayer(){
 	$(".musicbox").toggle(500);
+	var title = $("#player .tag strong").text(); 
+	$(".musicbox-mini marquee").text(title);
 	$(".musicbox-mini").toggle(500);
 }
 function togglePlayList(){

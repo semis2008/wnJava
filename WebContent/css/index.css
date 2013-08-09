@@ -1,52 +1,11 @@
-/* 随机背景 */
-.hero-unit01 {
-	background: url("../img/bg/head_img01.jpg") repeat scroll 0 0/cover
-		transparent;
-	color: #FFFFFF;
-	height: 400px;
-	margin-bottom: 0;
-}
-
-.hero-unit02 {
-	background: url("../img/bg/head_img02.jpg") repeat scroll 0 0/cover
-		transparent;
-	color: #FFFFFF;
-	height: 400px;
-	margin-bottom: 0;
-}
-
-.hero-unit03 {
-	background: url("../img/bg/head_img03.jpg") repeat scroll 0 0/cover
-		transparent;
-	color: #FFFFFF;
-	height: 400px;
-	margin-bottom: 0;
-}
-
-.hero-unit04 {
+.hero-unit {
 	background: url("../img/bg/head_img04.jpg") repeat scroll 0 0/cover
 		transparent;
 	color: #FFFFFF;
-	height: 370px;
+	height: 200px;
 	margin-bottom: 0;
 }
-
-.hero-unit05 {
-	background: url("../img/bg/head_img05.jpg") repeat scroll 0 0/cover
-		transparent;
-	color: #FFFFFF;
-	height: 400px;
-	margin-bottom: 0;
-}
-
-.hero-unit06 {
-	background: url("../img/bg/head_img06.jpg") repeat scroll 0 0/cover
-		transparent;
-	color: #FFFFFF;
-	height: 400px;
-	margin-bottom: 0;
-}
-/* 随机背景结束 */
+ 
 #content {
 	background: url("../img/bg04.png") repeat scroll 0 0 #F7F7F7;
 	border-top: 1px solid #FFFFFF;
@@ -75,7 +34,7 @@
 }
 
 #main-wrapper {
-	margin-top: 80px;
+	margin-top: 40px;
 	padding-bottom: 100px;
 }
 
@@ -114,8 +73,8 @@
 
 .side-ul>li {
 	border-top: 2px solid #E7EAE8;
-	margin-top: 15px;
-	padding-top: 15px;
+	margin-top: 10px;
+	padding-top: 10px;
 }
 
 section:last-child,article:last-child {
@@ -207,7 +166,7 @@ ul.meta {
     float:right;
 }
 
-.topDiary{
+#topDiarySec{
 	position: relative;
 }
 .changeTopDiary{
@@ -220,22 +179,51 @@ ul.meta {
     margin: 0 0 10%;
     padding: 5px;
 }
-.topDiary a{
+#topDiarySec a , #hotDiarySec .button {
 	text-decoration: none;
 }
 
-.topDiary img {
+#topDiarySec img {
     float: left;
 }
 
-.topDiary h3 {
+#topDiarySec h3 {
     font-size: 24px;
 }
-.topDiary blockquote{
+#topDiarySec blockquote{
 	margin-left: 85px;
 }
-.topDiary em{
+#topDiarySec em{
 	color: #6b7770;
 	font-size: small;
 	float: right;
 }
+ 
+#leaveMsgSec input.text, #leaveMsgSec textarea {
+    background: none repeat scroll 0 0 #EEEEEE;
+    border: 0 none;
+    border-radius: 0.35em 0.35em 0.35em 0.35em;
+    box-shadow: 0 0 1px 0 #A0A1A7 inset;
+    display: block;
+    padding: 0.75em 1em;
+    transition: all 0.25s ease-in-out 0s;
+    width: 100%;
+} 
+ 
+#leaveMsgSec a{
+	color: white;
+	text-decoration: none;
+}
+#hotDiarySec ul a{
+	font-size: 13px;
+	color: #6b7770
+}
+#hotDiarySec li {
+    border-bottom: 1px solid #E2E6E8;
+    padding-top: 10px;
+}
+#hotDiarySec li:first-child {
+    border-top: 0 none !important;
+    padding-top: 0 !important;
+}
+ 

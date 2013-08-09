@@ -5,11 +5,6 @@ html,body {
 body {
 	padding-left: 0;
 	padding-right: 0;
-	color: #333333;
-	font-family: "Microsoft YAHEI", "Helvetica Neue", Helvetica, Arial,
-		sans-serif;
-	font-size: 13px;
-	line-height: 28px;
 	margin: 0;
 	padding-top: 40px;
 }
@@ -53,6 +48,9 @@ body {
 
 .margin-middle {
 	margin: 30px;
+}
+.margin-top-small{
+	margin-top: 15px;
 }
 .margin-top-middle{
 	margin-top: 30px;
@@ -123,11 +121,15 @@ cursor: pointer;
 .musicbox-mini{
 	top: 40px;
 	right: 0px;
+	width:120px;
 	background-color: #333;
 	opacity: 0.8;
 	color: white;
 	height: 25px;
 	z-index: 100;
+}
+.musicbox-mini marquee{
+	width: 70px;
 }
 h1, h2, h3, h4, h5, h6, h7 {
     color: #6B7770;

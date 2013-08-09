@@ -31,6 +31,8 @@
 		京ICP备13011487号.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		Author : <a
 			href="<%=ConstantsUtil.FW_DOMAIN%>/action/system/mainpage/1">偷懒的熊</a>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Phone : 1581 0112 386 
+			&nbsp;&nbsp;|&nbsp;&nbsp;Email : <a href="javascript:void(0)">wnjava@126.com</a>
 	</div>
 </div>
 </footer>
