@@ -101,7 +101,7 @@ public interface DiaryService {
 	String getUserDiaryNum(String userid);
 
 	/**
-	 * 获取最新日志列表 (取前8条)
+	 * 获取最新日志列表 (取前4条)
 	 * 
 	 * @return
 	 */

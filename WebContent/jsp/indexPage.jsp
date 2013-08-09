@@ -13,31 +13,19 @@
 		fun = "";
 
 	UserBO user = (UserBO) request.getAttribute("loginUser");
-	UserBO visitedUser = (UserBO) request.getAttribute("visitedUser");
 
-	List<UserBO> users = (List<UserBO>) request.getAttribute("users");
-	if (users == null) {
-		users = new ArrayList<UserBO>();
+	//最新日志
+	List<DiaryBO> latestDiaries = (ArrayList<DiaryBO>) request
+			.getAttribute("latestDiaries");
+	if (latestDiaries == null) {
+		latestDiaries = new ArrayList<DiaryBO>();
 	}
-	Integer diaryCount = (Integer) request.getAttribute("diaryCount");
-	if (diaryCount == null) {
-		diaryCount = 0;
+	//推荐日志
+	DiaryBO topDiary = (DiaryBO) request.getAttribute("topDiary");
+	if (topDiary == null) {
+		topDiary = new DiaryBO();
 	}
 
-	List<DiaryBO> diaries = (ArrayList<DiaryBO>) request
-			.getAttribute("diaries");
-	if (diaries == null) {
-		diaries = new ArrayList<DiaryBO>();
-	}
-	List<DiaryBO> notices = (ArrayList<DiaryBO>) request
-			.getAttribute("notices");
-	if (notices == null) {
-		notices = new ArrayList<DiaryBO>();
-	}
-	DynamicVO dynamicVO = (DynamicVO) request.getAttribute("dynamics");
-	if (dynamicVO == null) {
-		dynamicVO = new DynamicVO();
-	}
 	String userDiaryNum = "0";
 	boolean hasLogin = false;
 	if (user == null) {
@@ -45,9 +33,6 @@
 	} else {
 		hasLogin = true;
 		userDiaryNum = (String) request.getAttribute("userDiaryNum");
-	}
-	if (visitedUser == null) {
-		visitedUser = new UserBO();
 	}
 %>
 <html>
@@ -102,50 +87,23 @@
 							<span><i class="icon-list-ul"></i> 最新日志</span>
 						</h3>
 						<ul class="unstyled side-ul">
+							<%
+								for (DiaryBO diary : latestDiaries) {
+							%>								
 							<li>
 								<h5>
 									<a href="#"><i class="icon-file-alt"></i>
-										a撒asddasasd打asds开国大啊际..</a>
+										<%=StringUtil.cutString(diary.getTitle(), 100)%></a>
 								</h5>
 								<ul class="meta inline">
-									<li><i class="icon-time"></i> 2014/07/12 11:33</li>
-									<li><i class="icon-comment"></i><a href="#"> 34</a>
+									<li><i class="icon-time"></i><a href="#"> <%=DateUtil.formatDate(diary.getPublish_time(), 3)%></a></li>
+									<li><i class="icon-comment"></i><a href="#"> <%=diary.getReply_num()%></a>
 									</li>
 								</ul>
-							</li>
-							<li>
-								<h5>
-									<a href="#"><i class="icon-file-alt"></i>
-										a撒asddasasd打asdasd开国大啊际..</a>
-								</h5>
-								<ul class="meta inline">
-									<li><i class="icon-time"></i> 2014/07/12 11:33</li>
-									<li><i class="icon-comment"></i><a href="#"> 34</a>
-									</li>
-								</ul>
-							</li>
-							<li>
-								<h5>
-									<a href="#"><i class="icon-file-alt"></i>
-										a撒asddasasd打开asdasd国大啊际..</a>
-								</h5>
-								<ul class="meta inline">
-									<li><i class="icon-time"></i> 2014/07/12 11:33</li>
-									<li><i class="icon-comment"></i><a href="#"> 34</a>
-									</li>
-								</ul>
-							</li>
-							<li>
-								<h5>
-									<a href="#"><i class="icon-file-alt"></i>
-										a撒asddasasd打开asdasd国大啊际..</a>
-								</h5>
-								<ul class="meta inline">
-									<li><i class="icon-time"></i> 2014/07/12 11:33</li>
-									<li><i class="icon-comment"></i><a href="#"> 34</a>
-									</li>
-								</ul>
-							</li>
+							</li>	
+							<%
+									}
+								%>
 						</ul>
 						<a class="button button-alt" href="javascript:void(0)">查看全部 <i
 							class=" icon-hand-right"></i> </a> </section>
@@ -218,22 +176,25 @@
 						<img width="60px" height="60px" alt="" class="img-polaroid"
 							src="../../img/wn_head01.jpg" />
 						<blockquote>
-							<h3 class="text-info">
-								啊擦拭打算打算发的 <em title="回复/阅读数">[12/111]</em>
+							<h3 class="muted">
+								<%=StringUtil.cutString(topDiary.getTitle(), 100)%> <em title="回复/阅读数">[<%=topDiary.getReply_num()%>/<%=topDiary.getRead_num()%>]</em>
 							</h3>
-							<small> <label class="label"><i class="icon-tag"></i>
-									tag1</label> <label class="label"><i class="icon-tag"></i> tag2</label>
-								<em><a class="text-info" title="查看他发布的所有博文"
-									href="<%=ConstantsUtil.FW_DOMAIN%>/action/system/mainpage/1">kalor</a>
-									发布于 2013/04/08 14:22</em> </small>
+							<small>
+							<%
+								String[] tags = topDiary.getTags().split("_");
+								for (String tag : tags) {
+							%>
+ 							<label class="label"><i class="icon-tag"></i> <%=tag%></label> 
+							<%
+ 							}
+							%>
+							<em><a class="text-info" title="查看他发布的所有博文"
+									href="<%=ConstantsUtil.FW_DOMAIN%>/action/system/mainpage/<%=topDiary.getAuthor_id() %>"><%=topDiary.getAuthor_name() %></a>
+									发布于 <%=DateUtil.formatDate(topDiary.getPublish_time(),3) %></em> </small>
 						</blockquote>
 					</div>
 					<div>
-						<p>Phasellus quam turpis, feugiat sit amet ornare in,
-							hendrerit in lectus. Praesent semper mod quis eget mi. Etiam eu
-							ante risus. Aliquam erat volutpat. Aliquam luctus et mattis
-							lectus sit amet pulvinar. Nam turpis nisi consequat etiam lorem
-							ipsum dolor sit amet nullam.</p>
+						<p><%=StringUtil.cutString(topDiary.getContent(),200) %></p>
 					</div>
 
 					<a class="button" href="javascript:void(0)">阅读全文 <i
@@ -276,19 +237,25 @@
 							</ul>
 						</div>
 					</div>
-					<a class="button" href="javascript:void(0)">查看全部</a> </section> <!-- /热门日志 -->
+					<a class="button" href="javascript:void(0)">查看全部 <i
+							class=" icon-hand-right"></i></a> </section> <!-- /热门日志 -->
 
 					<!-- 关于 --> <section id="aboutSec">
 					<h3 class="major">
 						<span><i class="icon-info-sign"></i> 关于</span>
 					</h3>
 					<div class="row">
-						<div class="span2 text-center">
+						<div class="span2">
 							<img style="width: 80px; height: 80px"
 								src="<%=ConstantsUtil.FW_DOMAIN%>/img/wn_head01.jpg"
 								class="img-rounded margin-bottom-middle" />
-							<h5>我是王宁，本站的作者，89年生于河北。毕业一年,程序员。</h5>
-							<em>喜欢创造的快乐，喜欢<span class="label label-info">宅</span>。喜欢游泳篮球LOL,喜欢<span class="label label-info">进击の巨人</span>，喜欢各种萌物，单身...</em>
+							<h5>我是王宁，本站的作者，毕业一年,程序员。</h5>
+							<ul>
+								<li>喜欢创造的快乐。</li>
+								<li>喜欢<span class="label label-info">宅</span>。</li>
+								<li>游泳篮球LOL,And<span class="label label-info">进击の巨人</span></li>
+								<li>喜欢各种萌物，单身...</li>
+							</ul>
 						</div>
 						 
 						<div class="span4">

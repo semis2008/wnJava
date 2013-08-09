@@ -58,7 +58,7 @@ public class DateUtil {
 	 * @param date
 	 *            日期
 	 * @param type
-	 *            1：格式：2011年11月11日 ； 2：：2011/2/2 ； 3：2011/2/2 11:45
+	 *            1：格式：2011年11月11日 ； 2：：2011/2/2 ； 3：2011/2/2 11:45 4: 12/21
 	 * @return
 	 */
 	public static String formatDate(Date date, int type) {

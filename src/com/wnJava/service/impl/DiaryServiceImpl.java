@@ -123,7 +123,7 @@ public class DiaryServiceImpl implements DiaryService {
 
 	@Override
 	public List<DiaryBO> getNewDiaryList() {
-		return diaryDao.queryAllDiaryList(0, 8);
+		return diaryDao.queryAllDiaryList(0, 4);
 	}
 
 	@Override
