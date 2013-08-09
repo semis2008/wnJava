@@ -70,6 +70,10 @@ body {
 .margin-right-small{
 	margin-right: 10px;
 }
+
+.margin-left-small{
+	margin-left: 10px;
+}
 .pointer{
 cursor: pointer;
 }

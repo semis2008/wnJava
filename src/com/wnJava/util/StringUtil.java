@@ -22,17 +22,38 @@ public class StringUtil {
 	}
 
 	/**
-	 * 截取指定长度的字符串，多余部分用...代替
+	 * 截取指定字节的字符串，多余部分用...代替
 	 * 
 	 * @param ss
 	 * @param length
 	 * @return
 	 */
-	public static String cutString(String ss, int length) {
-		if (ss.length() < length) {
-			return ss;
+	public static String cutString(String str, int len) {
+		if (null == str)
+			return "";
+		int sl = str.getBytes().length;
+		if (sl > len * 2) {
+			StringBuffer sb = new StringBuffer();
+			char[] arr = str.toCharArray();
+			for (int i = 0, j = 0; i < arr.length && j < len * 2; i++) {
+				/* String.valueOf(arr[i]).matches("[\u4e00-\u9fa5]") 只是汉字
+			     * String.valueOf(arr[i]).matches("[^x00-xff]") 双字节（包括汉字）
+			     */
+				if (String.valueOf(arr[i]).matches("[^x00-xff]")) {
+					j += 2;
+				} else {
+					j++;
+				}
+				if (j == len * 2 - 1
+						&& String.valueOf(arr[i]).matches("[^x00-xff]")) {
+
+				} else {
+					sb.append(arr[i]);
+				}
+			}
+			return sb.toString() + "...";
 		} else {
-			return ss.substring(0, length) + "...";
+			return str;
 		}
 	}
 
@@ -40,7 +61,7 @@ public class StringUtil {
 		String sss = "<div title='2013-06-17 12:47:44'>澳洲南部，因为天气炎热，一只考拉口渴，便爬上一民宅墙头讨水喝。足足喝了两三分钟后，还对男主人献吻以表谢意！";
 
 		sss = Html2Text(sss);
-		
+
 		System.out.println(sss);
 	}
 

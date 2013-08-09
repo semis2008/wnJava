@@ -3,6 +3,7 @@ package com.wnJava.servlet;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -20,7 +21,7 @@ import com.wnJava.bo.UserInfoBO;
 import com.wnJava.service.DiaryService;
 import com.wnJava.service.UserService;
 import com.wnJava.util.UserUtil;
-import com.wnJava.vo.DynamicVO;
+import com.wnJava.vo.TagVO;
 
 /**
  * 系统响应处理类
@@ -113,7 +114,7 @@ public class SystemServlet extends HttpServlet {
 		//FIXME 最新图册信息需要在开发完图册模块之后再开发
 		List<DiaryBO> newDiaryList = diaryService.getUserNewDiaryList(req,resp);
 		//获取给该用户的留言 
-		List<LeaveMsgBO> leaveMsgList = userService.getLeaveMsgList(req,resp); 
+		List<LeaveMsgBO> leaveMsgList = userService.getUserLeaveMsg(user.getId()); 
 		
 		req.setAttribute("leaveMsgList", leaveMsgList);
 		req.setAttribute("newDiaryList", newDiaryList);
@@ -131,10 +132,36 @@ public class SystemServlet extends HttpServlet {
 	private String showIndexPage(HttpServletRequest req, HttpServletResponse resp) {
 		//获取最新日志
 		List<DiaryBO> diaries = diaryService.getNewDiaryList();
-		//获取推荐日志
-		DiaryBO topDiary = diaryService.getDiaryByID("72");	
+		//随机获取推荐日志
+		DiaryBO topDiary = diaryService.getTopDiaryRand("top");	
+		//获取活跃用户
+		List<UserBO> activeUsers = userService.getActiveUsers(10);
+		//获取热门日志
+		Map<String,List<DiaryBO>> hotDiaries = diaryService.getHotDiaries();
+		//获取留言
+		List<LeaveMsgBO> leaveMsgs = userService.getLeaveMsg(4);
+		//获取热门tag
+		//FIXME hotTag的计算需要进一步完善，目前只是写死的 
+		List<TagVO> hotTags = new ArrayList<TagVO>();
+		hotTags.add(new TagVO("Js","2"));
+		hotTags.add(new TagVO("Java","4"));
+		hotTags.add(new TagVO("Linux","1"));
+		hotTags.add(new TagVO("Html5","1"));
+		hotTags.add(new TagVO("测试","2"));
+		hotTags.add(new TagVO("MySql","2"));
+		hotTags.add(new TagVO("转载","3"));
+		hotTags.add(new TagVO("公告","4"));
+		hotTags.add(new TagVO("面试","3"));
+		hotTags.add(new TagVO("CSS","3"));
+		hotTags.add(new TagVO("开发计划","3"));
 		
+		
+		
+		req.setAttribute("hotTags", hotTags);
 		req.setAttribute("latestDiaries", diaries);
+		req.setAttribute("leaveMsgs", leaveMsgs);
+		req.setAttribute("hotDiaries", hotDiaries);
+		req.setAttribute("activeUsers", activeUsers);
 		req.setAttribute("topDiary", topDiary);
 		return "/jsp/indexPage.jsp";
 	}

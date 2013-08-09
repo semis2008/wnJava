@@ -226,4 +226,50 @@ ul.meta {
     border-top: 0 none !important;
     padding-top: 0 !important;
 }
- 
+
+#activeUserSec li{
+	position: relative;
+}
+
+#activeUserSec li:HOVER .activeUserName{
+	display: block;
+}
+.activeUserName{
+	position: absolute;
+	height: 20px;
+	bottom: 5px;
+	color:white;
+	font-size:10px;
+	display:none;
+	left:5px;
+	width: 50px;
+	background-color: black;
+	opacity: 0.8;
+}
+
+.tagSize1{
+	font-size: 12px;
+	font-weight: lighter;
+}
+
+.tagSize2{
+	font-size: 14px;
+	font-weight: normal;
+}
+
+.tagSize3{
+	font-size: 16px;
+	font-weight: bold;
+}
+
+.tagSize4{
+	font-size: 18px;
+	font-weight: bolder;
+}
+
+#hotTagSec a:HOVER{
+	text-decoration: underline;
+}
+#hotDiarySec em {
+	font-size:10px; 
+}

@@ -14,7 +14,6 @@ import com.wnJava.service.UserService;
 import com.wnJava.util.ConstantsUtil;
 import com.wnJava.util.StringUtil;
 import com.wnJava.util.UserUtil;
-import com.wnJava.vo.DynamicVO;
 
 /**
  * 用户业务处理接口实现类
@@ -48,6 +47,11 @@ public class UserServiceImpl implements UserService{
 			return false;
 		}
 	}
+	@Override
+	public List<UserBO> getActiveUsers(int num) {
+		return userDao.queryUsersOrderByLoginTime(num);
+	}
+
 	@Override
 	public String userLogin(HttpServletRequest req, HttpServletResponse resp) {
 		String email = req.getParameter("email");
@@ -144,19 +148,16 @@ public class UserServiceImpl implements UserService{
 	}
 	
 	@Override
-	public List<LeaveMsgBO> getLeaveMsgList(HttpServletRequest req,
-			HttpServletResponse resp) {
-		UserBO visitedUser = UserUtil.getVisitedUser(req, resp);
-		return userDao.getLeaveMsgList(visitedUser.getId(),0,5);
+	public List<LeaveMsgBO> getLeaveMsg(int num) {
+		return userDao.queryLeaveMsg(0,num);
 	}
 	@Override
 	public List<UserBO> getUsers() {
 		return userDao.queryUsers();
 	}
+
 	@Override
-	public DynamicVO getDynamicVOPart2(DynamicVO dynamicVO) {
-		List<UserBO> users = userDao.queryLatestRegUser(0, 4);
-		dynamicVO.setDynamicPart2(users);
-		return dynamicVO;
+	public List<LeaveMsgBO> getUserLeaveMsg(Long userId) {
+		return userDao.queryUserLeaveMsg(userId, 0, 5);
 	}
 }

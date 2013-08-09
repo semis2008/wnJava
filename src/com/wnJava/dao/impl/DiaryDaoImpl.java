@@ -69,6 +69,12 @@ public class DiaryDaoImpl implements DiaryDao {
 	}
 
 	@Override
+	public List<DiaryBO> queryDiaryByStatus(String status) {
+		String sql = "select * from diary where status = ?";
+		return dbUtilsTemplate.find(DiaryBO.class, sql,status);
+	}
+
+	@Override
 	public int insertReply(String diaryId, String parentName, String parentId, String reply,
 			UserBO user) {
 		String sql = "insert into diary_reply (diary_id,user_id,user_name,reply,email,reply_time,parent_name,parent_id,user_photo,type) values(?,?,?,?,?,now(),?,?,?,?)";
@@ -112,23 +118,9 @@ public class DiaryDaoImpl implements DiaryDao {
 
 	@Override
 	public int queryTotalDiaryCount() {
-		String sql = "select count(*) totalNum from diary where 1=1 and status = 'normal'";
+		String sql = "select count(*) totalNum from diary where 1=1 and status != 'delete'";
 		Map<String,Object> result = dbUtilsTemplate.findFirst(sql,null);
 		return Integer.parseInt((Long)result.get("totalNum")+"");
-	}
-
-	@Override
-	public List<DiaryBO> queryNotices(int start, int end) {
-		String sql = "select * from diary where author_id = 1 and tags like '%公告%' order by publish_time desc limit ?,?";
-		Object[] param = {start,end};
-		return dbUtilsTemplate.find(DiaryBO.class, sql, param);
-	}
-
-	@Override
-	public List<DiaryBO> queryUserNewDiary(int start, int end) {
-		String sql = "select * from (select * from diary where status != 'delete' order by publish_time desc) diary group by author_id order by publish_time desc limit ?,?";
-		Object[] param = {start,end};
-		return dbUtilsTemplate.find(DiaryBO.class, sql, param);
 	}
 
 	@Override
@@ -136,5 +128,12 @@ public class DiaryDaoImpl implements DiaryDao {
 		String sql = "update diary set diary.status = ? where id = ?";
 		Object[] param = {state,diaryid};
 		return dbUtilsTemplate.update(sql, param);
+	}
+
+	@Override
+	public List<DiaryBO> queryDiaryOrderByReadNum(int start, int end) {
+		String sql = "select * from diary where status != 'delete' order by read_num desc limit ?,?";
+		Object[] param = {start,end};
+		return dbUtilsTemplate.find(DiaryBO.class, sql, param);
 	}
 }

@@ -8,7 +8,6 @@ import com.wnJava.bo.UserInfoBO;
 import com.wnJava.dao.UserDao;
 import com.wnJava.dao.template.DbUtilsTemplate;
 import com.wnJava.util.ConstantsUtil;
-import com.wnJava.vo.DynamicVO;
 
 /**
  * 用户数据操作接口实现类
@@ -109,15 +108,29 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public List<LeaveMsgBO> getLeaveMsgList(Long userId, int start, int end) {
-		String sql = "select * from leavemsg where visited_user_id = ? order by leave_time desc limit 0,5";
-		return dbUtilsTemplate.find(LeaveMsgBO.class, sql, userId);
+	public List<LeaveMsgBO> queryUserLeaveMsg(Long userId, int start, int end) {
+		String sql = "select * from leavemsg where visited_user_id = ? order by leave_time desc limit ?,?";
+		Object[] param = {userId,start,end};
+		return dbUtilsTemplate.find(LeaveMsgBO.class, sql, param);
+	}
+
+	@Override
+	public List<LeaveMsgBO> queryLeaveMsg(int start, int end) {
+		String sql = "select * from leavemsg where 1=1 order by leave_time desc limit ?,?";
+		Object[] param = {start,end};
+		return dbUtilsTemplate.find(LeaveMsgBO.class, sql, param);
 	}
 
 	@Override
 	public List<UserBO> queryUsers() {
 		String sql = "select * from user where 1=1 order by reg_time asc";
 		return dbUtilsTemplate.find(UserBO.class, sql, null);
+	}
+
+	@Override
+	public List<UserBO> queryUsersOrderByLoginTime(int num) {
+		String sql = "select * from user where 1=1 order by logon_time desc limit 0,?";
+		return dbUtilsTemplate.find(UserBO.class, sql, num);
 	}
 
 	@Override

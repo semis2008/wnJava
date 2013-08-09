@@ -97,6 +97,19 @@ public interface DiaryDao {
 	List<DiaryBO> queryUserDiaryList(Long userId, int start, int end);
 
 	/**
+	 * 获取热门日志
+	 * @param start
+	 * @param end
+	 * @return
+	 */
+	List<DiaryBO> queryDiaryOrderByReadNum(int start,int end);
+	/**
+	 * 按照状态查询日志	
+	 * @param status
+	 * @return
+	 */
+	List<DiaryBO> queryDiaryByStatus(String status);
+	/**
 	 * 查询所有日志列表
 	 * 
 	 * @param start
@@ -106,17 +119,6 @@ public interface DiaryDao {
 	 * @return 日志实体类的List
 	 */
 	List<DiaryBO> queryAllDiaryList(int start, int end);
-
-	/**
-	 * 获取系统公告
-	 * 
-	 * @param start
-	 *            开始下标
-	 * @param end
-	 *            结束下标
-	 * @return
-	 */
-	List<DiaryBO> queryNotices(int start, int end);
 
 	/**
 	 * 查询指定用户的日志总数
@@ -178,15 +180,6 @@ public interface DiaryDao {
 	 * @return
 	 */
 	int queryTotalDiaryCount();
-
-	/**
-	 * 查询指定数目的用户的最新日志信息，每个用户显示一篇日志
-	 * 
-	 * @param start
-	 * @param end
-	 * @return
-	 */
-	List<DiaryBO> queryUserNewDiary(int start, int end);
 
 	/**
 	 * 获取指定id的回复

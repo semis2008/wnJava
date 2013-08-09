@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletResponse;
 import com.wnJava.bo.LeaveMsgBO;
 import com.wnJava.bo.UserBO;
 import com.wnJava.bo.UserInfoBO;
-import com.wnJava.vo.DynamicVO;
 
 /**
  * 用户业务处理接口
@@ -56,6 +55,12 @@ public interface UserService {
 	boolean leaveMsg(HttpServletRequest req, HttpServletResponse resp);
 	
 	/**
+	 * 获取活跃用户
+	 * @param num 数目
+	 * @return
+	 */
+	List<UserBO> getActiveUsers(int num);
+	/**
 	 * 更新用户详细信息
 	 * @param req
 	 * @param resp
@@ -79,23 +84,24 @@ public interface UserService {
 	String updatePhoto(String id, Long userId);
 	
 	/**
-	 * 获取给用户的留言（取前5条）
+	 * 获取系统留言
 	 * @param req
 	 * @param resp
 	 * @return
 	 */
-	List<LeaveMsgBO> getLeaveMsgList(HttpServletRequest req, HttpServletResponse resp);
+	List<LeaveMsgBO> getLeaveMsg(int num);
+	
+	/**
+	 * 获取给用户的留言
+	 * @param userId
+	 * @return
+	 */
+	List<LeaveMsgBO> getUserLeaveMsg(Long userId);
 	
 	/**
 	 * 获取系统所有用户
 	 * @return
 	 */
 	List<UserBO> getUsers();
-	
-	/**
-	 * 获取首页动态之新用户注册信息
-	 * @return
-	 */
-	DynamicVO getDynamicVOPart2(DynamicVO dynamicVO);
 	
 }

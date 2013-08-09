@@ -1,7 +1,9 @@
 package com.wnJava.service.impl;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,7 +14,6 @@ import com.wnJava.bo.UserBO;
 import com.wnJava.dao.DiaryDao;
 import com.wnJava.service.DiaryService;
 import com.wnJava.util.UserUtil;
-import com.wnJava.vo.DynamicVO;
 
 /**
  * 日志业务处理接口实现类
@@ -106,6 +107,25 @@ public class DiaryServiceImpl implements DiaryService {
 	}
 
 	@Override
+	public DiaryBO getTopDiaryRand(String status) {
+		List<DiaryBO> topDiaries = diaryDao.queryDiaryByStatus(status);
+		int index = 0;
+		index = (int) (Math.random()*(topDiaries.size()+1));
+		if(index!=0&&index==topDiaries.size()) index--;
+		return topDiaries.get(index);
+	}
+
+	@Override
+	public Map<String, List<DiaryBO>> getHotDiaries() {
+		List<DiaryBO> diaries = diaryDao.queryDiaryOrderByReadNum(0, 5);
+		Map<String, List<DiaryBO>> result = new HashMap<String, List<DiaryBO>>();
+		result.put("left", diaries);
+		diaries = diaryDao.queryDiaryOrderByReadNum(5, 5);
+		result.put("right", diaries);
+		return result;
+	}
+
+	@Override
 	public String getUserDiaryNum(String userid) {
 		/*
 		 * 获取日志总页数
@@ -194,18 +214,6 @@ public class DiaryServiceImpl implements DiaryService {
 	@Override
 	public int getTotalDiaryCount() {
 		return diaryDao.queryTotalDiaryCount();
-	}
-
-	@Override
-	public List<DiaryBO> getNotices() {
-		return diaryDao.queryNotices(0, 10);
-	}
-
-	@Override
-	public DynamicVO getDynamicVOPart1(DynamicVO dynamicVO) {
-		List<DiaryBO> diaries = diaryDao.queryUserNewDiary(0, 3);
-		dynamicVO.setDynamicPart1(diaries);
-		return dynamicVO;
 	}
 
 	@Override

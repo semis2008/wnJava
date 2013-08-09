@@ -1,13 +1,13 @@
 package com.wnJava.service;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.wnJava.bo.DiaryBO;
 import com.wnJava.bo.DiaryReplyBO;
-import com.wnJava.vo.DynamicVO;
 
 /**
  * 日志业务处理类
@@ -108,13 +108,6 @@ public interface DiaryService {
 	List<DiaryBO> getNewDiaryList();
 
 	/**
-	 * 获取系统公告
-	 * 
-	 * @return
-	 */
-	List<DiaryBO> getNotices();
-
-	/**
 	 * 通过日志id获取日志信息
 	 * 
 	 * @param diaryId
@@ -124,6 +117,12 @@ public interface DiaryService {
 	DiaryBO getDiaryByID(String diaryId);
 
 	/**
+	 * 依据状态获取日志
+	 * @param status
+	 * @return
+	 */
+	DiaryBO getTopDiaryRand(String status);	
+	/**
 	 * 获取指定日志的所有回复
 	 * 
 	 * @param diaryid
@@ -132,6 +131,11 @@ public interface DiaryService {
 	 */
 	List<DiaryReplyBO> getDiaryReplyListById(String diaryid);
 
+	/**
+	 * 获取热门日志
+	 * @return
+	 */
+	Map<String,List<DiaryBO>> getHotDiaries();
 	/**
 	 * 获取指定id的回复
 	 * 
@@ -155,13 +159,5 @@ public interface DiaryService {
 	 * @return
 	 */
 	int getTotalDiaryCount();
-
-	/**
-	 * 获取首页动态信息之用户最新日志
-	 * 
-	 * @param dynamicVO
-	 * @return
-	 */
-	DynamicVO getDynamicVOPart1(DynamicVO dynamicVO);
 
 }

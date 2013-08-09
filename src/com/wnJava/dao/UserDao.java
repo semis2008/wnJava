@@ -5,7 +5,6 @@ import java.util.List;
 import com.wnJava.bo.LeaveMsgBO;
 import com.wnJava.bo.UserBO;
 import com.wnJava.bo.UserInfoBO;
-import com.wnJava.vo.DynamicVO;
 
 /**
  * 用户数据处理接口
@@ -95,6 +94,13 @@ public interface UserDao {
 	UserInfoBO queryUserInfoByUserID(Long userId);
 
 	/**
+	 * 获取最近登录的用户
+	 * @param num 总数
+	 * @return
+	 */
+	List<UserBO> queryUsersOrderByLoginTime(int num);
+	
+	/**
 	 * 更新用户详细信息
 	 * 
 	 * @param user_id
@@ -160,7 +166,15 @@ public interface UserDao {
 	 * @param end 结束位置
 	 * @return 留言列表
 	 */
-	List<LeaveMsgBO> getLeaveMsgList(Long userId,int start,int end);
+	List<LeaveMsgBO> queryUserLeaveMsg(Long userId,int start,int end);
+
+	/**
+	 * 获取系统留言
+	 * @param start
+	 * @param end
+	 * @return
+	 */
+	List<LeaveMsgBO> queryLeaveMsg(int start,int end);
 	
 	/**
 	 * 查询系统所有用户（后期分页需完善）

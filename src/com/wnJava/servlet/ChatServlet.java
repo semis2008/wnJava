@@ -20,7 +20,6 @@ import com.wnJava.bo.UserInfoBO;
 import com.wnJava.service.DiaryService;
 import com.wnJava.service.UserService;
 import com.wnJava.util.UserUtil;
-import com.wnJava.vo.DynamicVO;
 
 /**
  * WN Chat系统处理类
