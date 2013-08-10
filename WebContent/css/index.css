@@ -20,7 +20,7 @@
 
 .logo-info {
 	color: #6b7770;
-	margin-top: 40px;
+	margin-: 40px;
 }
 
 .logo-info h1 {
@@ -166,7 +166,7 @@ ul.meta {
     float:right;
 }
 
-#topDiarySec{
+.diarySec{
 	position: relative;
 }
 .changeTopDiary{
@@ -179,21 +179,21 @@ ul.meta {
     margin: 0 0 10%;
     padding: 5px;
 }
-#topDiarySec a , #hotDiarySec .button {
+.diarySec a , #hotDiarySec .button {
 	text-decoration: none;
 }
 
-#topDiarySec img {
+.diarySec img{
     float: left;
 }
 
-#topDiarySec h3 {
+.diarySec h3 {
     font-size: 24px;
 }
-#topDiarySec blockquote{
+.diarySec blockquote{
 	margin-left: 85px;
 }
-#topDiarySec em{
+.diarySec em{
 	color: #6b7770;
 	font-size: small;
 	float: right;

@@ -97,18 +97,18 @@ public class DiaryServiceImpl implements DiaryService {
 		 * 获取日志总页数
 		 */
 		int totalDiary = diaryDao.queryTotalDiaryCount();
-		int totalPage = totalDiary / 10 + 1;
+		int totalPage = totalDiary / 5 + 1;
 
 		req.setAttribute("currentPage", currentPage);
 		req.setAttribute("totalPage", totalPage);
 		// TODO 考虑添加置顶的日志逻辑
-		return diaryDao.queryAllDiaryList(10 * (currentPage - 1),
-				10 * currentPage);
+		return diaryDao.queryAllDiaryList(5 * (currentPage - 1),
+				5 * currentPage);
 	}
 
 	@Override
-	public DiaryBO getTopDiaryRand(String status) {
-		List<DiaryBO> topDiaries = diaryDao.queryDiaryByStatus(status);
+	public DiaryBO getTopDiaryRand() {
+		List<DiaryBO> topDiaries = diaryDao.queryDiaryByStatus("top");
 		int index = 0;
 		index = (int) (Math.random()*(topDiaries.size()+1));
 		if(index!=0&&index==topDiaries.size()) index--;
@@ -123,6 +123,15 @@ public class DiaryServiceImpl implements DiaryService {
 		diaries = diaryDao.queryDiaryOrderByReadNum(5, 5);
 		result.put("right", diaries);
 		return result;
+	}
+
+	@Override
+	public DiaryBO getTopDiaryExcept(String id) {
+		List<DiaryBO> topDiaries = diaryDao.queryDiaryByStatusExcept("top",id);
+		int index = 0;
+		index = (int) (Math.random()*(topDiaries.size()+1));
+		if(index!=0&&index==topDiaries.size()) index--;
+		return topDiaries.get(index);
 	}
 
 	@Override

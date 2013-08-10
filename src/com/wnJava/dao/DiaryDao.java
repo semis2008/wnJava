@@ -109,6 +109,14 @@ public interface DiaryDao {
 	 * @return
 	 */
 	List<DiaryBO> queryDiaryByStatus(String status);
+	
+	/**
+	 * 按照状态查询除指定id之外的日志
+	 * @param status
+	 * @param id
+	 * @return
+	 */
+	List<DiaryBO> queryDiaryByStatusExcept(String status, String id);
 	/**
 	 * 查询所有日志列表
 	 * 

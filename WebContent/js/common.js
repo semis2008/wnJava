@@ -194,15 +194,17 @@ function togglePlayList(){
 	
 }
 
-function pjaxShowPage(url,target_div) {
+
+function changeTopDiary(id) {
 	$.ajax({
 		type : "POST",
-		url : url,
+		url : "/action/diary/changetopdiary",
+		data : {
+			id : id	
+		},
 		dataType : "html",
 		success : function(msg) {
-		  $("#"+target_div).html(msg);
+		  $("#topDiarySec").html(msg);
 		}
 	});
-	
 }
- 

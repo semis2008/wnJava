@@ -43,18 +43,18 @@
 							String fun = request.getParameter("fun");
 						%>
 						<li <%if (fun.equals("") || fun.equals("index")) {%>
-							class="active" <%}%>><a href="<%=ConstantsUtil.FW_DOMAIN%>"><i
+							class="active" <%}%>><a class="js-pjax" href="/action/system/indexPage"><i
 								class="icon-home icon-white"></i> 首页</a>
 						</li>
 						<li <%if (fun.equals("diarydetail") || fun.equals("diary")) {%>
-							class="active" <%}%>><a
-							href="<%=ConstantsUtil.FW_DOMAIN%>/action/system/diary"><i
-								class="icon-edit icon-white"></i> 日志</a>
+							class="active" <%}%>><a class="js-pjax"
+							href="/action/system/diary"><i class="icon-edit icon-white"></i>
+								日志</a>
 						</li>
-						<li><a href="#leaveMsgSec"><i
+						<li><a class="js-pjax" href="/action/system/indexPage#leaveMsgSec"><i
 								class="icon-envelope icon-white"></i> 留言</a>
 						</li>
-						<li><a href="#aboutSec"><i
+						<li><a class="js-pjax" href="/action/system/indexPage#aboutSec"><i
 								class="icon-info-sign icon-white"></i> 关于</a>
 						</li>
 					</ul>
@@ -284,10 +284,13 @@
 		</div>
 		<ul id="playlist"></ul>
 	</div>
-	<div class="fixed musicbox-mini pointer panel hide padding-mini text-center"
+	<div
+		class="fixed musicbox-mini pointer panel hide padding-mini text-center"
 		onclick="togglePlayer()">
-			 <i class="icon-headphones"></i> <marquee scrollamount="3" onmouseover="this.stop();" onmouseout="this.start();">供养阿斯达..</marquee> 
-			<i class="icon-fullscreen"></i>
+		<i class="icon-headphones"></i>
+		<marquee scrollamount="3" onmouseover="this.stop();"
+			onmouseout="this.start();">供养阿斯达..</marquee>
+		<i class="icon-fullscreen"></i>
 	</div>
 
 	<div id="main-frame"></div>
@@ -296,6 +299,8 @@
 		src="<%=ConstantsUtil.FW_DOMAIN%>/js/jquery-1.8.2.js"></script>
 	<script type="text/javascript"
 		src="<%=ConstantsUtil.FW_DOMAIN%>/js/jquery.scrollLoading.js"></script>
+	<script type="text/javascript"
+		src="<%=ConstantsUtil.FW_DOMAIN%>/js/jquery.pjax.js"></script>
 
 	<script type="text/javascript"
 		src="<%=ConstantsUtil.FW_DOMAIN%>/plugin/bootstrap/js/bootstrap.js"></script>
@@ -318,6 +323,19 @@
 	<script type="text/javascript">
 		$(function() {
 			$(".scrollLoading").scrollLoading();
+			$.pjax({
+				selector : "a[class='js-pjax']",
+				container : '#right-content', // 内容替换的容器
+				show : 'fade', // 展现的动画，支持默认和fade, 可以自定义动画方式，这里为自定义的function即可。
+				cache : false, // 是否使用缓存
+				storage : true, // 是否使用本地存储
+				titleSuffix : '', // 标题后缀
+				filter : function() {
+				},
+				callback : function() {
+				}
+			});
+
 		});
 	</script>
 </body>

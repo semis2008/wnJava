@@ -2,7 +2,10 @@ package com.wnJava.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
+import java.util.Map;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -14,7 +17,9 @@ import org.apache.log4j.Logger;
 import org.springframework.stereotype.Component;
 
 import com.wnJava.bo.DiaryBO;
+import com.wnJava.bo.UserBO;
 import com.wnJava.service.DiaryService;
+import com.wnJava.util.UserUtil;
 
 /**
  * 日志相关处理类
@@ -53,6 +58,8 @@ public class DiaryServlet extends HttpServlet {
 			getDiaryInfo(req, resp);
 		} else if ("editdiary".equals(fun)) {
 			editDiary(req, resp);
+		} else if ("changetopdiary".equals(fun)) {
+			changeTopDiary(req, resp);
 		}
 	}
 
@@ -93,7 +100,30 @@ public class DiaryServlet extends HttpServlet {
 		out.flush();
 		out.close();
 	}
-	
+
+	/**
+	 * 更换推荐日志
+	 * 
+	 * @param req
+	 * @param resp
+	 * @throws IOException
+	 */
+	private void changeTopDiary(HttpServletRequest req, HttpServletResponse resp)
+			throws IOException {
+		String nowId = req.getParameter("id");
+		// 获取热门日志
+		DiaryBO  topDiary = diaryService.getTopDiaryExcept(nowId);
+
+		req.setAttribute("topDiary", topDiary);
+		RequestDispatcher rd = req
+				.getRequestDispatcher("/jsp/topDiaryHtml.jsp");
+		try {
+			rd.forward(req, resp);
+		} catch (ServletException e) {
+			e.printStackTrace();
+		}
+	}
+
 	/**
 	 * 编辑日志
 	 * 
@@ -109,7 +139,7 @@ public class DiaryServlet extends HttpServlet {
 		out.flush();
 		out.close();
 	}
-	
+
 	/**
 	 * 获取日志信息
 	 * 
@@ -123,16 +153,17 @@ public class DiaryServlet extends HttpServlet {
 		String diaryid = req.getParameter("diaryid");
 		DiaryBO bo = diaryService.getDiaryByID(diaryid);
 		JSONObject json = null;
-		if(bo!=null) {
+		if (bo != null) {
 			json = JSONObject.fromObject(bo);
 		}
 		out.print(json);
 		out.flush();
 		out.close();
 	}
-	
+
 	/**
 	 * 新建回复
+	 * 
 	 * @param req
 	 * @param resp
 	 * @throws IOException
@@ -142,9 +173,9 @@ public class DiaryServlet extends HttpServlet {
 		PrintWriter out = resp.getWriter();
 		String type = req.getParameter("type");
 		int result = 0;
-		if("user".equals(type)) {
+		if ("user".equals(type)) {
 			result = diaryService.newUserReply(req, resp);
-		} else if("guest".equals(type)) {
+		} else if ("guest".equals(type)) {
 			result = diaryService.newGuestReply(req, resp);
 		}
 		String msg = "";

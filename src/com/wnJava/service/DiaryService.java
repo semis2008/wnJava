@@ -121,7 +121,15 @@ public interface DiaryService {
 	 * @param status
 	 * @return
 	 */
-	DiaryBO getTopDiaryRand(String status);	
+	DiaryBO getTopDiaryRand();
+	
+	/**
+	 * 获取除指定id之外的随机推荐日志
+	 * @param id
+	 * @return
+	 */
+	DiaryBO getTopDiaryExcept(String id);
+	
 	/**
 	 * 获取指定日志的所有回复
 	 * 

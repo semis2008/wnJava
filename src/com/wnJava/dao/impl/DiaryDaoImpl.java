@@ -33,6 +33,13 @@ public class DiaryDaoImpl implements DiaryDao {
 	}
 
 	@Override
+	public List<DiaryBO> queryDiaryByStatusExcept(String status, String id) {
+		String sql = "select * from diary where status = ? and id <> ?";
+		Object[] params = {status,id};
+		return dbUtilsTemplate.find(DiaryBO.class, sql,params);
+	}
+
+	@Override
 	public List<DiaryBO> queryUserDiaryList(Long userId, int start, int end) {
 		String sql = "select * from diary where author_id = ? and status != 'delete' order by publish_time desc limit ?,?";
 		Object[] param = {userId,start,end};

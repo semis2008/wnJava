@@ -73,12 +73,7 @@
 </jsp:include>
 
 <link href="/css/index.css" rel="stylesheet" type="text/css" />
-
-<script type=
-	
-/javascript">
-	
-</script>
+ 
 <title>懒熊de部落格</title>
 </head>
 <body>
@@ -202,9 +197,9 @@
 						<!-- /热门标签 --> <!-- /Sidebar -->
 					</div>
 				</div>
-				<div class="span7">
+				<div class="span7" id="right-content">
 					<!-- Content -->
-					<article> <!-- 推荐日志 --> <section id="topDiarySec">
+					<article> <!-- 推荐日志 --> <section id="topDiarySec" class="diarySec">
 					<h3 class="major">
 						<span><i class="icon-star-empty"></i> 推荐日志</span>
 					</h3>
@@ -232,7 +227,7 @@
 					</div>
 
 					<a class="button" href="javascript:void(0)">阅读全文 <i
-						class=" icon-chevron-down"></i> </a> <a href="#"
+						class=" icon-chevron-down"></i> </a> <a href="javascript:void(0)" onclick="changeTopDiary(<%=topDiary.getId() %>)"
 						onmouseover="$('.changeTopDiary i').addClass('icon-spin');"
 						onmouseout="$('.changeTopDiary i').removeClass('icon-spin');"
 						title="换一篇" class="changeTopDiary"><i

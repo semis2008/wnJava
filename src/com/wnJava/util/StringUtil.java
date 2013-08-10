@@ -29,6 +29,11 @@ public class StringUtil {
 	 * @return
 	 */
 	public static String cutString(String str, int len) {
+		//包含图的内容，直接截断
+		if(str.contains("<img")) {
+			str = str.substring(0,str.indexOf("<img"));
+		}
+		
 		if (null == str)
 			return "";
 		int sl = str.getBytes().length;

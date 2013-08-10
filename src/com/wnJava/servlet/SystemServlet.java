@@ -55,6 +55,11 @@ public class SystemServlet extends HttpServlet {
 			throws ServletException, IOException {
 		resp.setContentType("text/html;charset=utf-8");
 		String fun = (String) req.getParameter("fun");
+		String pjax = (String) req.getParameter("pjax");
+		//本servlet全部处理显示逻辑，不是pjax提交的，全部跳转到首页。这么做是避免用户手动刷新网页导致的显示问题
+		if((pjax==null||!pjax.equals("true"))&&!fun.equals("index")){
+			fun = "index";
+		} 
 		String targetpath = "";
 		if ("error".equals(fun)) {
 			targetpath = "/jsp/error.jsp";
@@ -71,12 +76,14 @@ public class SystemServlet extends HttpServlet {
 		}else if ("aboutus".equals(fun)) {
 			targetpath = "/jsp/aboutPage.jsp";
 		}else if ("index".equals(fun)) {
-			targetpath = showIndexPage(req, resp);
+			targetpath = showIndex(req, resp);
 		}else if ("shownewdiary".equals(fun)) {
 			targetpath = showNewDiary(req, resp);
 		}else if ("showeditdiary".equals(fun)) {
 			targetpath = showEditDiary(req, resp);
-		} 
+		}else if ("indexPage".equals(fun)) {
+			targetpath = showIndexRight(req, resp);
+		}  
 		UserBO user = UserUtil.getLoginUser(req, resp);
 		if(user!=null) {
 			//获取用户的日志总数
@@ -129,11 +136,11 @@ public class SystemServlet extends HttpServlet {
 	 * @param resp
 	 * @return
 	 */
-	private String showIndexPage(HttpServletRequest req, HttpServletResponse resp) {
+	private String showIndex(HttpServletRequest req, HttpServletResponse resp) {
 		//获取最新日志
 		List<DiaryBO> diaries = diaryService.getNewDiaryList();
 		//随机获取推荐日志
-		DiaryBO topDiary = diaryService.getTopDiaryRand("top");	
+		DiaryBO topDiary = diaryService.getTopDiaryRand();	
 		//获取活跃用户
 		List<UserBO> activeUsers = userService.getActiveUsers(10);
 		//获取热门日志
@@ -165,6 +172,21 @@ public class SystemServlet extends HttpServlet {
 		req.setAttribute("topDiary", topDiary);
 		return "/jsp/indexPage.jsp";
 	}
+	/**
+	 * 显示主页右侧内容
+	 * @param req
+	 * @param resp
+	 * @return
+	 */
+	private String showIndexRight(HttpServletRequest req, HttpServletResponse resp) {
+		//随机获取推荐日志
+		DiaryBO topDiary = diaryService.getTopDiaryRand();	
+		//获取热门日志
+		Map<String,List<DiaryBO>> hotDiaries = diaryService.getHotDiaries();
+		req.setAttribute("hotDiaries", hotDiaries);
+		req.setAttribute("topDiary", topDiary);
+		return "/jsp/indexPageHtml.jsp";
+	}
 	
 	/**
 	 * 日志业务处理
@@ -173,16 +195,10 @@ public class SystemServlet extends HttpServlet {
 	 */
 	private String showDiary(HttpServletRequest req, HttpServletResponse resp) {
 		 
-		UserBO visitUser = UserUtil.getVisitedUser(req, resp);
 		List<DiaryBO> diaries =new ArrayList<DiaryBO>();
-//		if(visitUser == null) {
-			// 没有指定用户，显示所有日志
 			diaries = diaryService.getAllDiaryList(req,resp);
-//		}else {
-//			diaries = diaryService.getUserDiaryList(req,resp);
-//		}
 		req.setAttribute("diaries", diaries);
-		return "/jsp/diaryPage.jsp";
+		return "/jsp/diaryPageHtml.jsp";
 	}
 	
 	/**
