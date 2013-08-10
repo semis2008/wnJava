@@ -11,6 +11,22 @@ public class DiaryBO{
 	private Date publish_time;
 	private String tags;
 	private Long read_num;
+	private Long reply_num;
+	private String status;
+	private String author_photo;
+	
+	public String getAuthor_photo() {
+		return author_photo;
+	}
+	public void setAuthor_photo(String author_photo) {
+		this.author_photo = author_photo;
+	}
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
 	public Long getRead_num() {
 		return read_num;
 	}
@@ -22,14 +38,6 @@ public class DiaryBO{
 	}
 	public void setReply_num(Long reply_num) {
 		this.reply_num = reply_num;
-	}
-	private Long reply_num;
-	private String status;
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
 	}
 	public String getTitle() {
 		return title;

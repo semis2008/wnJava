@@ -142,7 +142,7 @@ public class SystemServlet extends HttpServlet {
 		//随机获取推荐日志
 		DiaryBO topDiary = diaryService.getTopDiaryRand();	
 		//获取活跃用户
-		List<UserBO> activeUsers = userService.getActiveUsers(10);
+		List<UserBO> activeUsers = userService.getActiveUsers(8);
 		//获取热门日志
 		Map<String,List<DiaryBO>> hotDiaries = diaryService.getHotDiaries();
 		//获取留言
@@ -241,7 +241,7 @@ public class SystemServlet extends HttpServlet {
 		diaryService.updateDiaryRead(param);
 		req.setAttribute("replies", replies);
 		req.setAttribute("diary", diary);
-		return "/jsp/diaryDetail.jsp";
+		return "/jsp/diaryDetailHtml.jsp";
 	}
 	
 }

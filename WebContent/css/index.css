@@ -14,8 +14,8 @@
 #content section {
 	background: none repeat scroll 0 0 #FFFFFF;
 	box-shadow: 2px 2px 2px 1px rgba(128, 128, 128, 0.1);
-	margin: 0 0 10%;
-	padding: 40px 30px 45px;
+	margin: 0 0 30px;
+	padding: 25px 20px 30px 20px;
 }
 
 .logo-info {
@@ -34,7 +34,7 @@
 }
 
 #main-wrapper {
-	margin-top: 40px;
+	margin-top: 60px;
 	padding-bottom: 100px;
 }
 
@@ -51,9 +51,9 @@
 }
 
 .major span {
-	padding: 0 15px;
+	padding: 0 10px;
 	top: -23px;
-	left: 15px;
+	left: 10px;
 }
 
 .side-ul {
@@ -67,16 +67,19 @@
 
 .side-ul>li:first-child {
 	border-top: 0 none;
-	margin-top: 0;
+	margin-top: -5px;
 	padding-top: 0;
 }
 
 .side-ul>li {
 	border-top: 2px solid #E7EAE8;
-	margin-top: 10px;
-	padding-top: 10px;
+	margin-top: 7px;
+	padding-top: 7px;
 }
 
+.side-ul>li h5{
+	margin: 5px 0 5px 0;
+}
 section:last-child,article:last-child {
 	margin-bottom: 0;
 }
@@ -146,7 +149,7 @@ ul.meta {
 }
 .quote-list li {
     overflow: hidden;
-    padding: 1em 0;
+    padding: 8px 5px 8px 0;
 }
 
 
@@ -156,7 +159,7 @@ ul.meta {
 .quote-list li p {
     font-size: 1.1em;
     font-style: italic;
-    margin: 0 0 0 70px;
+    margin: 0 0 0 60px;
 }
 
 .quote-list li span {
@@ -181,10 +184,6 @@ ul.meta {
 }
 .diarySec a , #hotDiarySec .button {
 	text-decoration: none;
-}
-
-.diarySec img{
-    float: left;
 }
 
 .diarySec h3 {
@@ -242,7 +241,7 @@ ul.meta {
 	font-size:10px;
 	display:none;
 	left:5px;
-	width: 50px;
+	width: 42px;
 	background-color: black;
 	opacity: 0.8;
 }

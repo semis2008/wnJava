@@ -72,8 +72,8 @@
 	}
 %>
 <div>
-	<img width="60px" height="60px" alt="" class="img-polaroid"
-		src="../../img/wn_head01.jpg" />
+	<img width="60px" height="60px" alt="" class="img-polaroid left"
+		src="<%=ConstantsUtil.FW_DOMAIN %><%=diary.getAuthor_photo() %>" />
 	<blockquote>
 		<h3 class="muted">
 			<%=StringUtil.cutString(diary.getTitle(), 100)%>
@@ -93,19 +93,19 @@
 	<p><%=StringUtil.cutString(diary.getContent(), 150)%></p>
 </div>
 <div>
-	<a class="button" href="javascript:void(0)">阅读全文 <i
+	<a class="button" data-type="pjax" href="<%=ConstantsUtil.FW_DOMAIN%>/action/system/diarydetail/<%=diary.getId() %>">阅读全文 <i
 		class="icon-chevron-down"></i> </a>
 </div>
 </section> <%
  	}
  %> </article>
-<div class="pagination pagination-centered">
+<div class="pagination pagination-centered" id="diaryPageDiv">
 	<ul>
 		<%
 			if (currentPage != 1) {
 		%>
-		<li><a
-			href="<%=ConstantsUtil.FW_DOMAIN%>/action/system/diary/<%=currentPage - 1%>">上一页</a>
+		<li><a data-type="pjax"
+			href="<%=ConstantsUtil.FW_DOMAIN%>/action/system/diary/<%=currentPage - 1%>#diaryPageDiv">上一页</a>
 		</li>
 		<%
 			}
@@ -123,16 +123,16 @@
 			count++;
 				} else {
 		%>
-		<li <%if (i == currentPage) {%> class="active" <%}%>><a
-			href="<%=ConstantsUtil.FW_DOMAIN%>/action/system/diary/<%=i%>"><%=i%></a>
+		<li <%if (i == currentPage) {%> class="active" <%}%>><a data-type="pjax"
+			href="<%=ConstantsUtil.FW_DOMAIN%>/action/system/diary/<%=i%>#diaryPageDiv"><%=i%></a>
 		</li>
 		<%
 			}
 			}
 			if (currentPage != totalPage) {
 		%>
-		<li><a
-			href="<%=ConstantsUtil.FW_DOMAIN%>/action/system/diary/<%=currentPage + 1%>">下一页</a>
+		<li><a data-type="pjax"
+			href="<%=ConstantsUtil.FW_DOMAIN%>/action/system/diary/<%=currentPage + 1%>#diaryPageDiv">下一页</a>
 		</li>
 		<%
 			}

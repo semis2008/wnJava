@@ -182,7 +182,20 @@ function leaveMsg() {
 			}
 		});
 }
-
+$(window).scroll(function() {
+	var t = $(document).scrollTop();
+	if (t >= 300) {
+		showGoToTop();
+	} else {
+		hideGoToTop();
+	}
+});
+function showGoToTop() {
+	$(".goToTopDiv").show();
+}
+function hideGoToTop() {
+	$(".goToTopDiv").hide();
+}
 function togglePlayer(){
 	$(".musicbox").toggle(500);
 	var title = $("#player .tag strong").text(); 
@@ -193,7 +206,6 @@ function togglePlayList(){
 	$("#playlist").toggle(500);
 	
 }
-
 
 function changeTopDiary(id) {
 	$.ajax({
@@ -208,3 +220,17 @@ function changeTopDiary(id) {
 		}
 	});
 }
+
+function tsina_a() {
+	var s = screen;
+	var d = document;
+	var e = encodeURIComponent;
+	var f = 'http://v.t.sina.com.cn/share/share.php?', u = d.location.href, p = ['url=', e(u), '&title=', e(d.title)].join('');
+	if (!window.open([f, p].join(''), 'mb', ['toolbar=0,status=0,resizable=1,width=620,height=450,left=', (s.width - 620) / 2, ',top=', (s.height - 450) / 2].join(''))) u.href = [f, p].join('');
+	}
+
+	function ShareToTsina() {
+	if (/Firefox/.test(navigator.userAgent)) { setTimeout(tsina_a, 0) } else { tsina_a() };
+	} 
+
+

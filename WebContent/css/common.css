@@ -140,3 +140,8 @@ h1, h2, h3, h4, h5, h6, h7 {
     font-weight: 700;
     text-transform: uppercase;
 }
+.goToTopDiv{
+	bottom: 100px;
+	right:50px;
+	margin: 0 0 10%;
+}

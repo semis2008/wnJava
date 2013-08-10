@@ -14,8 +14,8 @@ if (topDiary == null) {
 	<span><i class="icon-star-empty"></i> 推荐日志</span>
 </h3>
 <div>
-	<img width="60px" height="60px" alt="" class="img-polaroid"
-		src="../../img/wn_head01.jpg" />
+	<img width="60px" height="60px" alt="" class="img-polaroid left"
+		src="<%=ConstantsUtil.FW_DOMAIN %><%=topDiary.getAuthor_photo() %>" />
 	<blockquote>
 		<h3 class="muted">
 			<%=StringUtil.cutString(topDiary.getTitle(), 100)%>
@@ -32,7 +32,7 @@ if (topDiary == null) {
 	</blockquote>
 </div>
 <div>
-	<p><%=StringUtil.cutString(topDiary.getContent(), 200)%></p>
+	<p><%=StringUtil.cutString(topDiary.getContent(), 150)%></p>
 </div>
 
 <a class="button" href="javascript:void(0)">阅读全文 <i

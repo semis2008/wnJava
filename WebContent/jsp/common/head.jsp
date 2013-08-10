@@ -47,14 +47,14 @@
 								class="icon-home icon-white"></i> 首页</a>
 						</li>
 						<li <%if (fun.equals("diarydetail") || fun.equals("diary")) {%>
-							class="active" <%}%>><a class="js-pjax"
+							class="active" <%}%>><a data-type="pjax"
 							href="/action/system/diary"><i class="icon-edit icon-white"></i>
 								日志</a>
 						</li>
-						<li><a class="js-pjax" href="/action/system/indexPage#leaveMsgSec"><i
+						<li><a data-type="pjax" href="/action/system/indexPage#leaveMsgSec"><i
 								class="icon-envelope icon-white"></i> 留言</a>
 						</li>
-						<li><a class="js-pjax" href="/action/system/indexPage#aboutSec"><i
+						<li><a data-type="pjax" href="/action/system/indexPage#aboutSec"><i
 								class="icon-info-sign icon-white"></i> 关于</a>
 						</li>
 					</ul>
@@ -289,8 +289,12 @@
 		onclick="togglePlayer()">
 		<i class="icon-headphones"></i>
 		<marquee scrollamount="3" onmouseover="this.stop();"
-			onmouseout="this.start();">供养阿斯达..</marquee>
+			onmouseout="this.start();"></marquee>
 		<i class="icon-fullscreen"></i>
+	</div>
+	
+	<div class="fixed goToTopDiv hide pointer padding-small">
+		<i onclick="goToTop()" class="icon-chevron-up icon-white icon-2x"></i>
 	</div>
 
 	<div id="main-frame"></div>
@@ -318,21 +322,29 @@
 		src="<%=ConstantsUtil.FW_DOMAIN%>/plugin/musicplayer/js/jquery-ui.min.js"></script>
 	<script type="text/javascript"
 		src="<%=ConstantsUtil.FW_DOMAIN%>/plugin/musicplayer/js/script.js"></script>
-
-
+		
+<!-- BaiDu Button START -->
+<script type="text/javascript" id="bdshare_js"
+	data="type=tools&amp;uid=240802"></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<script type="text/javascript">
+						document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+<!-- Baidu Button END -->
 	<script type="text/javascript">
 		$(function() {
 			$(".scrollLoading").scrollLoading();
 			$.pjax({
-				selector : "a[class='js-pjax']",
+				selector : "a[data-type='pjax']",
 				container : '#right-content', // 内容替换的容器
 				show : 'fade', // 展现的动画，支持默认和fade, 可以自定义动画方式，这里为自定义的function即可。
 				cache : false, // 是否使用缓存
 				storage : true, // 是否使用本地存储
-				titleSuffix : '', // 标题后缀
+				titleSuffix : 'wnJava_懒熊の部落格', // 标题后缀
 				filter : function() {
 				},
 				callback : function() {
+					
 				}
 			});
 

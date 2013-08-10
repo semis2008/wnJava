@@ -30,7 +30,7 @@ public interface DiaryDao {
 	 * @return 受影响的行的主键
 	 */
 	String insertDiary(String title, String tags, String diaryContent,
-			Long userId, String userName);
+			Long userId, String userName, String userPhoto);
 
 	/**
 	 * 编辑日志

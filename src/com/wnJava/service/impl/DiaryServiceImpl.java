@@ -44,7 +44,7 @@ public class DiaryServiceImpl implements DiaryService {
 			tags = tags.replace(" ", "_");
 		}
 		return diaryDao.insertDiary(title, tags, diaryContent, user.getId(),
-				user.getName());
+				user.getName(),user.getPhoto());
 	}
 
 	@Override
@@ -103,15 +103,19 @@ public class DiaryServiceImpl implements DiaryService {
 		req.setAttribute("totalPage", totalPage);
 		// TODO 考虑添加置顶的日志逻辑
 		return diaryDao.queryAllDiaryList(5 * (currentPage - 1),
-				5 * currentPage);
+				5);
 	}
 
 	@Override
 	public DiaryBO getTopDiaryRand() {
 		List<DiaryBO> topDiaries = diaryDao.queryDiaryByStatus("top");
 		int index = 0;
-		index = (int) (Math.random()*(topDiaries.size()+1));
-		if(index!=0&&index==topDiaries.size()) index--;
+		index = (int) (Math.random()*(topDiaries.size()+1))-1;
+		if(index<0) {
+			index=0;
+		}else if(index==topDiaries.size()) {
+			index--;	
+		}
 		return topDiaries.get(index);
 	}
 
@@ -129,8 +133,12 @@ public class DiaryServiceImpl implements DiaryService {
 	public DiaryBO getTopDiaryExcept(String id) {
 		List<DiaryBO> topDiaries = diaryDao.queryDiaryByStatusExcept("top",id);
 		int index = 0;
-		index = (int) (Math.random()*(topDiaries.size()+1));
-		if(index!=0&&index==topDiaries.size()) index--;
+		index = (int) (Math.random()*(topDiaries.size()+1))-1;
+		if(index<0) {
+			index=0;
+		}else if(index==topDiaries.size()) {
+			index--;	
+		}
 		return topDiaries.get(index);
 	}
 
