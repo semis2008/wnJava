@@ -24,38 +24,8 @@
 <title>懒熊de部落格</title>
 <!-- Content -->
 <article> <!-- 推荐日志 --> <section id="topDiarySec" class="diarySec">
-<h3 class="major">
-	<span><i class="icon-star-empty"></i> 推荐日志</span>
-</h3>
-<div>
-	<img width="60px" height="60px" alt="" class="img-polaroid left"
-		src="<%=ConstantsUtil.FW_DOMAIN %><%=topDiary.getAuthor_photo() %>" />
-	<blockquote>
-		<h3 class="muted">
-			<%=StringUtil.cutString(topDiary.getTitle(), 100)%>
-			<em title="回复/阅读数">[<%=topDiary.getReply_num()%>/<%=topDiary.getRead_num()%>]</em>
-		</h3>
-		<small> <%
- 	String[] tags = topDiary.getTags().split("_");
- 	for (String tag : tags) {
- %> <label class="label"><i class="icon-tag"></i> <%=tag%></label> <%
- 	}
- %> <em><a class="text-info" title="查看他发布的所有博文"
-				href="<%=ConstantsUtil.FW_DOMAIN%>/action/system/mainpage/<%=topDiary.getAuthor_id()%>"><%=topDiary.getAuthor_name()%></a>
-				发布于 <%=DateUtil.formatDate(topDiary.getPublish_time(), 3)%></em> </small>
-	</blockquote>
-</div>
-<div>
-	<p><%=StringUtil.cutString(topDiary.getContent(), 200)%></p>
-</div>
-
-<a class="button" data-type="pjax" href="<%=ConstantsUtil.FW_DOMAIN%>/action/system/diarydetail/<%=topDiary.getId()%>">阅读全文 <i
-	class=" icon-chevron-down"></i> </a> <a href="javascript:void(0)"
-	onclick="changeTopDiary(<%=topDiary.getId()%>)"
-	onmouseover="$('.changeTopDiary i').addClass('icon-spin');"
-	onmouseout="$('.changeTopDiary i').removeClass('icon-spin');"
-	title="换一篇" class="changeTopDiary"><i class="icon-refresh icon-2x"></i>
-</a> </section> <!-- /推荐日志 --> <!-- 热门日志 --> <section id="hotDiarySec">
+	<jsp:include page="/jsp/topDiaryHtml.jsp" />
+ </section> <!-- /推荐日志 --> <!-- 热门日志 --> <section id="hotDiarySec">
 <h3 class="major">
 	<span><i class="icon-lightbulb"></i> 热门日志</span>
 </h3>
