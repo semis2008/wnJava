@@ -25,21 +25,7 @@
 		.getAttribute("userDiaryNum");
 	}
 %>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<!-- 网站公用顶部 -->
-<jsp:include page="/jsp/common/head.jsp" flush="true">
-	<jsp:param value="<%=hasLogin %>" name="hasLogin" />
-	<jsp:param value="<%=user.getName() %>" name="userName" />
-	<jsp:param value="<%=user.getId() %>" name="userId" />
-	<jsp:param value="<%=userDiaryNum %>" name="userDiaryNum" />
-</jsp:include>
-
-
-<link href="/css/newDiary.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript"
 	src="<%=ConstantsUtil.FW_DOMAIN%>/plugin/editor/editor.js"></script>
 <script type="text/javascript"
@@ -87,20 +73,7 @@
 	}
 </script>
 <title>wnJava--写日志</title>
-</head>
-<body>
-	<div class="bookmark">
-		<ul class="breadcrumb">
-			<li><a href="<%=ConstantsUtil.FW_DOMAIN%>">首页</a> <span
-				class="divider">/</span>
-			</li>
-			<li><a href="<%=ConstantsUtil.FW_DOMAIN%>/action/system/diary">日志</a>
-				<span class="divider">/</span>
-			</li>
-			<li class="active">写日志</li>
-		</ul>
-	</div>
-	<div class="container">
+	<div>
 		<div class="padding-small">
 			<div class="input-prepend">
 				<span class="add-on"><i class="icon-quote-left"></i> </span><input
@@ -225,7 +198,3 @@
 		</div>
 	</div>
 
-	<!-- 底部 -->
-	<jsp:include page="/jsp/common/bottom.jsp" flush="true" />
-</body>
-</html>

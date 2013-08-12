@@ -35,8 +35,8 @@ if (topDiary == null) {
 	<p><%=StringUtil.cutString(topDiary.getContent(), 150)%></p>
 </div>
 
-<a class="button" href="javascript:void(0)">阅读全文 <i
-	class=" icon-chevron-down"></i> </a>
+<a class="button" data-type="pjax" href="<%=ConstantsUtil.FW_DOMAIN%>/action/system/diarydetail/<%=topDiary.getId()%>">阅读全文 <i
+	class="icon-chevron-down"></i> </a>
 <a href="javascript:void(0)"
 	onclick="changeTopDiary(<%=topDiary.getId() %>)"
 	onmouseover="$('.changeTopDiary i').addClass('icon-spin');"

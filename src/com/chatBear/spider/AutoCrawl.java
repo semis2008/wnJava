@@ -36,9 +36,9 @@ public class AutoCrawl extends HttpServlet {
 		super.init(config);
 		sc = config.getServletContext();
 		String path = sc.getRealPath("/")+ConstantsUtil.SITE_INFO_XML;
-		// 应用启动之后，一分钟以后开始爬取。每隔1小时爬取网站信息存放到MsgFactory里
+		// 应用启动之后，一分钟以后开始爬取。每隔4小时爬取网站信息存放到MsgFactory里
 		Timer timer = new Timer();
-		timer.schedule(new CrawlTask(path), 60 * 1000, 60 * 60 * 1000);
+		timer.schedule(new CrawlTask(path), 60 * 1000,4 * 60 * 60 * 1000);
 	}
 }
 

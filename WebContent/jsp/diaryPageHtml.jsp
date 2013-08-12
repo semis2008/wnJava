@@ -32,9 +32,6 @@
 	}
 %>
 
-
-<link href="/css/diary.css" rel="stylesheet" type="text/css" />
-
 <script language="javascript" type="text/javascript">
 	function deleteDiary(diaryid) {
 		$.ajax({
