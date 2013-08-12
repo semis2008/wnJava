@@ -194,9 +194,8 @@ public class SystemServlet extends HttpServlet {
 	 * @param resp
 	 */
 	private String showDiary(HttpServletRequest req, HttpServletResponse resp) {
-		 
 		List<DiaryBO> diaries =new ArrayList<DiaryBO>();
-			diaries = diaryService.getAllDiaryList(req,resp);
+		diaries = diaryService.getAllDiaryList(req,resp);
 		req.setAttribute("diaries", diaries);
 		return "/jsp/diaryPageHtml.jsp";
 	}
@@ -207,7 +206,7 @@ public class SystemServlet extends HttpServlet {
 	 * @param resp
 	 */
 	private String showNewDiary(HttpServletRequest req, HttpServletResponse resp) {
-		return "/jsp/newDiary.jsp";
+		return "/jsp/newDiaryHtml.jsp";
 	}
 	
 	/**

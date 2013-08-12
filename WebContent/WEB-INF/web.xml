@@ -117,13 +117,11 @@
 	<servlet>
 		<servlet-name>getMsg</servlet-name>
 		<servlet-class>com.chatBear.comet.GetMsgAjax</servlet-class>
-		<load-on-startup>2</load-on-startup>
 	</servlet> 
 	<!-- 获取验证码 -->
 	<servlet>
 		<servlet-name>RandImg</servlet-name>
 		<servlet-class>com.wnJava.servlet.RandImage</servlet-class>
-		<load-on-startup>3</load-on-startup>
 	</servlet> 
  	
  	

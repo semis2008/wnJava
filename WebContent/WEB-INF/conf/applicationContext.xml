@@ -19,22 +19,23 @@
 		</property>
 	</bean>
 
-	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
-		<property name="driverClass" value="${connection.driver_class}" />
-		<property name="jdbcUrl" value="${jdbc.connection.url}" />
-		<property name="idleConnectionTestPeriod"
-			value="${jdbc.pool.c3p0.idle_connection_test_period}" />
-		<property name="preferredTestQuery" value="${jdbc.pool.c3p0.preferred_test_query}" />
-		<property name="maxIdleTime" value="${jdbc.pool.c3p0.max_idle_time}" />
-		<property name="properties">
-			<props>
-				<prop key="user">${jdbc.connection.username}</prop>
-				<prop key="password">${jdbc.connection.password}</prop>
-				<prop key="c3p0.acquire_increment">${jdbc.pool.c3p0.acquire_increment}</prop>
-				<prop key="c3p0.max_size">${jdbc.pool.c3p0.max_size}</prop>
-				<prop key="c3p0.min_size">${jdbc.pool.c3p0.min_size}</prop>
-			</props>
-		</property>
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"  destroy-method="close">
+		<property name="driverClass" value="${jdbc.driverClass}" />
+		<property name="jdbcUrl" value="${jdbc.jdbcUrl}" />
+		<property name="user" value="${jdbc.user}" />
+		<property name="password" value="${jdbc.password}" />
+		<property name="minPoolSize" value="${jdbc.miniPoolSize}" />
+		<property name="maxPoolSize" value="${jdbc.maxPoolSize}" />
+		<property name="initialPoolSize" value="${jdbc.initialPoolSize}" />
+		<property name="maxIdleTime" value="${jdbc.maxIdleTime}" />
+		<property name="acquireIncrement" value="${jdbc.acquireIncrement}" />
+
+		<property name="acquireRetryAttempts" value="${jdbc.acquireRetryAttempts}" />
+		<property name="acquireRetryDelay" value="${jdbc.acquireRetryDelay}" />
+		<property name="testConnectionOnCheckin" value="${jdbc.testConnectionOnCheckin}" />
+		<property name="automaticTestTable" value="${jdbc.automaticTestTable}" />
+		<property name="idleConnectionTestPeriod" value="${jdbc.idleConnectionTestPeriod}" />
+		<property name="checkoutTimeout" value="${jdbc.checkoutTimeout}" />
 	</bean>
 	<!-- 下面定义了DbUtils的一个模板操作Bean -->
 	<bean id="dbUtilsTemplate" class="com.wnJava.dao.template.DbUtilsTemplate">

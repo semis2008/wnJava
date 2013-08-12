@@ -84,11 +84,11 @@
 								<li><a
 									href="<%=ConstantsUtil.FW_DOMAIN%>/action/system/mainpage/<%=userId%>"><i
 										class="icon-home icon-black"></i> 个人主页</a></li>
-								<li><a href="#"><i class="icon-edit icon-black"></i>
+								<li><a href="javascript:void(0)"><i class="icon-edit icon-black"></i>
 										日志：<%=userDiaryNum%>篇</a></li>
 								<li class="divider"></li>
-								<li><a href="#"
-									onclick="pjaxShowPage('/action/system/shownewdiary','main-frame')"><i
+								<li><a href="<%=ConstantsUtil.FW_DOMAIN%>/action/system/shownewdiary" data-type="pjax"
+									><i
 										class="icon-pencil icon-black"></i> 写日志</a>
 								</li>
 								<li class="divider"></li>
@@ -137,7 +137,7 @@
 						class="icon-plus icon-white"></i>欢迎您注册WNJava，马上开始吧~</span>
 				</h3>
 			</div>
-			<div class="modal-body span7">
+			<div class="modal-body">
 				<fieldset>
 					<div class="control-group">
 						<label class="control-label" for="input01">您的尊姓大名</label>
@@ -289,9 +289,9 @@
 				selector : "a[data-type='pjax']",
 				container : '#right-content', // 内容替换的容器
 				show : 'fade', // 展现的动画，支持默认和fade, 可以自定义动画方式，这里为自定义的function即可。
-				cache : false, // 是否使用缓存
+				cache : true, // 是否使用缓存
 				storage : true, // 是否使用本地存储
-				titleSuffix : '', // 标题后缀
+				titleSuffix : '_wnJava', // 标题后缀
 				filter : function() {
 				},
 				callback : function() {
