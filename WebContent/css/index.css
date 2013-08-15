@@ -290,3 +290,31 @@ ul.meta {
 div[data-role="editor-toolbar"] {
     -moz-user-select: none;
 }
+
+#leaveMsgPageSec li {
+    border-bottom: 1px solid #E2E6E8;
+    overflow: hidden;
+    padding: 8px 5px 8px 0;
+    background-color: #F5F5F5;
+    border: 1px solid #E3E3E3;
+    border-radius: 4px 4px 4px 4px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05) inset;
+    margin-bottom: 20px;
+    min-height: 20px;
+}
+
+#leaveMsgPageSec li img {
+    float: left;
+}
+#leaveMsgPageSec li p {
+    font-style: italic;
+    margin: 0 0 0 60px;
+}
+
+#leaveMsgPageSec li span {
+    display: block;
+    font-size: 0.8em;
+    font-weight: 400;
+    float:right;
+}
+

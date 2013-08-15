@@ -2,6 +2,8 @@ package com.wnJava.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,6 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Component;
 
+import com.wnJava.bo.DiaryBO;
+import com.wnJava.bo.LeaveMsgBO;
 import com.wnJava.bo.UserBO;
 import com.wnJava.service.UserService;
 import com.wnJava.util.StringUtil;
@@ -54,14 +58,16 @@ public class UserServlet extends HttpServlet {
 			userQuit(req, resp);
 		} else if ("leavemsg".equals(fun)) {
 			leaveMsg(req, resp);
+		} else if ("leaveMsgList".equals(fun)) {
+			showLeaveMsgList(req, resp);
+		} else if ("refreshLeaveMsg".equals(fun)) {
+			refreshLeaveMsg(req, resp);
 		} else if ("updateinfo".equals(fun)) {
 			updateInfo(req, resp);
 		} else if ("updatephoto".equals(fun)) {
 			updatePhoto(req, resp);
 		}
 	}
-
-	
 	
 	/**
 	 * 用户注册
@@ -156,6 +162,43 @@ public class UserServlet extends HttpServlet {
 	}
 	
 	/**
+	 * 刷新首页留言（左侧）
+	 * 
+	 * @param req
+	 * @param resp
+	 * @return
+	 * @throws IOException
+	 * @throws ServletException 
+	 */
+	private void refreshLeaveMsg(HttpServletRequest req, HttpServletResponse resp)
+			throws IOException, ServletException {
+		//获取留言
+		List<LeaveMsgBO> leaveMsgs = userService.getLeaveMsg(4);
+		req.setAttribute("leaveMsgs", leaveMsgs);
+		RequestDispatcher rd = req.getRequestDispatcher("/jsp/leaveMsgHtml.jsp");
+		rd.forward(req, resp);
+	}
+	
+	/**
+	 * 显示留言列表
+	 * 
+	 * @param req
+	 * @param resp
+	 * @return
+	 * @throws IOException
+	 * @throws ServletException 
+	 */
+	private void showLeaveMsgList(HttpServletRequest req, HttpServletResponse resp)
+			throws IOException, ServletException {
+		List<LeaveMsgBO> diaries =new ArrayList<LeaveMsgBO>();
+		diaries = userService.getLeaveMsgList(req,resp);
+		req.setAttribute("leaveMsgs", diaries);
+		RequestDispatcher rd = req.getRequestDispatcher("/jsp/leaveMsgListHtml.jsp");
+		rd.forward(req, resp);
+	}
+	
+	
+	/**
 	 * 用户退出
 	 * 
 	 * @param req
@@ -173,7 +216,6 @@ public class UserServlet extends HttpServlet {
 		out.close();
 	}
 	
-
 	/**
 	 * 用户留言
 	 * 

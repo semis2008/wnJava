@@ -183,6 +183,13 @@ public class SystemServlet extends HttpServlet {
 		DiaryBO topDiary = diaryService.getTopDiaryRand();	
 		//获取热门日志
 		Map<String,List<DiaryBO>> hotDiaries = diaryService.getHotDiaries();
+		//用于留言判断
+		UserBO user = UserUtil.getLoginUser(req, resp);
+		if(user!=null) {
+			req.setAttribute("hasLogin", "true");
+		}else {
+			req.setAttribute("hasLogin", "false");
+		}
 		req.setAttribute("hotDiaries", hotDiaries);
 		req.setAttribute("topDiary", topDiary);
 		return "/jsp/indexPageHtml.jsp";

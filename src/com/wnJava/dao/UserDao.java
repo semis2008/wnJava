@@ -67,7 +67,7 @@ public interface UserDao {
 	UserBO queryUserByID(String id);
 
 	/**
-	 * 新增留言信息
+	 * 新增留言信息(登录用户)
 	 * 
 	 * @param email
 	 *            留言者邮箱
@@ -83,6 +83,19 @@ public interface UserDao {
 	 */
 	int insertLeaveMsg(String email, String name, String msg,
 			String type, Long visitedUserId, Long userId, String userPhoto);
+
+	/**
+	 * 新增留言（游客）
+	 * @param email 留言者邮箱
+	 * @param name 昵称
+	 * @param msg 内容
+	 * @param type 类型
+	 * @param visitedUserId 被访问者id，默认为1
+	 * @param userPhoto 头像（默认头像）
+	 * @return
+	 */
+	int insertLeaveMsg(String email, String name, String msg,
+			String type, Long visitedUserId,String userPhoto);
 
 	/**
 	 * 依据用户id查询用户详细信息
@@ -168,6 +181,20 @@ public interface UserDao {
 	 */
 	List<LeaveMsgBO> queryUserLeaveMsg(Long userId,int start,int end);
 
+	/**
+	 * 查询系统留言总数
+	 * @return
+	 */
+	int queryTotalLeaveMsgCount();
+	
+	/**
+	 * 查询系统留言列表
+	 * @param start 开始下标
+	 * @param num 数目
+	 * @return
+	 */
+	List<LeaveMsgBO> queryAllLeaveMsgList(int start,int num);
+	
 	/**
 	 * 获取系统留言
 	 * @param start

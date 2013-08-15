@@ -1,7 +1,9 @@
 package com.wnJava.dao.impl;
 
 import java.util.List;
+import java.util.Map;
 
+import com.wnJava.bo.DiaryBO;
 import com.wnJava.bo.LeaveMsgBO;
 import com.wnJava.bo.UserBO;
 import com.wnJava.bo.UserInfoBO;
@@ -63,6 +65,14 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
+	public int insertLeaveMsg(String email, String name, String msg,
+			String type, Long visitedUserId, String userPhoto) {
+		String sql = "insert into leavemsg (email,name,msg,leave_time,visited_user_id,user_photo,type) values (?,?,?,now(),?,?,?)";
+		Object[] param = { email, name, msg, visitedUserId, userPhoto, type };
+		return dbUtilsTemplate.update(sql, param);
+	}
+
+	@Override
 	public UserInfoBO queryUserInfoByUserID(Long userId) {
 		String sql = "select * from user_info info where info.user_id = ?";
 		return dbUtilsTemplate.findFirst(UserInfoBO.class, sql, userId);
@@ -83,6 +93,21 @@ public class UserDaoImpl implements UserDao {
 		String sql = "update user set name = ? where id = ?";
 		Object[] param = { name, userid };
 		return dbUtilsTemplate.update(sql, param);
+	}
+
+	@Override
+	public int queryTotalLeaveMsgCount() {
+		String sql = "select count(*) totalNum from leavemsg where 1=1";
+		Map<String,Object> result = dbUtilsTemplate.findFirst(sql,null);
+		return Integer.parseInt((Long)result.get("totalNum")+"");
+	}
+
+	@Override
+	public List<LeaveMsgBO> queryAllLeaveMsgList(int start, int num) {
+		String sql = "select * from leavemsg where 1=1 order by leave_time desc limit ?,?";
+		Object[] param = {start,num};
+		return dbUtilsTemplate.find(LeaveMsgBO.class, sql, param);
+		
 	}
 
 	@Override

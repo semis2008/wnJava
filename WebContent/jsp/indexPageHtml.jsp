@@ -19,6 +19,15 @@
 	if (hotDiaries == null) {
 		hotDiaries = new HashMap<String, List<DiaryBO>>();
 	}
+	//是否登录
+	UserBO user = (UserBO) request.getAttribute("loginUser");
+
+	boolean hasLogin = false;
+	if (user == null) {
+		user = new UserBO();
+	} else {
+		hasLogin = true;
+	}
 %>
 
 <title>懒熊de部落格</title>
@@ -104,24 +113,30 @@
 <h3 class="major">
 	<span><i class="icon-envelope"></i> 给我留言</span>
 </h3>
+<%
+	if(!hasLogin) {
+%>
 <div class="row">
 	<div class="span3">
-		<input type="text" placeholder="Name" id="contact-name" class="text">
+		<input type="text" placeholder="Name" id="leave-msg-name" class="text">
 	</div>
 	<div class="span4">
-		<input type="text" placeholder="Email" id="contact-email" class="text">
+		<input type="email" placeholder="Email" id="leave-msg-email" class="text">
 	</div>
 </div>
+<%
+}
+%>
 <div class="row">
 	<div class="span7">
-		<textarea rows="5" placeholder="Message" id="contact-message"></textarea>
+		<textarea rows="5" placeholder="Message" id="leave-msg-content"></textarea>
 	</div>
 </div>
 <div class="row">
 	<div class="span8">
 		<ul class="unstyled inline">
-			<li><a class="button" href="javascript:void(0)">留言</a></li>
-			<li><a class="button button-alt" href="javascript:void(0)">清空</a>
+			<li><a class="button" <%if(!hasLogin) {%>href="javascript:leaveMsg('1')"<%}else { %>href="javascript:leaveMsg('2')"<%} %>>留言</a></li>
+			<li><a class="button button-alt" <%if(!hasLogin) {%>href="javascript:resetLeaveMsgForm('1')"<%}else { %>href="javascript:resetLeaveMsgForm('2')"<%} %>>清空</a>
 			</li>
 		</ul>
 	</div>

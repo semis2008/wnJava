@@ -84,12 +84,19 @@ public interface UserService {
 	String updatePhoto(String id, Long userId);
 	
 	/**
-	 * 获取系统留言
-	 * @param req
-	 * @param resp
+	 * 获取系统前几条留言
+	 * 
+	 * @param num 数目
 	 * @return
 	 */
 	List<LeaveMsgBO> getLeaveMsg(int num);
+	
+	/**
+	 * 获取系统留言列表
+	 * 
+	 * @return
+	 */
+	List<LeaveMsgBO> getLeaveMsgList(HttpServletRequest req, HttpServletResponse resp);
 	
 	/**
 	 * 获取给用户的留言

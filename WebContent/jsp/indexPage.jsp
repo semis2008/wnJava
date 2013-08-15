@@ -37,12 +37,6 @@
 	if (hotDiaries == null) {
 		hotDiaries = new HashMap<String, List<DiaryBO>>();
 	}
-	//获取留言
-	List<LeaveMsgBO> leaveMsgs = (List<LeaveMsgBO>) request
-			.getAttribute("leaveMsgs");
-	if (leaveMsgs == null) {
-		leaveMsgs = new ArrayList<LeaveMsgBO>();
-	}
 	//获取热门标签
 	List<TagVO> hotTags = (List<TagVO>) request.getAttribute("hotTags");
 	if (hotTags == null) {
@@ -150,29 +144,9 @@
 
 
 						<!-- 留言 -->
-						<section>
-						<h3 class="major">
-							<span><i class="icon-envelope-alt"></i> 留言</span>
-						</h3>
-						<ul class="unstyled quote-list">
-							<%
-								for (LeaveMsgBO leaveMsg : leaveMsgs) {
-							%>
-							<li><a href="#" title="<%=leaveMsg.getName()%>"><img
-									src="<%=ConstantsUtil.FW_DOMAIN%><%=leaveMsg.getUser_photo()%>"
-									class="img-polaroid" width="40px" height="40px" alt="" />
-							</a>
-								<p>
-									"<%=StringUtil.cutString(leaveMsg.getMsg(), 20)%>"
-								</p> <span>-- <a href="#" title="<%=leaveMsg.getName()%>"><%=leaveMsg.getName()%></a>,
-									<em><%=DateUtil.formatDate(leaveMsg.getLeave_time(), 3)%></em>
-							</span></li>
-							<%
-								}
-							%>
-						</ul>
-						<a class="button button-alt" href="javascript:void(0)">查看全部 <i
-							class=" icon-hand-right"></i> </a> </section>
+						<section id="leaveMsgListSec">
+							<jsp:include page="/jsp/leaveMsgHtml.jsp" />
+						</section>
 						<!-- /留言 -->
 
 						<!-- 热门标签 -->

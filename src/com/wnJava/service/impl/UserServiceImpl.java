@@ -78,13 +78,18 @@ public class UserServiceImpl implements UserService{
 	}
 	@Override
 	public boolean leaveMsg(HttpServletRequest req, HttpServletResponse resp) {
-		UserBO visitedUser = UserUtil.getVisitedUser(req, resp);
-		String type = req.getParameter("type");
 		String msg = req.getParameter("msg");
-	 	UserBO loginUser = UserUtil.getLoginUser(req, resp);
-		String email = loginUser.getEmail();
-		String name = loginUser.getName();
-		int result = userDao.insertLeaveMsg(email,name,msg,type,visitedUser.getId(),loginUser.getId(),loginUser.getPhoto());
+		String type = req.getParameter("type");
+		UserBO visitedUser = UserUtil.getVisitedUser(req, resp);
+		int result = 0;
+		if(type.equals("1")) {//游客
+			String name = req.getParameter("name");
+			String email = req.getParameter("email");
+			result = userDao.insertLeaveMsg(email,name,msg,type,visitedUser.getId(),ConstantsUtil.DEFAULT_HEAD_PHOTO);
+		}else if(type.equals("2")) {//登录用户
+			UserBO loginUser = UserUtil.getLoginUser(req, resp);
+			result = userDao.insertLeaveMsg(loginUser.getEmail(),loginUser.getName(),msg,type,visitedUser.getId(),loginUser.getId(),loginUser.getPhoto());
+		}
 		if(result<0) return false;
 		return true;
 	}
@@ -151,6 +156,25 @@ public class UserServiceImpl implements UserService{
 	public List<LeaveMsgBO> getLeaveMsg(int num) {
 		return userDao.queryLeaveMsg(0,num);
 	}
+	@Override
+	public List<LeaveMsgBO> getLeaveMsgList(HttpServletRequest req, HttpServletResponse resp){
+		String pageNum = req.getParameter("p1");
+		if (pageNum == null || pageNum.equals("")) {
+			pageNum = "1";
+		}
+		int currentPage = Integer.parseInt(pageNum);
+		/*
+		 * 获取日志总页数
+		 */
+		int totalDiary = userDao.queryTotalLeaveMsgCount();
+		int totalPage = totalDiary / 15 + 1;
+
+		req.setAttribute("currentPage", currentPage);
+		req.setAttribute("totalPage", totalPage);
+		return userDao.queryAllLeaveMsgList(15 * (currentPage - 1),
+				15);
+	}
+
 	@Override
 	public List<UserBO> getUsers() {
 		return userDao.queryUsers();

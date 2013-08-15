@@ -156,31 +156,45 @@ function userQuit() {
 		}
  	});
 }
-function leaveMsg() {
-	var type = $("#leave-msg-type").val();
+function leaveMsg(type) {
 	var content = $("#leave-msg-content").val();
-	 
-		if (content == "") {
-			showErrorMsg("还什么都没写哦~");
+	var name = $("#leave-msg-name").val();
+	var email = $("#leave-msg-email").val();
+	
+	if(type=="1") {
+		if (name == "") {
+			showErrorMsg("名字不能为空~");
 			return;
 		}
-		$.ajax({
-			type : "POST",
-			url : "/action/user/leavemsg",
-			data : {
-				msg : content,
-				type : type
-			},
-			dataType : "text",
-			success : function(msg) {
-				if ("success" == msg) {
-					showSuccessMsg("留言成功~");
-					$('#leaveMsgModal').modal('hide');
-				} else {
-					showErrorMsg("对不起,留言失败~系统正在维护中...");
-				}
+		if (email == "") {
+			showErrorMsg("邮箱不能为空~");
+			return;
+		}
+	}
+	if (content == "") {
+		showErrorMsg("还什么都没写哦~");
+		return;
+	}
+	$.ajax({
+		type : "POST",
+		url : "/action/user/leavemsg",
+		data : {
+			msg : content,
+			name : name,
+			email : email,
+			type : type
+		},
+		dataType : "text",
+		success : function(msg) {
+			if ("success" == msg) {
+				showSuccessMsg("留言成功~");
+				resetLeaveMsgForm();
+				refreshLeaveMsg();
+			} else {
+				showErrorMsg("对不起,留言失败~系统正在维护中...");
 			}
-		});
+		}
+	});
 }
 $(window).scroll(function() {
 	var t = $(document).scrollTop();
@@ -231,6 +245,24 @@ function tsina_a() {
 
 	function ShareToTsina() {
 	if (/Firefox/.test(navigator.userAgent)) { setTimeout(tsina_a, 0) } else { tsina_a() };
-	} 
+} 
+//刷新首页留言列表
+function refreshLeaveMsg() {
+	$.ajax({
+		type : "POST",
+		url : "/action/user/refreshLeaveMsg",
+		dataType : "html",
+		success : function(msg) {
+		  $("#leaveMsgListSec").html(msg);
+		}
+	});
+}
 
-
+//清空留言框内容
+function resetLeaveMsgForm(type) {
+	$("#leave-msg-content").val("");
+	if(type==1) {
+		$("#leave-msg-email").val("");
+		$("#leave-msg-name").val("");
+	}
+}
