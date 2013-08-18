@@ -1,3 +1,306 @@
+var XRegExp;
+(function () {
+    function s(f, i) {
+        if (!XRegExp.isRegExp(f))
+            throw TypeError("type RegExp expected");
+        var g = f._xregexp;
+        f = XRegExp(f.source, t(f) + (i || ""));
+        if (g)
+            f._xregexp = { source: g.source, captureNames: g.captureNames ? g.captureNames.slice(0) : null };
+        return f
+    }
+    function t(f) {
+        return (f.global ? "g" : "") + (f.ignoreCase ? "i" : "") + (f.multiline ? "m" : "") + (f.extended ? "x" : "") + (f.sticky ? "y" : "")
+    }
+    function z(f, i, g, a) {
+        var b = v.length, c, d, e;
+        A = true;
+        try {
+            for (; b--; ) {
+                e = v[b];
+                if (g & e.scope && (!e.trigger || e.trigger.call(a))) {
+                    e.pattern.lastIndex = i;
+                    if ((d = e.pattern.exec(f)) && d.index === i) {
+                        c = { output: e.handler.call(a, d, g), match: d };
+                        break
+                    }
+                }
+            }
+        } catch (h) {
+            throw h
+        } finally {
+            A = false
+        }
+        return c
+    }
+    function B(f, i, g) {
+        if (Array.prototype.indexOf)
+            return f.indexOf(i, g);
+        for (g = g || 0; g < f.length; g++)
+            if (f[g] === i)
+                return g;
+        return -1
+    }
+    XRegExp = function (f, i) {
+        var g = [], a = XRegExp.OUTSIDE_CLASS, b = 0, c, d;
+        if (XRegExp.isRegExp(f)) {
+            if (i !== undefined)
+                throw TypeError("can't supply flags when constructing one RegExp from another");
+            return s(f)
+        }
+        if (A)
+            throw Error("can't call the XRegExp constructor within token definition functions");
+        i = i || "";
+        for (c = { hasNamedCapture: false, captureNames: [], hasFlag: function (e) {
+            return i.indexOf(e) > -1
+        }, setFlag: function (e) {
+            i += e
+        }
+        }; b < f.length; )
+            if (d = z(f, b, a, c)) {
+                g.push(d.output);
+                b += d.match[0].length || 1
+            } else if (d = o.exec.call(C[a], f.slice(b))) {
+                g.push(d[0]);
+                b += d[0].length
+            } else {
+                d = f.charAt(b);
+                if (d === "[")
+                    a = XRegExp.INSIDE_CLASS;
+                else if (d === "]")
+                    a = XRegExp.OUTSIDE_CLASS;
+                g.push(d);
+                b++
+            }
+        g = RegExp(g.join(""), o.replace.call(i, D, ""));
+        g._xregexp = { source: f, captureNames: c.hasNamedCapture ? c.captureNames : null };
+        return g
+    };
+    XRegExp.version = "1.5.0";
+    XRegExp.INSIDE_CLASS = 1;
+    XRegExp.OUTSIDE_CLASS = 2;
+    var q = /\$(?:(\d\d?|[$&`'])|{([$\w]+)})/g, D = /[^gimy]+|([\s\S])(?=[\s\S]*\1)/g, w = /^(?:[?*+]|{\d+(?:,\d*)?})\??/, A = false, v = [], o = { exec: RegExp.prototype.exec, test: RegExp.prototype.test, match: String.prototype.match, replace: String.prototype.replace, split: String.prototype.split }, F = o.exec.call(/()??/, "")[1] === undefined, x = function () {
+        var f = /^/g;
+        o.test.call(f, "");
+        return !f.lastIndex
+    } (), G = function () {
+        var f = /x/g;
+        o.replace.call("x", f, "");
+        return !f.lastIndex
+    } (), y = RegExp.prototype.sticky !== undefined, C = {};
+    C[XRegExp.INSIDE_CLASS] = /^(?:\\(?:[0-3][0-7]{0,2}|[4-7][0-7]?|x[\dA-Fa-f]{2}|u[\dA-Fa-f]{4}|c[A-Za-z]|[\s\S]))/;
+    C[XRegExp.OUTSIDE_CLASS] = /^(?:\\(?:0(?:[0-3][0-7]{0,2}|[4-7][0-7]?)?|[1-9]\d*|x[\dA-Fa-f]{2}|u[\dA-Fa-f]{4}|c[A-Za-z]|[\s\S])|\(\?[:=!]|[?*+]\?|{\d+(?:,\d*)?}\??)/;
+    XRegExp.addToken = function (f, i, g, a) {
+        v.push({ pattern: s(f, "g" + (y ? "y" : "")), handler: i, scope: g || XRegExp.OUTSIDE_CLASS, trigger: a || null })
+    };
+    XRegExp.cache = function (f, i) {
+        var g = f + "/" + (i || "");
+        return XRegExp.cache[g] || (XRegExp.cache[g] = XRegExp(f, i))
+    };
+    XRegExp.copyAsGlobal = function (f) {
+        return s(f, "g")
+    };
+    XRegExp.escape = function (f) {
+        return f.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&")
+    };
+    XRegExp.execAt = function (f, i, g, a) {
+        i = s(i, "g" + (a && y ? "y" : ""));
+        i.lastIndex = g = g || 0;
+        f = i.exec(f);
+        return a ? f && f.index === g ? f : null : f
+    };
+    XRegExp.freezeTokens = function () {
+        XRegExp.addToken = function () {
+            throw Error("can't run addToken after freezeTokens")
+        }
+    };
+    XRegExp.isRegExp = function (f) {
+        return Object.prototype.toString.call(f) === "[object RegExp]"
+    };
+    XRegExp.iterate = function (f, i, g, a) {
+        for (var b = s(i, "g"), c = -1, d; d = b.exec(f); ) {
+            g.call(a, d, ++c, f, b);
+            b.lastIndex === d.index && b.lastIndex++
+        }
+        if (i.global)
+            i.lastIndex = 0
+    };
+    XRegExp.matchChain = function (f, i) {
+        return function g(a, b) {
+            var c = i[b].regex ? i[b] : { regex: i[b] }, d = s(c.regex, "g"), e = [], h;
+            for (h = 0; h < a.length; h++)
+                XRegExp.iterate(a[h], d, function (j) {
+                    e.push(c.backref ? j[c.backref] || "" : j[0])
+                });
+            return b === i.length - 1 || !e.length ? e : g(e, b + 1)
+        } ([f], 0)
+    };
+    RegExp.prototype.apply = function (f, i) {
+        return this.exec(i[0])
+    };
+    RegExp.prototype.call = function (f, i) {
+        return this.exec(i)
+    };
+    RegExp.prototype.exec = function (f) {
+        var i = o.exec.apply(this, arguments), g;
+        if (i) {
+            if (!F && i.length > 1 && B(i, "") > -1) {
+                g = RegExp(this.source, o.replace.call(t(this), "g", ""));
+                o.replace.call(f.toString().slice(i.index), g, function () {
+                    for (var b = 1; b < arguments.length - 2; b++)
+                        if (arguments[b] === undefined)
+                            i[b] = undefined
+                    })
+                }
+                if (this._xregexp && this._xregexp.captureNames)
+                    for (var a = 1; a < i.length; a++)
+                        if (g = this._xregexp.captureNames[a - 1])
+                            i[g] = i[a];
+                !x && this.global && !i[0].length && this.lastIndex > i.index && this.lastIndex--
+            }
+            return i
+        };
+        if (!x)
+            RegExp.prototype.test = function (f) {
+                (f = o.exec.call(this, f)) && this.global && !f[0].length && this.lastIndex > f.index && this.lastIndex--;
+                return !!f
+            };
+        String.prototype.match = function (f) {
+            XRegExp.isRegExp(f) || (f = RegExp(f));
+            if (f.global) {
+                var i = o.match.apply(this, arguments);
+                f.lastIndex = 0;
+                return i
+            }
+            return f.exec(this)
+        };
+        String.prototype.replace = function (f, i) {
+            var g = XRegExp.isRegExp(f), a, b;
+            if (g && typeof i.valueOf() === "string" && i.indexOf("${") === -1 && G)
+                return o.replace.apply(this, arguments);
+            if (g) {
+                if (f._xregexp)
+                    a = f._xregexp.captureNames
+            } else
+                f += "";
+            if (typeof i === "function")
+                b = o.replace.call(this, f, function () {
+                    if (a) {
+                        arguments[0] = new String(arguments[0]);
+                        for (var c = 0; c < a.length; c++)
+                            if (a[c])
+                                arguments[0][a[c]] = arguments[c + 1]
+                        }
+                        if (g && f.global)
+                            f.lastIndex = arguments[arguments.length - 2] + arguments[0].length;
+                        return i.apply(null, arguments)
+                    });
+            else {
+                b = this + "";
+                b = o.replace.call(b, f, function () {
+                    var c = arguments;
+                    return o.replace.call(i, q, function (d, e, h) {
+                        if (e)
+                            switch (e) {
+                            case "$":
+                                return "$";
+                            case "&":
+                                return c[0];
+                            case "`":
+                                return c[c.length - 1].slice(0, c[c.length - 2]);
+                            case "'":
+                                return c[c.length - 1].slice(c[c.length - 2] + c[0].length);
+                            default:
+                                h = "";
+                                e = +e;
+                                if (!e)
+                                    return d;
+                                for (; e > c.length - 3; ) {
+                                    h = String.prototype.slice.call(e, -1) + h;
+                                    e = Math.floor(e / 10)
+                                }
+                                return (e ? c[e] || "" : "$") + h
+                        }
+                        else {
+                            e = +h;
+                            if (e <= c.length - 3)
+                                return c[e];
+                            e = a ? B(a, h) : -1;
+                            return e > -1 ? c[e + 1] : d
+                        }
+                    })
+                })
+            }
+            if (g && f.global)
+                f.lastIndex = 0;
+            return b
+        };
+        String.prototype.split = function (f, i) {
+            if (!XRegExp.isRegExp(f))
+                return o.split.apply(this, arguments);
+            var g = this + "", a = [], b = 0, c, d;
+            if (i === undefined || +i < 0)
+                i = Infinity;
+            else {
+                i = Math.floor(+i);
+                if (!i)
+                    return []
+            }
+            for (f = XRegExp.copyAsGlobal(f); c = f.exec(g); ) {
+                if (f.lastIndex > b) {
+                    a.push(g.slice(b, c.index));
+                    c.length > 1 && c.index < g.length && Array.prototype.push.apply(a, c.slice(1));
+                    d = c[0].length;
+                    b = f.lastIndex;
+                    if (a.length >= i)
+                        break
+                }
+                f.lastIndex === c.index && f.lastIndex++
+            }
+            if (b === g.length) {
+                if (!o.test.call(f, "") || d)
+                    a.push("")
+            } else
+                a.push(g.slice(b));
+            return a.length > i ? a.slice(0, i) : a
+        };
+        XRegExp.addToken(/\(\?#[^)]*\)/, function (f) {
+            return o.test.call(w, f.input.slice(f.index + f[0].length)) ? "" : "(?:)"
+        });
+        XRegExp.addToken(/\((?!\?)/, function () {
+            this.captureNames.push(null);
+            return "("
+        });
+        XRegExp.addToken(/\(\?<([$\w]+)>/, function (f) {
+            this.captureNames.push(f[1]);
+            this.hasNamedCapture = true;
+            return "("
+        });
+        XRegExp.addToken(/\\k<([\w$]+)>/, function (f) {
+            var i = B(this.captureNames, f[1]);
+            return i > -1 ? "\\" + (i + 1) + (isNaN(f.input.charAt(f.index + f[0].length)) ? "" : "(?:)") : f[0]
+        });
+        XRegExp.addToken(/\[\^?]/, function (f) {
+            return f[0] === "[]" ? "\\b\\B" : "[\\s\\S]"
+        });
+        XRegExp.addToken(/^\(\?([imsx]+)\)/, function (f) {
+            this.setFlag(f[1]);
+            return ""
+        });
+        XRegExp.addToken(/(?:\s+|#.*)+/, function (f) {
+            return o.test.call(w, f.input.slice(f.index + f[0].length)) ? "" : "(?:)"
+        }, XRegExp.OUTSIDE_CLASS, function () {
+            return this.hasFlag("x")
+        });
+        XRegExp.addToken(/\./, function () {
+            return "[\\s\\S]"
+        }, XRegExp.OUTSIDE_CLASS, function () {
+            return this.hasFlag("s")
+        })
+    })();
+
+
+
 /**
  * SyntaxHighlighter
  * http://alexgorbatchev.com/SyntaxHighlighter
@@ -1719,3 +2022,5 @@ return sh;
 
 // CommonJS
 typeof(exports) != 'undefined' ? exports['SyntaxHighlighter'] = SyntaxHighlighter : null;
+
+

@@ -29,9 +29,22 @@
 	src="<%=ConstantsUtil.FW_DOMAIN%>/plugin/editor/editor.js"></script>
 <script type="text/javascript"
 	src="<%=ConstantsUtil.FW_DOMAIN%>/plugin/editor/hotkey.js"></script>
+
+<link type="text/css"
+	href="<%=ConstantsUtil.FW_DOMAIN%>/plugin/highLight/styles/shCoreDefault.css"
+	rel="stylesheet" media="screen" />	
+	
+<!-- 高亮插件 -->
+<script type="text/javascript"
+	src="<%=ConstantsUtil.FW_DOMAIN%>/plugin/highLight/scripts/shCore.js"></script>
+<!-- 笔刷 css java js sql xml 5种-->
+<script type="text/javascript"
+	src="<%=ConstantsUtil.FW_DOMAIN%>/plugin/highLight/scripts/shBrushJScript.js"></script>
+ 
 <script language="javascript" type="text/javascript">
 	$(function() {
 		$('#editor').wysiwyg();
+		SyntaxHighlighter.all(); 
 	});
 
 	function newDiary() {
@@ -72,6 +85,9 @@
 	}
 </script>
 <title>wnJava--写日志</title>
+
+
+<!-- 
 <article> <section id="newDiarySec">
 <h3 class="major">
 	<span><i class="icon-pencil"></i> 写日志</span>
@@ -94,8 +110,7 @@
 				class="caret"></b> </a>
 			<ul class="dropdown-menu">
 				<li><a data-edit="fontName Micro YAHEI"
-					style="font-family: 'Micro YAHEI'">微软雅黑</a>
-				</li>
+					style="font-family: 'Micro YAHEI'">微软雅黑</a></li>
 				<li><a data-edit="fontName 楷体" style="font-family: '楷体'">楷体</a>
 				</li>
 				<li><a data-edit="fontName 黑体" style="font-family: '黑体'">黑体</a>
@@ -107,17 +122,13 @@
 				<li><a data-edit="fontName Arial" style="font-family: 'Arial'">Arial</a>
 				</li>
 				<li><a data-edit="fontName Comic Sans MS"
-					style="font-family: 'Comic Sans MS'">Comic Sans MS</a>
-				</li>
+					style="font-family: 'Comic Sans MS'">Comic Sans MS</a></li>
 				<li><a data-edit="fontName Helvetica"
-					style="font-family: 'Helvetica'">Helvetica</a>
-				</li>
+					style="font-family: 'Helvetica'">Helvetica</a></li>
 				<li><a data-edit="fontName Times New Roman"
-					style="font-family: 'Times New Roman'">Times New Roman</a>
-				</li>
+					style="font-family: 'Times New Roman'">Times New Roman</a></li>
 				<li><a data-edit="fontName Verdana"
-					style="font-family: 'Verdana'">Verdana</a>
-				</li>
+					style="font-family: 'Verdana'">Verdana</a></li>
 			</ul>
 		</div>
 		<div class="btn-group">
@@ -125,11 +136,9 @@
 				data-original-title="Font Size"><i class="icon-text-height"></i>&nbsp;<b
 				class="caret"></b> </a>
 			<ul class="dropdown-menu">
-				<li><a data-edit="fontSize 5"><font size="5">Huge</font> </a>
-				</li>
+				<li><a data-edit="fontSize 5"><font size="5">Huge</font> </a></li>
 				<li><a data-edit="fontSize 3"><font size="3">Normal</font>
-				</a>
-				</li>
+				</a></li>
 				<li><a data-edit="fontSize 1"><font size="1">Small</font> </a>
 				</li>
 			</ul>
@@ -183,7 +192,8 @@
 			x-webkit-speech="" style="display: none;" />
 	</div>
 
-	<div id="editor" contenteditable="true"></div>
+	<div id="editor" contenteditable="true">
+	</div>
 </div>
 <div class="padding-small">
 	<div class="input-prepend">
@@ -199,3 +209,14 @@
 </div>
 
 </section> </article>
+ -->
+ 
+ 
+<h1>Hello SyntaxHighlighter</h1>
+<pre class="brush: js;">
+function helloSyntaxHighlighter()
+{
+	return "hi!";
+}
+</pre>
+

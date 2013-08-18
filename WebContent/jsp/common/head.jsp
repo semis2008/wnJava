@@ -27,7 +27,6 @@
 <link type="text/css"
 	href="<%=ConstantsUtil.FW_DOMAIN%>/plugin/musicplayer/css/stylesheets/style.css"
 	rel="stylesheet" media="screen" />
-
 </head>
 <body>
 	<div class="navbar navbar-inverse navbar-fixed-top">
@@ -282,6 +281,7 @@
 		src="<%=ConstantsUtil.FW_DOMAIN%>/plugin/musicplayer/js/jquery-ui.min.js"></script>
 	<script type="text/javascript"
 		src="<%=ConstantsUtil.FW_DOMAIN%>/plugin/musicplayer/js/script.js"></script>
+		
 	<script type="text/javascript">
 		$(function() {
 			$(".scrollLoading").scrollLoading();
