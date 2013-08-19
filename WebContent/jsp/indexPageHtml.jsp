@@ -32,9 +32,9 @@
 
 <title>懒熊de部落格</title>
 <!-- Content -->
-<article> <!-- 推荐日志 --> <section id="topDiarySec" class="diarySec">
-	<jsp:include page="/jsp/topDiaryHtml.jsp" />
- </section> <!-- /推荐日志 --> <!-- 热门日志 --> <section id="hotDiarySec">
+<article> <!-- 推荐日志 --> <section id="topDiarySec"
+	class="diarySec"> <jsp:include page="/jsp/topDiaryHtml.jsp" />
+</section> <!-- /推荐日志 --> <!-- 热门日志 --> <section id="hotDiarySec">
 <h3 class="major">
 	<span><i class="icon-lightbulb"></i> 热门日志</span>
 </h3>
@@ -44,7 +44,9 @@
 			<%
 				for (DiaryBO diary : hotDiaries.get("left")) {
 			%>
-			<li><a data-type="pjax" href="<%=ConstantsUtil.FW_DOMAIN%>/action/system/diarydetail/<%=diary.getId()%>"><i <%if (diary.getTags().contains("公告")) {%>
+			<li><a data-type="pjax_highLight"
+				href="<%=ConstantsUtil.FW_DOMAIN%>/action/system/diarydetail/<%=diary.getId()%>"><i
+					<%if (diary.getTags().contains("公告")) {%>
 					class="icon-bookmark-empty" <%} else {%> class="icon-lightbulb"
 					<%}%>></i> <%=StringUtil.cutString(diary.getTitle(), 15)%></a> <em>[<%=diary.getReply_num()%>/<%=diary.getRead_num()%>]</em>
 			</li>
@@ -59,7 +61,9 @@
 				for (DiaryBO diary : hotDiaries.get("right")) {
 			%>
 
-			<li><a data-type="pjax" href="<%=ConstantsUtil.FW_DOMAIN%>/action/system/diarydetail/<%=diary.getId()%>"><i <%if (diary.getTags().contains("公告")) {%>
+			<li><a data-type="pjax_highLight"
+				href="<%=ConstantsUtil.FW_DOMAIN%>/action/system/diarydetail/<%=diary.getId()%>"><i
+					<%if (diary.getTags().contains("公告")) {%>
 					class="icon-bookmark-empty" <%} else {%> class="icon-lightbulb"
 					<%}%>></i> <%=StringUtil.cutString(diary.getTitle(), 15)%></a> <em>[<%=diary.getReply_num()%>/<%=diary.getRead_num()%>]</em>
 			</li>
@@ -69,7 +73,8 @@
 		</ul>
 	</div>
 </div>
-<a class="button" data-type="pjax" href="<%=ConstantsUtil.FW_DOMAIN%>/action/system/hotdiary ">查看全部 <i
+<a class="button" data-type="pjax_highLight"
+	href="<%=ConstantsUtil.FW_DOMAIN%>/action/system/hotdiary ">查看全部 <i
 	class=" icon-hand-right"></i> </a> </section> <!-- /热门日志 --> <!-- 关于 --> <section
 	id="aboutSec">
 <h3 class="major">
@@ -84,7 +89,8 @@
 		<ul>
 			<li>喜欢创造的快乐。</li>
 			<li>喜欢<span class="label label-info">宅</span>。</li>
-			<li>游泳篮球LOL,And<span class="label label-info">进击の巨人</span></li>
+			<li>游泳篮球LOL,And<span class="label label-info">进击の巨人</span>
+			</li>
 			<li>喜欢各种萌物，单身...</li>
 		</ul>
 	</div>
@@ -106,26 +112,29 @@
 	</div>
 </div>
 <div class="row">
-	<div class="span7 alert alert-info row margin-top-small"><i class="icon-github"></i> GitHub源码地址 ：
-		https://github.com/semis2008/wnJava/</div>
+	<div class="span7 alert alert-info row margin-top-small">
+		<i class="icon-github"></i> GitHub源码地址 ：
+		https://github.com/semis2008/wnJava/
+	</div>
 </div>
 </section> <!-- /关于WnJava --> <!-- 发布留言 --> <section id="leaveMsgSec">
 <h3 class="major">
 	<span><i class="icon-envelope"></i> 给我留言</span>
 </h3>
 <%
-	if(!hasLogin) {
+	if (!hasLogin) {
 %>
 <div class="row">
 	<div class="span3">
 		<input type="text" placeholder="Name" id="leave-msg-name" class="text">
 	</div>
 	<div class="span4">
-		<input type="email" placeholder="Email" id="leave-msg-email" class="text">
+		<input type="email" placeholder="Email" id="leave-msg-email"
+			class="text">
 	</div>
 </div>
 <%
-}
+	}
 %>
 <div class="row">
 	<div class="span7">
@@ -135,10 +144,17 @@
 <div class="row">
 	<div class="span8">
 		<ul class="unstyled inline">
-			<li><a class="button" <%if(!hasLogin) {%>href="javascript:leaveMsg('1')"<%}else { %>href="javascript:leaveMsg('2')"<%} %>>留言</a></li>
-			<li><a class="button button-alt" <%if(!hasLogin) {%>href="javascript:resetLeaveMsgForm('1')"<%}else { %>href="javascript:resetLeaveMsgForm('2')"<%} %>>清空</a>
+			<li><a class="button" <%if (!hasLogin) {%>
+				href="javascript:leaveMsg('1')" <%} else {%>
+				href="javascript:leaveMsg('2')" <%}%>>留言</a>
 			</li>
+			<li><a class="button button-alt" <%if (!hasLogin) {%>
+				href="javascript:resetLeaveMsgForm('1')" <%} else {%>
+				href="javascript:resetLeaveMsgForm('2')" <%}%>>清空</a></li>
 		</ul>
 	</div>
 </div>
-</section> <!-- /发布留言 --> </article>
+</section> <!-- /发布留言 -->  </article>
+
+
+

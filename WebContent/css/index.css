@@ -318,3 +318,12 @@ div[data-role="editor-toolbar"] {
     float:right;
 }
 
+#codeModal select{
+	font-size: 11px;
+	height: 20px;
+	margin: 0;
+	padding: 0;
+}
+#codeModal textarea{
+	width: 97%;
+}
