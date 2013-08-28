@@ -119,6 +119,25 @@
 	<blockquote>
 		<h3 class="muted">
 			<%=StringUtil.cutString(diary.getTitle(), 100)%>
+			<%
+				if (user.getId() == diary.getAuthor_id() ||(user.getId()!=null&&user.getId() == 1l)) {
+			%>
+			<span>
+				<ul class="inline">
+					<li><a titile="编辑" data-type="pjax"
+						href="/action/system/showeditdiary/<%=diary.getId() %>"><i class="icon-edit"></i>
+					</a>
+					</li>
+					<li><a title="删除" href="javascript:void(0);"
+						onclick="deleteDiary(<%=diary.getId()%>)"><i
+							class="icon-trash"></i>
+					</a>
+					</li>
+					<li>|</li>
+				</ul> </span>
+			<%
+				}
+			%>
 			<em title="回复/阅读数">[<%=diary.getReply_num()%>/<%=diary.getRead_num()%>]</em>
 		</h3>
 		<small> <%

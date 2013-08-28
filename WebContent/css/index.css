@@ -190,13 +190,26 @@ ul.meta {
 }
 .diarySec blockquote{
 	margin-left: 85px;
-}
+} 
 .diarySec em{
 	color: #6b7770;
 	font-size: small;
 	float: right;
 }
- 
+
+.diarySec blockquote span{
+	height:12px;
+	font-size:small;
+	position: absolute;
+	cursor: pointer;
+	right: 70px;
+	display: inline-block;
+} 
+
+.diarySec blockquote span ul li{
+	padding-right: 0px;
+} 
+
 #leaveMsgSec input.text, #leaveMsgSec textarea {
     background: none repeat scroll 0 0 #EEEEEE;
     border: 0 none;

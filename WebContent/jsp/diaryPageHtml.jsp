@@ -45,8 +45,7 @@
 				if (msg == 'fail') {
 					alert("删除失败！");
 				} else {
-					alert("删除成功！");
-					location.reload();
+					$("#diaryList_"+diaryid).hide();
 				}
 			}
 		});
@@ -58,7 +57,7 @@
  	int num = 0;
  	for (DiaryBO diary : diaryList) {
  		num++;
- %> <section id="newDiary_<%=diary.getId()%>" class="diarySec">
+ %> <section id="diaryList_<%=diary.getId()%>" class="diarySec">
 <%
 	if (num == 1) {
 %>
@@ -70,10 +69,29 @@
 %>
 <div>
 	<img width="60px" height="60px" alt="" class="img-polaroid left"
-		src="<%=ConstantsUtil.FW_DOMAIN %><%=diary.getAuthor_photo() %>" />
+		src="<%=ConstantsUtil.FW_DOMAIN%><%=diary.getAuthor_photo()%>" />
 	<blockquote>
 		<h3 class="muted">
 			<%=StringUtil.cutString(diary.getTitle(), 100)%>
+			<%
+				if (user.getId() == diary.getAuthor_id() ||(user.getId()!=null&&user.getId() == 1l)) {
+			%>
+			<span>
+				<ul class="inline">
+					<li><a titile="编辑" data-type="pjax"
+						href="/action/system/showeditdiary/<%=diary.getId() %>"><i class="icon-edit"></i>
+					</a>
+					</li>
+					<li><a title="删除" href="javascript:void(0);"
+						onclick="deleteDiary(<%=diary.getId()%>)"><i
+							class="icon-trash"></i>
+					</a>
+					</li>
+					<li>|</li>
+				</ul> </span>
+			<%
+				}
+			%>
 			<em title="回复/阅读数">[<%=diary.getReply_num()%>/<%=diary.getRead_num()%>]</em>
 		</h3>
 		<small> <%
@@ -90,8 +108,9 @@
 	<p><%=StringUtil.cutString(diary.getContent(), 150)%></p>
 </div>
 <div>
-	<a class="button" data-type="pjax" href="<%=ConstantsUtil.FW_DOMAIN%>/action/system/diarydetail/<%=diary.getId() %>">阅读全文 <i
-		class="icon-chevron-down"></i> </a>
+	<a class="button" data-type="pjax"
+		href="<%=ConstantsUtil.FW_DOMAIN%>/action/system/diarydetail/<%=diary.getId()%>">阅读全文
+		<i class="icon-chevron-down"></i> </a>
 </div>
 </section> <%
  	}
@@ -114,13 +133,13 @@
 				int count = 1;
 				if (count > 7) {
 		%>
-		<li class="disabled"><a href="#">...</a>
-		</li>
+		<li class="disabled"><a href="#">...</a></li>
 		<%
 			count++;
 				} else {
 		%>
-		<li <%if (i == currentPage) {%> class="active" <%}%>><a data-type="pjax"
+		<li <%if (i == currentPage) {%> class="active" <%}%>><a
+			data-type="pjax"
 			href="<%=ConstantsUtil.FW_DOMAIN%>/action/system/diary/<%=i%>#diaryPageDiv"><%=i%></a>
 		</li>
 		<%
