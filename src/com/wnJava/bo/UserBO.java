@@ -1,5 +1,6 @@
 package com.wnJava.bo;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -8,7 +9,7 @@ import java.util.Date;
  * @author Kalor
  * @time 2012-12-17 at 下午05:00:40
  */
-public class UserBO {
+public class UserBO implements Serializable {
 	private Long id;
 	private String name;
 	private String email;

@@ -7,6 +7,9 @@
 	<bean id="DiaryDao" class="com.wnJava.dao.impl.DiaryDaoImpl">
 		<property name="dbUtilsTemplate" ref="dbUtilsTemplate"></property>
 	</bean>
+	<bean id="LoverDao" class="com.wnJava.dao.impl.LoverDaoImpl">
+		<property name="dbUtilsTemplate" ref="dbUtilsTemplate"></property>
+	</bean>
 	<!-- 声明式事务管理 配置DAO -->
 	<bean id="nameproxy"
 		class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
@@ -14,6 +17,7 @@
 			<list>
 				<value>UserDao</value>
 				<value>DiaryDao</value>
+				<value>LoverDao</value>
 			</list>
 		</property>
 		<property name="interceptorNames">

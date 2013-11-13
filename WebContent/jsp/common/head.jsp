@@ -27,9 +27,6 @@
 <link type="text/css"
 	href="<%=ConstantsUtil.FW_DOMAIN%>/plugin/musicplayer/css/stylesheets/style.css"
 	rel="stylesheet" media="screen" />
-<link type="text/css"
-	href="<%=ConstantsUtil.FW_DOMAIN%>/plugin/highLight/styles/shCoreDefault.css"
-	rel="stylesheet" media="screen" />
 </head>
 <body>
 	<div class="navbar navbar-inverse navbar-fixed-top">
@@ -45,26 +42,31 @@
 							String fun = request.getParameter("fun");
 						%>
 						<li <%if (fun.equals("") || fun.equals("index")) {%>
-							class="active" <%}%>><a data-type="pjax"
-							href="/action/system/indexPage"><i
-								class="icon-home icon-white"></i> 首页</a></li>
+							class="active" <%}%>><a data-type="pjax" href="/action/system/indexPage"><i
+								class="icon-home icon-white"></i> 首页</a>
+						</li>
 						<li <%if (fun.equals("diarydetail") || fun.equals("diary")) {%>
 							class="active" <%}%>><a data-type="pjax"
 							href="/action/system/diary"><i class="icon-edit icon-white"></i>
-								日志</a></li>
-						<li><a data-type="pjax"
-							href="/action/system/indexPage#leaveMsgSec"><i
-								class="icon-envelope icon-white"></i> 留言</a></li>
-						<li><a data-type="pjax"
-							href="/action/system/indexPage#aboutSec"><i
-								class="icon-info-sign icon-white"></i> 关于</a></li>
+								日志</a>
+						</li>
+							<li <%if (fun.equals("loverTime")) {%>
+							class="active" <%}%>><a  target="_black"
+							href="/action/lovertime/index"><i class="icon-heart icon-white"></i>
+								LoverTime</a>
+						</li>
+						<li><a data-type="pjax" href="/action/system/indexPage#leaveMsgSec"><i
+								class="icon-envelope icon-white"></i> 留言</a>
+						</li>
+						<li><a data-type="pjax" href="/action/system/indexPage#aboutSec"><i
+								class="icon-info-sign icon-white"></i> 关于</a>
+						</li>
 					</ul>
 					<ul class="nav pull-right">
 						<li><a href="#" data-toggle="modal"
 							data-target="#registModal" data-keyboard="true"
 							data-backdrop="true"><i class="icon-plus-sign icon-white"></i>
-								注册</a>
-						</li>
+								注册</a></li>
 
 						<%
 							String hasLogin = request.getParameter("hasLogin");
@@ -75,8 +77,7 @@
 						%>
 						<li><a href="#" data-toggle="modal" data-target="#loginModal"
 							data-keyboard="true" data-backdrop="true"><i
-								class="icon-ok icon-white"></i> 登陆</a>
-						</li>
+								class="icon-ok icon-white"></i> 登陆</a></li>
 						<%
 							} else {
 								String userDiaryNum = request.getParameter("userDiaryNum");
@@ -86,20 +87,20 @@
 							<ul class="dropdown-menu">
 								<li><a
 									href="<%=ConstantsUtil.FW_DOMAIN%>/action/system/mainpage/<%=userId%>"><i
-										class="icon-home icon-black"></i> 个人主页</a>
-								</li>
-								<li><a href="javascript:void(0)"><i
-										class="icon-edit icon-black"></i> 日志：<%=userDiaryNum%>篇</a>
-								</li>
+										class="icon-home icon-black"></i> 个人主页</a></li>
+								<li><a href="javascript:void(0)"><i class="icon-edit icon-black"></i>
+										日志：<%=userDiaryNum%>篇</a></li>
 								<li class="divider"></li>
-								<li><a
-									href="<%=ConstantsUtil.FW_DOMAIN%>/action/system/shownewdiary"
-									data-type="pjax_highLight"><i
-										class="icon-pencil icon-black"></i> 写日志</a></li>
+								<li><a href="<%=ConstantsUtil.FW_DOMAIN%>/action/system/shownewdiary" data-type="pjax"
+									><i
+										class="icon-pencil icon-black"></i> 写日志</a>
+								</li>
 								<li class="divider"></li>
 								<li><a href="#" onclick="userQuit();"><i
-										class="icon-off icon-black"></i> 注销</a></li>
-							</ul></li>
+										class="icon-off icon-black"></i> 注销</a>
+								</li>
+							</ul>
+						</li>
 						<%
 							}
 						%>
@@ -257,7 +258,7 @@
 			onmouseout="this.start();"></marquee>
 		<i class="icon-fullscreen"></i>
 	</div>
-
+	
 	<div class="fixed goToTopDiv hide pointer padding-small">
 		<i onclick="goToTop()" class="icon-chevron-up icon-white icon-2x"></i>
 	</div>
@@ -285,25 +286,7 @@
 		src="<%=ConstantsUtil.FW_DOMAIN%>/plugin/musicplayer/js/jquery-ui.min.js"></script>
 	<script type="text/javascript"
 		src="<%=ConstantsUtil.FW_DOMAIN%>/plugin/musicplayer/js/script.js"></script>
-
-
-	<!-- 高亮插件 -->
-	<script type="text/javascript"
-		src="<%=ConstantsUtil.FW_DOMAIN%>/plugin/highLight/src/shCore.js"></script>
-	<!-- 笔刷 css java js sql xml 5种-->
-	<script type="text/javascript"
-		src="<%=ConstantsUtil.FW_DOMAIN%>/plugin/highLight/scripts/shBrushJScript.js"></script>
-	<script type="text/javascript"
-		src="<%=ConstantsUtil.FW_DOMAIN%>/plugin/highLight/scripts/shBrushCss.js"></script>
-	<script type="text/javascript"
-		src="<%=ConstantsUtil.FW_DOMAIN%>/plugin/highLight/scripts/shBrushJava.js"></script>
-	<script type="text/javascript"
-		src="<%=ConstantsUtil.FW_DOMAIN%>/plugin/highLight/scripts/shBrushSql.js"></script>
-	<script type="text/javascript"
-		src="<%=ConstantsUtil.FW_DOMAIN%>/plugin/highLight/scripts/shBrushXml.js"></script>
-
-
-
+		
 	<script type="text/javascript">
 		$(function() {
 			$(".scrollLoading").scrollLoading();
@@ -313,24 +296,14 @@
 				show : 'fade', // 展现的动画，支持默认和fade, 可以自定义动画方式，这里为自定义的function即可。
 				cache : false, // 是否使用缓存
 				storage : true, // 是否使用本地存储
-				titleSuffix : '', // 标题后缀
+				titleSuffix : '_wnJava', // 标题后缀
 				filter : function() {
 				},
 				callback : function() {
+					
 				}
 			});
-			$.pjax({
-				selector : "a[data-type='pjax_highLight']",
-				container : '#right-content', // 内容替换的容器
-				show : 'fade', // 展现的动画，支持默认和fade, 可以自定义动画方式，这里为自定义的function即可。
-				cache : false, // 是否使用缓存
-				storage : true, // 是否使用本地存储
-				titleSuffix : '', // 标题后缀
-				filter : function() {
-				},
-				callback : function() {
-				}
-			});
+
 		});
 	</script>
 </body>

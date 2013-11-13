@@ -30,9 +30,21 @@
 <script type="text/javascript"
 	src="<%=ConstantsUtil.FW_DOMAIN%>/plugin/editor/hotkey.js"></script>
 
+<link type="text/css"
+	href="<%=ConstantsUtil.FW_DOMAIN%>/plugin/highLight/styles/shCoreDefault.css"
+	rel="stylesheet" media="screen" />	
+	
+<!-- 高亮插件 -->
+<script type="text/javascript"
+	src="<%=ConstantsUtil.FW_DOMAIN%>/plugin/highLight/scripts/shCore.js"></script>
+<!-- 笔刷 css java js sql xml 5种-->
+<script type="text/javascript"
+	src="<%=ConstantsUtil.FW_DOMAIN%>/plugin/highLight/scripts/shBrushJScript.js"></script>
+ 
 <script language="javascript" type="text/javascript">
 	$(function() {
 		$('#editor').wysiwyg();
+		SyntaxHighlighter.all(); 
 	});
 
 	function newDiary() {
@@ -71,16 +83,11 @@
 					}
 				});
 	}
-	
-	function addCode() {
-		var code = $("#codeArea").html();
-		$("#codeP").html(code);
-		$('#codeModal').modal('hide');
-	}
-	
 </script>
 <title>wnJava--写日志</title>
 
+
+<!-- 
 <article> <section id="newDiarySec">
 <h3 class="major">
 	<span><i class="icon-pencil"></i> 写日志</span>
@@ -103,8 +110,7 @@
 				class="caret"></b> </a>
 			<ul class="dropdown-menu">
 				<li><a data-edit="fontName Micro YAHEI"
-					style="font-family: 'Micro YAHEI'">微软雅黑</a>
-				</li>
+					style="font-family: 'Micro YAHEI'">微软雅黑</a></li>
 				<li><a data-edit="fontName 楷体" style="font-family: '楷体'">楷体</a>
 				</li>
 				<li><a data-edit="fontName 黑体" style="font-family: '黑体'">黑体</a>
@@ -116,17 +122,13 @@
 				<li><a data-edit="fontName Arial" style="font-family: 'Arial'">Arial</a>
 				</li>
 				<li><a data-edit="fontName Comic Sans MS"
-					style="font-family: 'Comic Sans MS'">Comic Sans MS</a>
-				</li>
+					style="font-family: 'Comic Sans MS'">Comic Sans MS</a></li>
 				<li><a data-edit="fontName Helvetica"
-					style="font-family: 'Helvetica'">Helvetica</a>
-				</li>
+					style="font-family: 'Helvetica'">Helvetica</a></li>
 				<li><a data-edit="fontName Times New Roman"
-					style="font-family: 'Times New Roman'">Times New Roman</a>
-				</li>
+					style="font-family: 'Times New Roman'">Times New Roman</a></li>
 				<li><a data-edit="fontName Verdana"
-					style="font-family: 'Verdana'">Verdana</a>
-				</li>
+					style="font-family: 'Verdana'">Verdana</a></li>
 			</ul>
 		</div>
 		<div class="btn-group">
@@ -134,11 +136,9 @@
 				data-original-title="Font Size"><i class="icon-text-height"></i>&nbsp;<b
 				class="caret"></b> </a>
 			<ul class="dropdown-menu">
-				<li><a data-edit="fontSize 5"><font size="5">Huge</font> </a>
-				</li>
+				<li><a data-edit="fontSize 5"><font size="5">Huge</font> </a></li>
 				<li><a data-edit="fontSize 3"><font size="3">Normal</font>
-				</a>
-				</li>
+				</a></li>
 				<li><a data-edit="fontSize 1"><font size="1">Small</font> </a>
 				</li>
 			</ul>
@@ -187,42 +187,12 @@
 				data-role="magic-overlay" data-target="#pictureBtn"
 				data-edit="insertImage"
 				style="opacity: 0; position: absolute; top: 0px; left: 0px; width: 41px; height: 30px;" />
-			<!-- 插入代码 -->
-			<a class="btn" href="#" data-toggle="modal" data-target="#codeModal"
-				data-keyboard="true" data-backdrop="true" title="插入代码"><i
-				class="icon-paste"></i> 码</a>
 		</div>
 		<input type="text" data-edit="inserttext" id="voiceBtn"
 			x-webkit-speech="" style="display: none;" />
 	</div>
 
-	<div id="editor" contenteditable="true"></div>
-	
-	<div class="row span7">
-		<h3>代码片段</h3>
-		<p id="codeP"></p>
-	</div>
-</div>
-<div class="modal hide fade" id="codeModal">
-	<div class="modal-header">
-		<a class="close" data-dismiss="modal">×</a>
-		<h3>
-			<span class="label"> 请选择语言： </span>
-			<select class="span1">
-				<option>java</option>
-				<option>js</option>
-				<option>css</option>
-				<option>sql</option>
-				<option>xml</option>
-			</select>
-		</h3>
-	</div>
-	<div class="modal-body">
-		<textarea rows="6" id="codeArea"></textarea>
-	</div>
-	<div class="modal-footer">
-		<a href="#" class="btn btn-primary offset1" onclick="addCode();">提交</a>
-		<a href="#" data-dismiss="modal" aria-hidden="true" class="btn">关闭</a>
+	<div id="editor" contenteditable="true">
 	</div>
 </div>
 <div class="padding-small">
@@ -239,3 +209,14 @@
 </div>
 
 </section> </article>
+ -->
+ 
+ 
+<h1>Hello SyntaxHighlighter</h1>
+<pre class="brush: js;">
+function helloSyntaxHighlighter()
+{
+	return "hi!";
+}
+</pre>
+

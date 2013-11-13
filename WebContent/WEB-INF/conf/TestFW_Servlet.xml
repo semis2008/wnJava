@@ -13,4 +13,7 @@
 	</bean>
 	<bean id="Chat" class="com.wnJava.servlet.ChatServlet">
 	</bean>
+	<bean id="LoverTime" class="com.wnJava.servlet.LoverTimeServlet">
+		<property name="loverService" ref="LoverService" />
+	</bean>
 </beans>

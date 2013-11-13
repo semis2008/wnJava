@@ -100,7 +100,7 @@
 		<servlet-class>com.wnJava.servlet.DelegatingServletProxy</servlet-class>
 	</servlet>
 	<servlet>
-		<servlet-name>Album</servlet-name>
+		<servlet-name>LoverTime</servlet-name>
 		<servlet-class>com.wnJava.servlet.DelegatingServletProxy</servlet-class>
 	</servlet>
 	<servlet>
@@ -111,13 +111,11 @@
  	<servlet>
 		<servlet-name>autoCrawl</servlet-name>
 		<servlet-class>com.chatBear.spider.AutoCrawl</servlet-class>
-		<load-on-startup>1</load-on-startup>
 	</servlet>
  	<!-- 获取推送信息 -->
 	<servlet>
 		<servlet-name>getMsg</servlet-name>
 		<servlet-class>com.chatBear.comet.GetMsgAjax</servlet-class>
-		<load-on-startup>2</load-on-startup>
 	</servlet> 
 	<!-- 获取验证码 -->
 	<servlet>
@@ -145,8 +143,8 @@
 		<url-pattern>/diary.do</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
-		<servlet-name>Album</servlet-name>
-		<url-pattern>/album.do</url-pattern>
+		<servlet-name>LoverTime</servlet-name>
+		<url-pattern>/lovertime.do</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>System</servlet-name>

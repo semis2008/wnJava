@@ -226,7 +226,7 @@ public class SystemServlet extends HttpServlet {
 		String diaryId = req.getParameter("p1");
 		DiaryBO diary = diaryService.getDiaryByID(diaryId);
 		req.setAttribute("diary", diary);
-		return "/jsp/editDiaryHtml.jsp";
+		return "/jsp/editDiary.jsp";
 	}
 	
 	/**

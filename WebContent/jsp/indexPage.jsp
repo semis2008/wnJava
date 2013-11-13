@@ -101,7 +101,7 @@
 							%>
 							<li>
 								<h5>
-									<a data-type="pjax_highLight" href="<%=ConstantsUtil.FW_DOMAIN%>/action/system/diarydetail/<%=diary.getId()%>"><i class="icon-file-alt"></i> <%=StringUtil.cutString(diary.getTitle(), 100)%></a>
+									<a data-type="pjax" href="<%=ConstantsUtil.FW_DOMAIN%>/action/system/diarydetail/<%=diary.getId()%>"><i class="icon-file-alt"></i> <%=StringUtil.cutString(diary.getTitle(), 100)%></a>
 								</h5>
 								<ul class="meta inline">
 									<li><i class="icon-time"></i><a href="javascript:void(0);"> <%=DateUtil.formatDate(diary.getPublish_time(), 3)%></a>
@@ -113,7 +113,7 @@
 								}
 							%>
 						</ul>
-						<a data-type="pjax_highLight" class="button button-alt" href="<%=ConstantsUtil.FW_DOMAIN %>/action/system/diary">查看全部 <i
+						<a data-type="pjax" class="button button-alt" href="<%=ConstantsUtil.FW_DOMAIN %>/action/system/diary">查看全部 <i
 							class=" icon-hand-right"></i> </a> </section>
 						<!-- /Recent Posts -->
 

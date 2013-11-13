@@ -7,4 +7,7 @@
 	<bean id="DiaryService" class="com.wnJava.service.impl.DiaryServiceImpl">
 		<property name="diaryDao" ref="DiaryDao" />
 	</bean>
+	<bean id="LoverService" class="com.wnJava.service.impl.LoverServiceImpl">
+		<property name="loverDao" ref="LoverDao" />
+	</bean>
 </beans>

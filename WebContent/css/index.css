@@ -1,5 +1,5 @@
 .hero-unit {
-	background: url("../img/bg/head_img04.jpg") repeat scroll 0 0 /cover 
+	background: url("../img/bg/lover_img.png") repeat scroll 0 0 /cover 
 		transparent;
 	color: #FFFFFF;
 	height: 200px;
@@ -16,6 +16,7 @@
 	box-shadow: 2px 2px 2px 1px rgba(128, 128, 128, 0.1);
 	margin: 0 0 30px;
 	padding: 25px 20px 30px 20px;
+	position: relative;
 }
 
 .logo-info {
@@ -190,26 +191,13 @@ ul.meta {
 }
 .diarySec blockquote{
 	margin-left: 85px;
-} 
+}
 .diarySec em{
 	color: #6b7770;
 	font-size: small;
 	float: right;
 }
-
-.diarySec blockquote span{
-	height:12px;
-	font-size:small;
-	position: absolute;
-	cursor: pointer;
-	right: 70px;
-	display: inline-block;
-} 
-
-.diarySec blockquote span ul li{
-	padding-right: 0px;
-} 
-
+ 
 #leaveMsgSec input.text, #leaveMsgSec textarea {
     background: none repeat scroll 0 0 #EEEEEE;
     border: 0 none;
@@ -330,13 +318,173 @@ div[data-role="editor-toolbar"] {
     font-weight: 400;
     float:right;
 }
-
-#codeModal select{
-	font-size: 11px;
-	height: 20px;
-	margin: 0;
-	padding: 0;
+.clearfix:after {
+    clear: both;
+    content: " ";
+    display: block;
 }
-#codeModal textarea{
-	width: 97%;
+#timeline {
+    background: url("http://s.xnimg.cn/apps/profile2/res/timeline/bg_timeline_bar2.gif") repeat-y scroll 50% 0 rgba(0, 0, 0, 0);
+    padding-bottom: 25px;
+    padding-top: 30px;
+    position: relative;
+}
+
+
+#timeline .tlr_feed {
+    clear: right;
+    float: right;
+}
+#timeline .tll_feed {
+    clear: left;
+    float: left;
+    margin-top: 40px;
+}
+#timeline .timeline_feed, .born .timeline_feed {
+    margin-bottom: 25px;
+    position: relative;
+    width: 40%;
+}
+#timeline .tlr_feed section {
+    float: right;
+}
+#timeline .timeline_feed section, .born .timeline_feed section {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #D1D1D1;
+    border-radius: 3px 3px 3px 3px;
+    text-align: left;
+    width: 100%;
+}
+.tl-new-feed {
+    background-color: #FFFFFF;
+    border-radius: 3px 3px 3px 3px;
+    box-shadow: 0 1px 1px #D0D0D0;
+    position: relative;
+    word-break: break-all;
+    word-wrap: break-word;
+}
+.tl-a-feed {
+    background-color: #FFFFFF;
+    box-shadow: 0 1px 1px #D0D0D0;
+    position: relative;
+    word-wrap: break-word;
+}
+
+.tl-a-feed .content-source {
+    margin-top: 5px;
+}
+
+.tl-new-feed .content-source aside:after {
+    clear: both;
+    content: " ";
+    display: block;
+}
+.tl-a-feed .content-source aside:after {
+    clear: both;
+    content: " ";
+    display: block;
+}
+.tl-new-feed .content-source aside {
+    background-color: #F7F7F7;
+    border: 0 none;
+    color: #888888;
+    margin-bottom: 10px;
+    padding: 0;
+    position: relative;
+}
+.tl-a-feed .content-source aside {
+    background-color: #F7F7F7;
+    border: 1px solid #EBEBEB;
+    color: #888888;
+    padding: 8px 10px;
+}
+
+.tl-new-feed .content-source .share-pic {
+    float: left;
+    overflow: hidden;
+    position: relative;
+}
+
+.tl-new-feed .content-source aside .main-text {
+    line-height: 20px;
+    padding: 11px 15px 7px;
+}
+.tl-a-feed .content-source aside .main-text {
+    line-height: 1.8;
+}
+.tl-new-feed .content-source .main-text {
+    overflow: hidden;
+    table-layout: fixed;
+    word-break: break-all;
+    word-wrap: break-word;
+}
+.tl-a-feed .content-source .main-text {
+    overflow: hidden;
+    table-layout: fixed;
+    word-break: break-all;
+    word-wrap: break-word;
+}
+p {
+    line-height: 1.4em;
+}
+
+.tl-new-feed .share-pic a {
+    display: block;
+    height: 120px;
+    overflow: hidden;
+    position: relative;
+    width: 120px;
+}
+.tl-a-feed a {
+    outline: 0 none;
+}
+.tl-new-feed .share-pic img {
+    display: block;
+    margin: 0 auto;
+    position: absolute;
+}
+
+.tl-new-feed .content-source .section-title {
+    color: #888888;
+    display: block;
+    font-weight: normal;
+    line-height: 18px;
+}
+.tl-a-feed .content-source .section-title {
+    color: #888888;
+    display: block;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.tl-new-feed .content-source aside .main-text {
+    line-height: 20px;
+}  
+
+#timeline .alert {
+	margin-bottom: 0px;
+}
+
+
+#timeline .tll_feed i {
+    background: url("../img/bg_dot_right3.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    height: 14px;
+    position: absolute;
+    right: -26.4%;
+    text-indent: -9999em;
+    top: 15px;
+    width: 24px;
+}
+
+#timeline .overlap i, #timeline .overlap:hover i {
+    top: 30px;
+}
+#timeline .tlr_feed i {
+    background: url("../img/bg_dot_left3.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    height: 14px;
+    left: -26.3%;
+    position: absolute;
+    text-indent: -9999em;
+    top: 15px;
+    width: 24px;
 }
