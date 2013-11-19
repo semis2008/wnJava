@@ -1,9 +1,12 @@
 package com.wnJava.service;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.wnJava.bo.LoverInfoBO;
+import com.wnJava.bo.TimeNodeBO;
 import com.wnJava.vo.LoveRoadVO;
 
 /**
@@ -13,6 +16,13 @@ import com.wnJava.vo.LoveRoadVO;
  */
 public interface LoverService {
 	
+	
+	/**
+	 * 获取时间线节点
+	 * @return
+	 */
+	List<TimeNodeBO> getTimeNodes();
+	
 	/**
 	 * 保存爱人信息
 	 * @param req
@@ -20,6 +30,13 @@ public interface LoverService {
 	 * @return 
 	 */
 	String saveLoverInfo(HttpServletRequest req, HttpServletResponse resp);
+	/**
+	 * 保存记忆节点
+	 * @param req
+	 * @param resp
+	 * @return 
+	 */
+	String saveMemmory(HttpServletRequest req, HttpServletResponse resp);
 	
 	/**
 	 * 获取爱情之路信息vo.依据登录人获取，默认显示wn

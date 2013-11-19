@@ -16,74 +16,67 @@
 </h3>
 <form class="form-horizontal">
 	<div class="control-group">
-		<label class="control-label" for="inputEmail">起个名字</label>
+		<label class="control-label" for="memName">起个名字</label>
 		<div class="controls">
-			<input type="text" class="span4" id="loverName" placeholder="这段记忆的简略词">
+			<input type="text" class="span4" id="memName" placeholder="这段记忆的简略词">
 		</div>
 	</div>
 	<div class="control-group">
-		<label class="control-label" for="inputEmail">具体安排</label>
+		<label class="control-label" for="memDetail">具体安排</label>
 		<div class="controls">
-			<textarea  class="span4" placeholder="大概都做了什么？" />
+			<textarea  class="span4" id="memDetail" placeholder="大概都做了什么？" />
 		</div>
 	</div>
 	<div class="control-group">
-		<label class="control-label" for="inputEmail">地点</label>
+		<label class="control-label" for="memPlace">地点</label>
 		<div class="controls">
-			<input type="text"  class="span4" placeholder="在哪儿？">
+			<input type="text"  class="span4" id="memPlace" placeholder="在哪儿？">
 		</div>
 	</div>
 	<div class="control-group">
 		<label class="control-label">天气如何</label>
 		<div class="controls inline">
 			<div class="span1">
-				<input type="radio" checked="checked" name="gender" value="1" /> 晴天
+				<input type="radio" checked="checked" name="weather" value="晴天" /> 晴天
 			</div>
 			<div class="span1">
-				<input type="radio" name="gender" value="2" /> 阴天
+				<input type="radio" name="weather" value="阴天" /> 阴天
 			</div>
 			<div class="span1">
-				<input type="radio" name="gender" value="3" /> 有雨
+				<input type="radio" name="weather" value="有雨" /> 有雨
 			</div>
 			<div class="span1">
-				<input type="radio" name="gender" value="4" /> 下雪了
+				<input type="radio" name="weather" value="下雪了" /> 下雪了
 			</div>
 		</div>
 	</div>
 	<div class="control-group">
-		<label class="control-label" >心情如何</label>
+		<label class="control-label" for="memMood">心情如何</label>
 		<div class="controls">
-			<input type="text"  class="span4" id="loverName" placeholder="期待？开心？郁闷？失望？激动？...">
+			<input type="text"  class="span4" id="memMood" placeholder="期待？开心？郁闷？失望？激动？...">
 		</div>
 	</div>
 	<div class="control-group">
-		<label class="control-label" >穿着</label>
+		<label class="control-label" for="memDress">穿着</label>
 		<div class="controls">
-			<input type="text"  class="span4" id="loverName" placeholder="想想都穿了啥衣服？">
+			<input type="text"  class="span4" id="memDress" placeholder="想想都穿了啥衣服？">
 		</div>
 	</div>
 
 	<div class="control-group">
-		<label class="control-label" for="inputPassword">时间</label>
+		<label class="control-label" for="memTimeH">时间</label>
 		<div class="controls date form_datetime"
-			data-date-format="yyyy MM dd - HH:ii p" data-link-field="dtp_input1">
-			<input size="16" type="text" value="" readonly> <span
+			data-date-format="yyyy MM dd - HH:ii p" data-link-field="memTime">
+			<input size="16" type="text" value="" id="memTimeH" readonly> <span
 				class="add-on"><i class="icon-remove"></i> </span> <span
 				class="add-on"><i class="icon-th"></i> </span>
 		</div>
-		<input type="hidden" id="dtp_input1" value="" />
+		<input type="hidden" id="memTime" value="" />
 	</div>
 	<div class="control-group">
-		<label class="control-label" for="inputEmail">上传照片</label>
 		<div class="controls">
-			<input type="file" id="loverName" />
-		</div>
-	</div>
-
-	<div class="control-group">
-		<div class="controls">
-			<a data-type="pjax" class="button button-alt"
-				href="<%=ConstantsUtil.FW_DOMAIN%>/action/lovertime/saveloverInfo">保存下来
+			<a class="button button-alt"
+				href="javascript:void(0);" onclick="saveMemmory()">保存下来
 				<i class="icon-save"></i> </a>
 		</div>
 	</div>
@@ -104,4 +97,39 @@
 		forceParse : 0,
 		showMeridian : 1
 	});
+	function saveMemmory() {
+		var name = $("#memName").val();
+		var detail = $("#memDetail").val();
+		var place = $("#memPlace").val();
+		var weather = $('input:radio[name="weather"]:checked').val();
+		var mood = $("#memMood").val();
+		var dress = $("#memDress").val();
+		var time = $("#memTime").val();
+		
+		$
+		.ajax({
+			type : "POST",
+			url : "/action/lovertime/saveMemmory",
+			data : {
+				name : name,
+				detail : detail,
+				place : place,
+				weather : weather,
+				mood : mood,
+				dress : dress,
+				time : time
+			},
+			dataType : "text",
+			success : function(msg) {
+				if (msg < 0) {
+					showErrorMsg("保存失败，系统正在维护中...");
+					return false;
+				} else {
+					showSuccessMsg("保存成功！");
+				}
+			}
+		});
+		
+	}
+	
 </script> </section>

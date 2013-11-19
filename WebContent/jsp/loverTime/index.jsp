@@ -16,9 +16,15 @@
 	if (loveRoad == null) {
 		loveRoad = new LoveRoadVO();
 	}
-	List<LoverHolidayVO> holidayList = (List<LoverHolidayVO>)request.getAttribute("holidayList");
-	if(holidayList==null) {
+	List<LoverHolidayVO> holidayList = (List<LoverHolidayVO>) request
+			.getAttribute("holidayList");
+	if (holidayList == null) {
 		holidayList = new ArrayList<LoverHolidayVO>();
+	}
+	List<TimeNodeBO> nodes = (List<TimeNodeBO>) request
+			.getAttribute("nodes");
+	if (nodes == null) {
+		nodes = new ArrayList<TimeNodeBO>();
 	}
 %>
 <html>
@@ -124,6 +130,7 @@
 	function goToTop() {
 		$('body,html').animate({
 			scrollTop : 0
+
 		}, 1000);
 	}
 </script>
@@ -139,15 +146,12 @@
 				<div class="brand">&nbsp;&nbsp;&nbsp;&nbsp;LoverTime&nbsp;&nbsp;&nbsp;&nbsp;</div>
 				<div class="nav-collapse collapse navbar-responsive-collapse">
 					<ul class="nav">
-						<li><a data-type="pjax" href="/action/lovertime/showTimeLine"><i
-								class="icon-random icon-white"></i> 起航</a>
-						</li>
+						<li><a data-type="pjax" href="/action/lovertime/index"><i
+								class="icon-random icon-white"></i> 起航</a></li>
 						<li><a data-type="pjax" href="/action/lovertime/addMemmory"><i
-								class="icon-camera-retro icon-white"></i> 添加记忆</a>
-						</li>
+								class="icon-camera-retro icon-white"></i> 添加记忆</a></li>
 						<li><a data-type="pjax" href="/action/lovertime/addPoint"><i
-								class="icon-lightbulb icon-white"></i> add大事件</a>
-						</li>
+								class="icon-lightbulb icon-white"></i> add大事件</a></li>
 					</ul>
 					<ul class="nav pull-right">
 						<li class="dropdown"><a href="#" class="dropdown-toggle"
@@ -156,10 +160,13 @@
 							<ul class="dropdown-menu">
 								<li><a href="/action/lovertime/setLoverInfo"
 									data-type="pjax"><i class=" icon-user icon-black"></i>
-										TA是谁？</a></li>
+										TA是谁？</a>
+								</li>
 								<li><a href="#"><i
-										class="icon-exclamation-sign icon-black"></i> 设置密码</a></li>
-							</ul></li>
+										class="icon-exclamation-sign icon-black"></i> 设置密码</a>
+								</li>
+							</ul>
+						</li>
 					</ul>
 				</div>
 			</div>
@@ -200,7 +207,8 @@
 								if (loveRoad.getMeetTime() == null) {
 							%>
 							<li>
-								<div class="alert alert-error">尚未进行设置!</div></li>
+								<div class="alert alert-error">尚未进行设置!</div>
+							</li>
 							<%
 								} else {
 							%>
@@ -211,57 +219,52 @@
 								</h5>
 								<ul class="meta inline">
 									<li><i class="icon-calendar"></i><a
-										href="javascript:void(0);"> 初次见面时间： <%=DateUtil.formatDate(loveRoad.getMeetTime(),3)%></a>
+										href="javascript:void(0);"> 初次见面时间： <%=DateUtil.formatDate(loveRoad.getMeetTime(), 3)%></a>
 									</li>
-								</ul></li>
+								</ul>
+							</li>
 							<li>
 								<%
-									if(loveRoad.getLoveTime()==null) {
+									if (loveRoad.getLoveTime() == null) {
 								%>
 								<h5>
 									<a data-type="pjax" href="#"><i class="icon-heart"></i> 相爱
 										0 天</a>
-								</h5>
-								<%
-									}else {
-								%>
+								</h5> <%
+ 	} else {
+ %>
 								<h5>
-									<a data-type="pjax" href="#"><i class="icon-heart"></i> 在
-										<%=loveRoad.getLoveDayPast() %>相爱</a>
+									<a data-type="pjax" href="#"><i class="icon-heart"></i> 在 <%=loveRoad.getLoveDayPast()%>相爱</a>
 								</h5>
 								<ul class="meta inline">
 									<li><i class="icon-calendar"></i><a
-										href="javascript:void(0);"> 坠入爱河时间： <%=DateUtil.formatDate(loveRoad.getLoveTime(),3) %></a>
+										href="javascript:void(0);"> 坠入爱河时间： <%=DateUtil.formatDate(loveRoad.getLoveTime(), 3)%></a>
 									</li>
-								</ul>
-								<%
-								}
-								%>
-								</li>
+								</ul> <%
+ 	}
+ %>
+							</li>
 							<li>
 								<%
-									if(loveRoad.getMarriageTime()==null) {
+									if (loveRoad.getMarriageTime() == null) {
 								%>
 								<h5>
-									<a data-type="pjax" href="#"><i class="icon-home"></i> 结婚
-										0 天</a>
-								</h5>
-								<%
-									}else {
-								%>
+									<a data-type="pjax" href="#"><i class="icon-home"></i> 结婚 0
+										天</a>
+								</h5> <%
+ 	} else {
+ %>
 								<h5>
-									<a data-type="pjax" href="#"><i class="icon-home"></i> 在
-										<%=loveRoad.getMarriageDayPast() %>结婚</a>
+									<a data-type="pjax" href="#"><i class="icon-home"></i> 在 <%=loveRoad.getMarriageDayPast()%>结婚</a>
 								</h5>
 								<ul class="meta inline">
 									<li><i class="icon-calendar"></i><a
-										href="javascript:void(0);"> 结婚时间： <%=DateUtil.formatDate(loveRoad.getMarriageTime(),3) %></a>
+										href="javascript:void(0);"> 结婚时间： <%=DateUtil.formatDate(loveRoad.getMarriageTime(), 3)%></a>
 									</li>
-								</ul>
-								<%
-								}
-								%>
-								</li>
+								</ul> <%
+ 	}
+ %>
+							</li>
 							<%
 								}
 							%>
@@ -273,22 +276,112 @@
 							<span><i class="icon-bell"></i> 节日提醒</span>
 						</h3>
 						<ul class="unstyled side-ul">
-						<%
-							for(LoverHolidayVO vo:holidayList) {
-						%>
-							<li><span class="label label-info"><%=vo.getDaysStr() %></span> ： <%=vo.getHolidayName() %></li>
-						<%
-							}
-						%>
-							 
+							<%
+								for (LoverHolidayVO vo : holidayList) {
+							%>
+							<li><span class="label label-info"><%=vo.getDaysStr()%></span>
+								： <%=vo.getHolidayName()%></li>
+							<%
+								}
+							%>
+
 						</ul>
-					    </section>
+						</section>
 					</div>
 
 				</div>
 			</div>
 			<div class="span8" id="right-content">
-				<jsp:include page="/jsp/loverTime/timeLineHtml.jsp" flush="true" />
+				<section>
+				<h3 class="major">
+					<span><i class="icon-heart"></i> 恋爱时间线</span>
+				</h3>
+				<div id="timeline" class="clearfix" style="padding-bottom: 25px;">
+					<%
+					int count = 0;
+					for(TimeNodeBO bo:nodes) {
+						count++;
+						if(count%2==1) {
+							%>
+					<div class="timeline_feed tlr_feed">
+						<section class="tl-a-feed  tl-new-feed padding-small"
+							id="timeNode_<%=bo.getId() %>" style="display: block;">
+						<div class="alert alert-info">
+							<%=DateUtil.formatDate(bo.getTime(),3) %><span class="pull-right"><em>心情有点<div class="label label-info"><%=bo.getMood() %></div>哦</em>
+							</span>
+						</div>
+						<div class="share-feed">
+							<div class="content-source">
+								<aside>
+								<div class="share-pic">
+									<a href="javascript:void(0);" > <img
+										data-src="holder.js/120x120" class="img-circle" alt="120x120"
+										style="width: 120px; height: 120px;"
+										src="<%=ConstantsUtil.FW_DOMAIN %><%=bo.getPhotos() %>" /> </a>
+								</div>
+								<div class="main-text">
+									<ul class="unstyled">
+										<li><div class="label label-info"><%=DateUtil.getPassedTime(bo.getTime()) %></div>
+										</li>
+										<li><span class="section-title"> <a
+												target="_blank" href="javascript:void(0);" title="<%=bo.getDescription() %>"> <%=bo.getName() %></a> </span></li>
+										<li><span class="section-from">地点：<a
+												target="_blank" href="javascript:void(0);"><%=bo.getPosition() %></a> </span></li>
+										<li><span class="section-from">天气：<a
+												target="_blank" href="javascript:void(0);"><%=bo.getWeather() %></a> </span></li>
+										<li><span class="section-from">穿着：<a
+												target="_blank" href="javascript:void(0);"><%=bo.getDress() %></a> </span></li>
+									</ul>
+								</div>
+								</aside>
+							</div>
+						</div>
+						</section>
+						<i></i>
+					</div>
+		<% 
+						}else {
+						%>
+					<div class="timeline_feed tll_feed">
+						<section class="tl-a-feed  tl-new-feed padding-small"
+							id="timeNode_<%=bo.getId() %>" style="display: block;">
+						<div class="alert alert-info">
+							<%=DateUtil.formatDate(bo.getTime(),3) %><span class="pull-right"><em>心情有点<div class="label label-info"><%=bo.getMood() %></div>哦</em>
+							</span>
+						</div>
+						<div class="share-feed">
+							<div class="content-source">
+								<aside>
+								<div class="share-pic">
+									<a href="javascript:void(0);" > <img
+										data-src="holder.js/120x120" class="img-circle" alt="120x120"
+										style="width: 120px; height: 120px;"
+										src="<%=ConstantsUtil.FW_DOMAIN %><%=bo.getPhotos() %>" /> </a>
+								</div>
+								<div class="main-text">
+									<ul class="unstyled">
+										<li><div class="label label-info"><%=DateUtil.getPassedTime(bo.getTime()) %></div>
+										</li>
+										<li><span class="section-title"> <a
+												target="_blank" href="javascript:void(0);" title="<%=bo.getDescription() %>"> <%=bo.getName() %></a> </span></li>
+										<li><span class="section-from">地点：<a
+												target="_blank" href="javascript:void(0);"><%=bo.getPosition() %></a> </span></li>
+										<li><span class="section-from">天气：<a
+												target="_blank" href="javascript:void(0);"><%=bo.getWeather() %></a> </span></li>
+										<li><span class="section-from">穿着：<a
+												target="_blank" href="javascript:void(0);"><%=bo.getDress() %></a> </span></li>
+									</ul>
+								</div>
+								</aside>
+							</div>
+						</div>
+						</section>
+						<i></i>
+					</div>						<%
+						}
+					}
+					%>
+				</div>
 			</div>
 		</div>
 	</div>

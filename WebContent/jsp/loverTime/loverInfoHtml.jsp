@@ -54,6 +54,7 @@
 			</div>
 			<input type="hidden" id="time_fir" value="" /> 
 	</div>
+	
 
 	<div class="control-group">
 		<div class="controls">
@@ -83,7 +84,8 @@
 		var gender = $("input[name='gender']:checked").val();
 		var birthday = $("#time_bir").val();
 		var meetday = $("#time_fir").val();
-		
+
+			
 		$
 		.ajax({
 			type : "POST",

@@ -18,6 +18,7 @@ import com.wnJava.bo.DiaryBO;
 import com.wnJava.bo.DiaryReplyBO;
 import com.wnJava.bo.LeaveMsgBO;
 import com.wnJava.bo.LoverInfoBO;
+import com.wnJava.bo.TimeNodeBO;
 import com.wnJava.bo.UserBO;
 import com.wnJava.bo.UserInfoBO;
 import com.wnJava.service.DiaryService;
@@ -63,7 +64,9 @@ public class LoverTimeServlet extends HttpServlet {
 		String pjax = (String) req.getParameter("pjax");
 		if ("saveLoverInfo".equals(fun)) {
 			saveLoverInfo(req, resp);
-		} else {
+		} else if ("saveMemmory".equals(fun)) {
+			saveMemmory(req, resp);
+		}else {
 			if ((pjax == null || !pjax.equals("true")) && !fun.equals("index")) {
 				fun = "index";
 			}
@@ -76,8 +79,6 @@ public class LoverTimeServlet extends HttpServlet {
 				targetpath = "/jsp/loverTime/addMemmoryHtml.jsp";
 			} else if ("addPoint".equals(fun)) {
 				targetpath = "/jsp/loverTime/addPointHtml.jsp";
-			} else if ("showTimeLine".equals(fun)) {
-				targetpath = "/jsp/loverTime/timeLineHtml.jsp";
 			}
 
 			req.setAttribute("fun", fun);
@@ -102,8 +103,10 @@ public class LoverTimeServlet extends HttpServlet {
 		LoverInfoBO bo = loverService.getLoverInfo(req, resp);
 		List<LoverHolidayVO> holidayList = DateUtil.getLoveHoliday(bo);
 		// 获取爱情时间线
-
+		List<TimeNodeBO> nodes = loverService.getTimeNodes();
+		
 		req.setAttribute("LoveRoad", loveRoad);
+		req.setAttribute("nodes", nodes);
 		req.setAttribute("holidayList", holidayList);
 
 		return "/jsp/loverTime/index.jsp";
@@ -122,6 +125,29 @@ public class LoverTimeServlet extends HttpServlet {
 		try {
 			out = resp.getWriter();
 			String result = loverService.saveLoverInfo(req, resp);
+			out.print(result);
+			out.flush();
+			out.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+
+	/**
+	 * 保存记忆节点
+	 * 
+	 * @param req
+	 * @param resp
+	 * @return
+	 * @throws IOException
+	 */
+	private void saveMemmory(HttpServletRequest req, HttpServletResponse resp) {
+		PrintWriter out;
+		try {
+			out = resp.getWriter();
+			String result = loverService.saveMemmory(req, resp);
 			out.print(result);
 			out.flush();
 			out.close();

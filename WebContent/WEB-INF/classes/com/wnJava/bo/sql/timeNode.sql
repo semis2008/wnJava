@@ -3,10 +3,10 @@ CREATE TABLE `timeNode` (
   `name` varchar(50) DEFAULT NULL,
   `description` varchar(500) DEFAULT NULL,
   `position` varchar(100) DEFAULT NULL,
-  `weather` int(10) DEFAULT NULL,
+  `weather` varchar(50) DEFAULT NULL,
   `dress` varchar(50) DEFAULT NULL,
   `mood` varchar(100) DEFAULT NULL,
   `time` datetime DEFAULT NULL,
-  `photoIds` varchar(300) DEFAULT NULL,
+  `photos` varchar(1000) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8

@@ -1,8 +1,12 @@
 package com.wnJava.dao.impl;
 
+import java.util.List;
+
 import com.wnJava.bo.LoverInfoBO;
+import com.wnJava.bo.TimeNodeBO;
 import com.wnJava.dao.LoverDao;
 import com.wnJava.dao.template.DbUtilsTemplate;
+import com.wnJava.util.ConstantsUtil;
 
 public class LoverDaoImpl implements LoverDao {
 	private DbUtilsTemplate dbUtilsTemplate;
@@ -15,6 +19,22 @@ public class LoverDaoImpl implements LoverDao {
 
 	public void setDbUtilsTemplate(DbUtilsTemplate dbUtilsTemplate) {
 		this.dbUtilsTemplate = dbUtilsTemplate;
+	}
+
+
+	@Override
+	public List<TimeNodeBO> queryTimeNodes() {
+		String sql = "select * from timeNode where 1=1 order by time desc";
+		return dbUtilsTemplate.find(TimeNodeBO.class, sql);
+	}
+
+
+	@Override
+	public int insertMemmory(String name, String des, String pos,
+			String weather, String dress, String mood, String time) {
+		String sql = "insert into timeNode(name,description,position,weather,dress,mood,time,photos) values (?,?,?,?,?,?,?,?)";
+		Object[] params = {name,des,pos,weather,dress,mood,time,ConstantsUtil.DEFAULT_LOVER_PHOTO};
+		return dbUtilsTemplate.update(sql, params);
 	}
 
 

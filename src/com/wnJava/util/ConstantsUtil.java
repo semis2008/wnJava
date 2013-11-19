@@ -12,6 +12,7 @@ public class ConstantsUtil {
 	public static String BIRTHDAY_NONE = "1700-11-11";
 	public static final String SALT = "a86aff6cf0a1";
 	public static final String DEFAULT_HEAD_PHOTO = "/img/head/default/defaultGuest.jpg";
+	public static final String DEFAULT_LOVER_PHOTO = "/img/loverPhotoDef.jpg";
 	public static final String DEFAULT_BG = "/img/bg.jpg";
 	public static final String SITE_INFO_XML = "WEB-INF/conf/siteInfo.xml";
 }

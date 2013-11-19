@@ -1,6 +1,9 @@
 package com.wnJava.dao;
 
+import java.util.List;
+
 import com.wnJava.bo.LoverInfoBO;
+import com.wnJava.bo.TimeNodeBO;
 
 /**
  * lovertime的dao操作类
@@ -16,6 +19,23 @@ public interface LoverDao {
 	 */
 	int insertLoverInfo(Long userId,String name,String gender,String birthday,String meetTime);  
 	
+	/**
+	 * 查询时间线节点
+	 * @return
+	 */
+	List<TimeNodeBO> queryTimeNodes();
+	/**
+	 * 插入新记忆
+	 * @param name
+	 * @param des
+	 * @param pos
+	 * @param weather
+	 * @param dress
+	 * @param mood
+	 * @param time
+	 * @return
+	 */
+	int insertMemmory(String name,String des,String pos,String weather,String dress,String mood,String time);
 	/**
 	 * 更新爱人信息
 	 * @param bo

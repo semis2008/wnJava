@@ -15,7 +15,7 @@ public class TimeNodeBO {
 	private String weather;
 	private String dress;
 	private Date time;
-	private String photoIds;
+	private String photos;
 	private String mood;
 	public String getMood() {
 		return mood;
@@ -66,10 +66,11 @@ public class TimeNodeBO {
 	public void setTime(Date time) {
 		this.time = time;
 	}
-	public String getPhotoIds() {
-		return photoIds;
+	public String getPhotos() {
+		return photos;
 	}
-	public void setPhotoIds(String photoIds) {
-		this.photoIds = photoIds;
+	public void setPhotos(String photos) {
+		this.photos = photos;
 	}
+	
 }

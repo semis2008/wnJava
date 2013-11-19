@@ -1,9 +1,12 @@
 package com.wnJava.service.impl;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.wnJava.bo.LoverInfoBO;
+import com.wnJava.bo.TimeNodeBO;
 import com.wnJava.dao.LoverDao;
 import com.wnJava.service.LoverService;
 import com.wnJava.util.DateUtil;
@@ -19,6 +22,25 @@ public class LoverServiceImpl implements LoverService {
 
 	public void setLoverDao(LoverDao loverDao) {
 		this.loverDao = loverDao;
+	}
+
+	@Override
+	public String saveMemmory(HttpServletRequest req, HttpServletResponse resp) {
+		String name = req.getParameter("name");
+		String description = req.getParameter("detail");
+		String position = req.getParameter("place");
+		String weather = req.getParameter("weather");
+		String dress = req.getParameter("dress");
+		String mood = req.getParameter("mood");
+		String time = req.getParameter("time");
+		
+		return loverDao.insertMemmory(name,description,position,weather,dress,mood,time)+"";
+	}
+
+	@Override
+	public List<TimeNodeBO> getTimeNodes() {
+		
+		return loverDao.queryTimeNodes();
 	}
 
 	@Override
