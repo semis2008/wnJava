@@ -1,16 +1,27 @@
 package com.wnJava.servlet;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Random;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileUploadException;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Component;
 
@@ -25,6 +36,7 @@ import com.wnJava.service.DiaryService;
 import com.wnJava.service.LoverService;
 import com.wnJava.service.UserService;
 import com.wnJava.util.DateUtil;
+import com.wnJava.util.EncryptUtil;
 import com.wnJava.util.UserUtil;
 import com.wnJava.vo.LoveRoadVO;
 import com.wnJava.vo.LoverHolidayVO;
@@ -66,8 +78,10 @@ public class LoverTimeServlet extends HttpServlet {
 			saveLoverInfo(req, resp);
 		} else if ("saveMemmory".equals(fun)) {
 			saveMemmory(req, resp);
+		} else if ("uploadImg".equals(fun)) {
+			uploadImg(req, resp);
 		}else {
-			if ((pjax == null || !pjax.equals("true")) && !fun.equals("index")) {
+			if ((pjax == null || !pjax.equals("true")) && !("index_").contains(fun)) {
 				fun = "index";
 			}
 			String targetpath = "";
@@ -75,17 +89,18 @@ public class LoverTimeServlet extends HttpServlet {
 				targetpath = showLoverTime(req, resp);
 			} else if ("setLoverInfo".equals(fun)) {
 				targetpath = "/jsp/loverTime/loverInfoHtml.jsp";
-			} else if ("addMemmory".equals(fun)) {
+			} else if ("addMemmory".equals (fun)) {
 				targetpath = "/jsp/loverTime/addMemmoryHtml.jsp";
 			} else if ("addPoint".equals(fun)) {
 				targetpath = "/jsp/loverTime/addPointHtml.jsp";
 			}
-
 			req.setAttribute("fun", fun);
 			RequestDispatcher rd = req.getRequestDispatcher(targetpath);
 			rd.forward(req, resp);
 		}
 	}
+	
+	
 
 	/**
 	 * 显示loverTime
@@ -111,6 +126,63 @@ public class LoverTimeServlet extends HttpServlet {
 
 		return "/jsp/loverTime/index.jsp";
 	}
+
+	/**
+	 * 上传图片
+	 * 
+	 * @param req
+	 * @param resp
+	 * @return
+	 * @throws Exception 
+	 * @throws IOException
+	 */
+	private void uploadImg(HttpServletRequest req, HttpServletResponse resp) {
+		try {
+			DiskFileItemFactory factory = new DiskFileItemFactory();
+
+			ServletFileUpload upload = new ServletFileUpload(factory);
+			List list = null;
+			list = upload.parseRequest(req);
+			Iterator it = list.iterator();
+			String filename = "";
+			String photoPath = "";
+			while (it.hasNext()) {
+				FileItem item = (FileItem) it.next();// 每一个item就代表一个表单输出项
+				if(item.getName()==null) {
+					continue;
+				}	
+				// 按照时间生成图片名称
+				Calendar cal = Calendar.getInstance();
+				SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmssSSS");
+				String mDateTime = formatter.format(cal.getTime());
+				filename = mDateTime+".jpg";
+
+				// 得到上传文件要写入的目录
+				String path = this.getServletContext().getRealPath("/img/lover/photo");
+				// 根据目录和文件创建输出流
+				photoPath = path + filename;
+				FileOutputStream out1 = new FileOutputStream(photoPath);
+
+				InputStream in = item.getInputStream();
+				byte buffer[] = new byte[1024];
+				int len = 0;
+				while ((len = in.read(buffer)) > 0) {
+					out1.write(buffer, 0, len);
+				}
+				in.close();
+				out1.close();
+			}
+			
+			String nodeId = req.getParameter("p1");
+			String result = loverService.uploadImg(nodeId,"/img/lover/photo"+filename);
+			
+			resp.sendRedirect("http://www.wnjava.com/action/lovertime/index"); 
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 
 	/**
 	 * 保存爱人信息

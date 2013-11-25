@@ -20,6 +20,14 @@ public interface LoverDao {
 	int insertLoverInfo(Long userId,String name,String gender,String birthday,String meetTime);  
 	
 	/**
+	 * 更新记忆节点图片信息
+	 * @param id
+	 * @param photo
+	 * @return
+	 */
+	String updateTimeNodeImg(String id,String photo);
+	
+	/**
 	 * 查询时间线节点
 	 * @return
 	 */

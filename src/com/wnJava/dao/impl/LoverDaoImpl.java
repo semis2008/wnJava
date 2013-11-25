@@ -39,6 +39,14 @@ public class LoverDaoImpl implements LoverDao {
 
 
 	@Override
+	public String updateTimeNodeImg(String id, String photo) {
+		String sql = "update timeNode set photos = ? where id = ?";
+		Object[] params = {photo,id};
+		return dbUtilsTemplate.update(sql, params)+"";
+	}
+
+
+	@Override
 	public int updateLoverInfo(Long userId,String name, String gender, String birthday,
 			String meetTime) {
 		String sql = "update loverInfo set name=?,gender=?,birthday=?,meetTime=? where userId = ?";

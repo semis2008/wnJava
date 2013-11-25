@@ -39,6 +39,15 @@ public interface LoverService {
 	String saveMemmory(HttpServletRequest req, HttpServletResponse resp);
 	
 	/**
+	 * 保存图片
+	 * @param req
+	 * @param resp
+	 * @return
+	 */
+	String uploadImg(String nodeId, String fileName);
+	
+	
+	/**
 	 * 获取爱情之路信息vo.依据登录人获取，默认显示wn
 	 * @param req
 	 * @param resp

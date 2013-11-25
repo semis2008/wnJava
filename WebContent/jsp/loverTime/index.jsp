@@ -133,6 +133,13 @@
 
 		}, 1000);
 	}
+	function setNodeId(id) {
+		$("#uploadNodeId").val(id);
+		$("#uploadImgForm").attr("action","/action/lovertime/uploadImg/"+id);
+	}
+	function uploadImg() {
+		$("#uploadImgForm").submit();
+	}
 </script>
 <title>爱情时间线</title>
 </head>
@@ -314,8 +321,9 @@
 							<div class="content-source">
 								<aside>
 								<div class="share-pic">
-									<a href="javascript:void(0);" > <img
-										data-src="holder.js/120x120" class="img-circle" alt="120x120"
+									<a href="javascript:void(0);" onclick="setNodeId(<%=bo.getId() %>)" data-toggle="modal" data-target="#uploadModal"
+							data-keyboard="true" data-backdrop="true"> <img
+										data-src="holder.js/120x120" class="img-rounded" alt="120x120"
 										style="width: 120px; height: 120px;"
 										src="<%=ConstantsUtil.FW_DOMAIN %><%=bo.getPhotos() %>" /> </a>
 								</div>
@@ -353,8 +361,9 @@
 							<div class="content-source">
 								<aside>
 								<div class="share-pic">
-									<a href="javascript:void(0);" > <img
-										data-src="holder.js/120x120" class="img-circle" alt="120x120"
+									<a href="javascript:void(0);" onclick="setNodeId(<%=bo.getId() %>)" href="#" data-toggle="modal" data-target="#uploadModal"
+							data-keyboard="true" data-backdrop="true"> <img
+										data-src="holder.js/120x120" class="img-rounded" alt="120x120"
 										style="width: 120px; height: 120px;"
 										src="<%=ConstantsUtil.FW_DOMAIN %><%=bo.getPhotos() %>" /> </a>
 								</div>
@@ -387,6 +396,24 @@
 	</div>
 	<div class="fixed goToTopDiv hide pointer padding-small">
 		<i onclick="goToTop()" class="icon-chevron-up icon-white icon-2x"></i>
+	</div>
+	
+	<!-- 上传图片 -->
+	<div class="modal hide fade" id="uploadModal">
+		<div class="modal-header">
+			<a class="close" data-dismiss="modal">×</a>
+			<h3>
+				<span class="label label-info"><i
+					class="icon-user icon-white"></i>为时间节点设置图片</span>
+			</h3>
+		</div>
+		<div class="modal-body">
+			<form class="well form-inline" id="uploadImgForm" action="/action/lovertime/uploadImg/" method="post" enctype="multipart/form-data">
+				<input type="file" id="nodeImg" name="nodeImg"/>
+				<input type="hidden" id="uploadNodeId" name="uploadNodeId" value="" />
+				<div class="btn btn-primary" onclick="uploadImg()">保存</div>
+			</form>
+		</div>
 	</div>
 	<!-- 底部 -->
 	<jsp:include page="/jsp/common/bottom.jsp" flush="true" />
